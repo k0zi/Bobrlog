@@ -1,46 +1,52 @@
-# Bobrlog – Eseménynapló Linuxra
+<p align="center">
+  <img src="packaging/icons/bobrlog-128.png" alt="Bobrlog icon" width="128" height="128">
+</p>
 
-Windows Event Viewer-szerű grafikus naplónézegető (C#, .NET 10, Avalonia 12). Lekérdezések írása nélkül,
-kategóriánként és súlyosság-ikonokkal mutatja a rendszereseményeket, és megmagyarázza, miért állt le vagy indult újra a gép.
+# Bobrlog – Event Viewer for Linux
 
-## Funkciók
-- **Áttekintés**: kritikus, hiba és figyelmeztetés számok (24 óra / 7 nap), napi bontás 14 napra (kattintható),
-  legutóbbi rendszerindítások, leggyakoribb hibaforrások.
-- **Rendszerindítások**: minden bootnál megállapítja, hogyan ért véget (szabályos leállítás vagy újraindítás, váratlan leállás,
-  alvásból vissza nem tért gép), és felsorolja a valószínű okokat (GPU-reset, lockup, OOM, MCE, I/O hiba, pstore,
-  program-összeomlás stb.).
-- **Kategóriák**: fagyások és összeomlások, kernel és hardver, szolgáltatások, energiagazdálkodás, biztonság, hálózat,
-  alkalmazások, egyéb, valamint az összes esemény. A besorolást a `src/Bobrlog.Core/Rules/default-rules.json` szabályai végzik, a választott nyelvű magyarázattal.
-- **Szűrők**: időszak, adott nap vagy boot, minimális súlyosság, keresés (regex), forrás vagy egység; élő követés;
-  „journalctl parancs” másolása.
-- **Hibajelentések**: apport (`/var/crash`), coredumpctl, pstore.
-- **Nyelvek**: angol (alapértelmezett), magyar, finn és német. A Beállítások → Nyelv menüben választható; újraindítás után lép életbe.
-  A felület szövegei a `Resources/*.resx` fájlokban, a szabályok magyarázatai nyelvenként a `default-rules.json`-ban vannak.
+A graphical log viewer in the style of the Windows Event Viewer (C#, .NET 10, Avalonia 12). It shows system events
+by category with severity icons, no queries needed, and explains why the machine shut down or restarted.
 
-## Futtatás
+## Features
+- **Overview**: critical, error and warning counts (24 hours / 7 days), a clickable per-day breakdown for the last 14 days,
+  recent boots, and the most frequent error sources.
+- **Boots**: for every boot, determines how it ended (clean shutdown or reboot, unexpected shutdown,
+  machine that never resumed from sleep) and lists the likely causes (GPU reset, lockup, OOM, MCE, I/O error, pstore,
+  application crash, etc.).
+- **Categories**: freezes and crashes, kernel and hardware, services, power management, security, network,
+  applications, other, plus all events. Classification is done by the rules in `src/Bobrlog.Core/Rules/default-rules.json`,
+  with explanations in the selected language.
+- **Filters**: time range, a specific day or boot, minimum severity, search (regex), source or unit; live follow;
+  copy the equivalent `journalctl` command.
+- **Crash reports**: apport (`/var/crash`), coredumpctl, pstore.
+- **Languages**: English (default), Hungarian, Finnish and German. Selectable under Settings → Language; takes effect after a restart.
+  UI strings live in `Resources/*.resx`, and rule explanations are stored per language in `default-rules.json`.
+
+## Running
 ```bash
-dotnet run --project src/Bobrlog.App      # fejlesztés
-packaging/install-user.sh                        # telepítés a saját felhasználónak (menübejegyzéssel)
+dotnet run --project src/Bobrlog.App      # development
+packaging/install-user.sh                 # install for the current user (with a menu entry)
 packaging/install-user.sh --uninstall
 ```
-Sudo nem kell: az `adm` vagy `systemd-journal` csoport tagjai a teljes rendszernaplót látják.
+No sudo required: members of the `adm` or `systemd-journal` group can see the full system journal.
 
-## Opcionális háttérszolgáltatás
-Beállítások → Háttérszolgáltatás → Telepítés. A `pkexec` kéri a jelszót. A szolgáltatás:
-- `/opt/bobrlog/service`, `bobrlog.service` (root, `Nice=-5`, sandbox: `ProtectSystem=strict`, csak olvasási jogok),
-- a `/run/bobrlog/bobrlog.sock` socketen szolgál ki. Csak a root és az `/etc/bobrlog/allowed-uids`
-  fájlban felsorolt UID-ok érhetik el (SO_PEERCRED ellenőrzéssel),
-- látja a root-only forrásokat is (pstore, minden hibajelentés). Ha fut, a GUI automatikusan ezt használja.
+## Optional background service
+Settings → Background service → Install. `pkexec` will prompt for your password. The service:
+- is installed to `/opt/bobrlog/service` as `bobrlog.service` (runs as root, `Nice=-5`, sandboxed with
+  `ProtectSystem=strict`, read-only access),
+- serves requests on the `/run/bobrlog/bobrlog.sock` socket. Only root and the UIDs listed in
+  `/etc/bobrlog/allowed-uids` can connect (verified via SO_PEERCRED),
+- can also read root-only sources (pstore, all crash reports). When it is running, the GUI uses it automatically.
 
-Az eltávolítás ugyanott történik.
+It can be uninstalled from the same place.
 
-## Felépítés
-| Projekt | Tartalom |
+## Project structure
+| Project | Contents |
 |---|---|
-| `Bobrlog.Core` | journalctl JSON parser, szabálymotor, `BootAnalyzer`, crash-olvasók, socket protokoll, telepítő |
+| `Bobrlog.Core` | journalctl JSON parser, rule engine, `BootAnalyzer`, crash readers, socket protocol, installer |
 | `Bobrlog.App` | Avalonia 12 GUI (MVVM, CommunityToolkit.Mvvm) |
-| `Bobrlog.Service` | Háttérszolgáltatás (Generic Host + systemd notify, Unix socket) |
-| `tests/Bobrlog.Core.Tests` | xUnit tesztek (`dotnet test`) |
+| `Bobrlog.Service` | Background service (Generic Host + systemd notify, Unix socket) |
+| `tests/Bobrlog.Core.Tests` | xUnit tests (`dotnet test`) |
 
-Az élő követés lekérdezéssel (polling) működik, nem a `journalctl -f`-fel. Így akkor is működik, ha a felhasználó
-inotify-kerete elfogyott.
+Live follow works by polling rather than `journalctl -f`, so it keeps working even when the user's
+inotify limit has been exhausted.
