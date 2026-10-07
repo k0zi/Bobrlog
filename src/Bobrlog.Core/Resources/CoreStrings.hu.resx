@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Category_KernelHardware" xml:space="preserve">
+    <value>Kernel és hardver</value>
+  </data>
+  <data name="Category_Crashes" xml:space="preserve">
+    <value>Fagyások és összeomlások</value>
+  </data>
+  <data name="Category_Services" xml:space="preserve">
+    <value>Szolgáltatások</value>
+  </data>
+  <data name="Category_Power" xml:space="preserve">
+    <value>Energiagazdálkodás</value>
+  </data>
+  <data name="Category_Security" xml:space="preserve">
+    <value>Biztonság</value>
+  </data>
+  <data name="Category_Network" xml:space="preserve">
+    <value>Hálózat</value>
+  </data>
+  <data name="Category_Applications" xml:space="preserve">
+    <value>Alkalmazások</value>
+  </data>
+  <data name="Category_Other" xml:space="preserve">
+    <value>Egyéb rendszer</value>
+  </data>
+  <data name="Severity_Critical" xml:space="preserve">
+    <value>Kritikus</value>
+  </data>
+  <data name="Severity_Error" xml:space="preserve">
+    <value>Hiba</value>
+  </data>
+  <data name="Severity_Warning" xml:space="preserve">
+    <value>Figyelmeztetés</value>
+  </data>
+  <data name="Severity_Info" xml:space="preserve">
+    <value>Információ</value>
+  </data>
+  <data name="Severity_Verbose" xml:space="preserve">
+    <value>Részletes</value>
+  </data>
+  <data name="Shutdown_Running" xml:space="preserve">
+    <value>Jelenleg fut</value>
+  </data>
+  <data name="Shutdown_PowerOff" xml:space="preserve">
+    <value>Szabályos leállítás</value>
+  </data>
+  <data name="Shutdown_Reboot" xml:space="preserve">
+    <value>Szabályos újraindítás</value>
+  </data>
+  <data name="Shutdown_Unexpected" xml:space="preserve">
+    <value>Váratlan leállás</value>
+  </data>
+  <data name="Shutdown_SuspendNeverResumed" xml:space="preserve">
+    <value>Alvó állapotból nem tért vissza</value>
+  </data>
+  <data name="Shutdown_Unknown" xml:space="preserve">
+    <value>Ismeretlen</value>
+  </data>
+  <data name="Boot_NoTraceReason" xml:space="preserve">
+    <value>Nincs naplózott hiba a leállás előtt. Valószínű ok: áramkimaradás, hosszan nyomott bekapcsológomb, lemerült akkumulátor, vagy olyan teljes hardveres fagyás, amikor a kernel már nem tudott naplózni.</value>
+  </data>
+  <data name="Boot_SuspendNeverResumed" xml:space="preserve">
+    <value>A gép alvó állapotba lépett, és nem tért vissza belőle: a következő indítás hidegindítás volt (lemerült akkumulátor, áramkimaradás, vagy fagyás az ébredéskor).</value>
+  </data>
+  <data name="Boot_ProgramCrash" xml:space="preserve">
+    <value>Program összeomlás: {0} ({1}, {2})</value>
+  </data>
+  <data name="Boot_ReasonRepeated" xml:space="preserve">
+    <value>{0} ({1}×, utoljára {2})</value>
+  </data>
+  <data name="Boot_ReasonOnce" xml:space="preserve">
+    <value>{0} ({1})</value>
+  </data>
+  <data name="Boot_AnalysisFailed" xml:space="preserve">
+    <value>Az elemzés nem sikerült: {0}</value>
+  </data>
+  <data name="Privilege_Warning" xml:space="preserve">
+    <value>Csak a saját felhasználói naplóid láthatók. A teljes rendszernaplóhoz add hozzá magad az 'adm' csoporthoz (sudo usermod -aG adm $USER), indítsd rootként, vagy telepítsd a háttérszolgáltatást.</value>
+  </data>
+  <data name="ServiceStatus_NotInstalled" xml:space="preserve">
+    <value>Nincs telepítve</value>
+  </data>
+  <data name="ServiceStatus_Running" xml:space="preserve">
+    <value>Fut</value>
+  </data>
+  <data name="ServiceStatus_Stopped" xml:space="preserve">
+    <value>Telepítve, nem fut ({0})</value>
+  </data>
+  <data name="Installer_PkexecMissing" xml:space="preserve">
+    <value>A pkexec nem található (policykit-1 csomag). Indítsd az alkalmazást sudo-val, vagy telepítsd a pkexec-et.</value>
+  </data>
+  <data name="Installer_AuthCancelled" xml:space="preserve">
+    <value>A hitelesítés megszakítva.</value>
+  </data>
+  <data name="Installer_AuthFailed" xml:space="preserve">
+    <value>Nincs jogosultság (a hitelesítés sikertelen).</value>
+  </data>
+  <data name="Installer_ExitCode" xml:space="preserve">
+    <value>Hiba (kilépési kód: {0})</value>
+  </data>
+  <data name="Installer_RootRequired" xml:space="preserve">
+    <value>Root jogosultság szükséges.</value>
+  </data>
+  <data name="Installer_InvalidUid" xml:space="preserve">
+    <value>Hiányzó vagy érvénytelen --uid.</value>
+  </data>
+  <data name="Installer_Installed" xml:space="preserve">
+    <value>A háttérszolgáltatás telepítve és elindítva.</value>
+  </data>
+  <data name="Installer_Uninstalled" xml:space="preserve">
+    <value>A háttérszolgáltatás eltávolítva.</value>
+  </data>
+  <data name="Installer_Restarted" xml:space="preserve">
+    <value>A háttérszolgáltatás újraindítva.</value>
+  </data>
+  <data name="Installer_UnknownOperation" xml:space="preserve">
+    <value>Ismeretlen művelet: {0}</value>
+  </data>
+  <data name="Installer_ServiceExeMissing" xml:space="preserve">
+    <value>A szolgáltatás programja nem található: {0}</value>
+  </data>
+  <data name="Source_Local" xml:space="preserve">
+    <value>Helyi journalctl</value>
+  </data>
+  <data name="Source_Service" xml:space="preserve">
+    <value>Háttérszolgáltatás</value>
+  </data>
+  <data name="Source_ServiceError" xml:space="preserve">
+    <value>Háttérszolgáltatás: {0}</value>
+  </data>
+  <data name="Process_CannotStart" xml:space="preserve">
+    <value>A(z) '{0}' parancs nem indítható: {1}</value>
+  </data>
+  <data name="Crash_ReportUnreadable" xml:space="preserve">
+    <value>A jelentés tartalma nem olvasható ezzel a jogosultsággal.</value>
+  </data>
+  <data name="Crash_PstorePanic" xml:space="preserve">
+    <value>Kernel összeomlás (pstore): {0}</value>
+  </data>
+  <data name="Crash_PstoreLog" xml:space="preserve">
+    <value>Kernel napló mentés (pstore)</value>
+  </data>
+  <data name="Service_NotAuthorized" xml:space="preserve">
+    <value>A(z) {0} felhasználó nem jogosult a szolgáltatás használatára.</value>
+  </data>
+  <data name="Service_TooManyRequests" xml:space="preserve">
+    <value>Túl sok egyidejű kérés.</value>
+  </data>
+  <data name="Service_InvalidRequest" xml:space="preserve">
+    <value>Érvénytelen kérés.</value>
+  </data>
+  <data name="Service_UnknownOperation" xml:space="preserve">
+    <value>Ismeretlen művelet.</value>
+  </data>
+</root>

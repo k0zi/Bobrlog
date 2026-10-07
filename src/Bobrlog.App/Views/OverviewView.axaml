@@ -1,0 +1,175 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:r="using:Bobrlog.App.Resources"
+             xmlns:vm="using:Bobrlog.App.ViewModels"
+             xmlns:c="using:Bobrlog.App.Controls"
+             xmlns:cr="using:Bobrlog.Core.Resources"
+             x:Class="Bobrlog.App.Views.OverviewView"
+             x:DataType="vm:OverviewViewModel">
+
+    <UserControl.Styles>
+        <Style Selector="Button.row">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="Padding" Value="6,3" />
+            <Setter Property="CornerRadius" Value="6" />
+        </Style>
+        <Style Selector="Border.bar-error">
+            <Setter Property="Background" Value="{DynamicResource SeverityErrorBrush}" />
+            <Setter Property="Height" Value="8" />
+            <Setter Property="CornerRadius" Value="0,4,4,0" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+        </Style>
+        <Style Selector="Border.bar-warning">
+            <Setter Property="Background" Value="{DynamicResource SeverityWarningBrush}" />
+            <Setter Property="Height" Value="8" />
+            <Setter Property="CornerRadius" Value="0,4,4,0" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+        </Style>
+    </UserControl.Styles>
+
+    <ScrollViewer>
+        <StackPanel Margin="20,14" Spacing="14" MaxWidth="1300" HorizontalAlignment="Stretch">
+            <DockPanel>
+                <Button DockPanel.Dock="Right" Content="{x:Static r:Strings.Common_Refresh}" Command="{Binding LoadCommand}" VerticalAlignment="Center" />
+                <StackPanel Spacing="4">
+                    <TextBlock Classes="h1" Text="{x:Static r:Strings.Overview_Title}" />
+                    <TextBlock FontSize="15" Text="{Binding Headline}" TextWrapping="Wrap" />
+                </StackPanel>
+            </DockPanel>
+
+            <StackPanel Orientation="Horizontal" Spacing="8" IsVisible="{Binding IsLoading}">
+                <ProgressBar IsIndeterminate="True" Width="80" />
+                <TextBlock Classes="muted" Text="{Binding StatusText}" />
+            </StackPanel>
+            <Border IsVisible="{Binding ErrorText, Converter={x:Static ObjectConverters.IsNotNull}}"
+                    Background="{DynamicResource BannerBrush}" CornerRadius="6" Padding="10,6">
+                <TextBlock Text="{Binding ErrorText}" TextWrapping="Wrap" />
+            </Border>
+
+            <!-- Stat tiles -->
+            <ItemsControl ItemsSource="{Binding Counts}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Rows="1" ColumnSpacing="12" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="vm:SeverityCount">
+                        <Border Classes="card">
+                            <StackPanel Spacing="6">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <c:SeverityIcon Severity="{Binding Severity}" Width="18" Height="18" />
+                                    <TextBlock Classes="h2" Text="{Binding Label}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Spacing="6">
+                                    <TextBlock FontSize="30" FontWeight="Bold" Text="{Binding Last24Hours}" />
+                                    <TextBlock Classes="muted" Text="{x:Static r:Strings.Overview_Last24Hours}" VerticalAlignment="Bottom" Margin="0,0,0,7" />
+                                </StackPanel>
+                                <TextBlock Classes="muted" Text="{Binding Last7DaysText}" />
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <Grid ColumnDefinitions="*,14,*">
+                <!-- Daily bars -->
+                <Border Grid.Column="0" Classes="card">
+                    <StackPanel Spacing="6">
+                        <TextBlock Classes="h2" Text="{x:Static r:Strings.Overview_DailyTitle}" />
+                        <StackPanel Orientation="Horizontal" Spacing="16">
+                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                <c:SeverityIcon Severity="Error" Width="14" Height="14" />
+                                <TextBlock Classes="muted" FontSize="12" Text="{x:Static r:Strings.Overview_LegendError}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                <c:SeverityIcon Severity="Warning" Width="14" Height="14" />
+                                <TextBlock Classes="muted" FontSize="12" Text="{x:Static cr:CoreStrings.Severity_Warning}" />
+                            </StackPanel>
+                            <TextBlock Classes="muted" FontSize="12" Text="{x:Static r:Strings.Overview_LegendHint}" />
+                        </StackPanel>
+                        <ItemsControl ItemsSource="{Binding DayBars}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="vm:DayBar">
+                                    <Button Classes="row" ToolTip.Tip="{Binding Tooltip}"
+                                            Command="{Binding $parent[ItemsControl].((vm:OverviewViewModel)DataContext).OpenDayCommand}"
+                                            CommandParameter="{Binding}">
+                                        <Grid ColumnDefinitions="110,*">
+                                            <TextBlock Text="{Binding Label}" VerticalAlignment="Center" />
+                                            <StackPanel Grid.Column="1" Spacing="2" VerticalAlignment="Center">
+                                                <StackPanel Orientation="Horizontal" Spacing="6">
+                                                    <Border Classes="bar-error" Width="{Binding ErrorWidth}" />
+                                                    <TextBlock FontSize="11" Text="{Binding Errors}" VerticalAlignment="Center" />
+                                                </StackPanel>
+                                                <StackPanel Orientation="Horizontal" Spacing="6">
+                                                    <Border Classes="bar-warning" Width="{Binding WarningWidth}" />
+                                                    <TextBlock FontSize="11" Classes="muted" Text="{Binding Warnings}" VerticalAlignment="Center" />
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Button>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
+
+                <StackPanel Grid.Column="2" Spacing="14">
+                    <!-- Recent boots -->
+                    <Border Classes="card">
+                        <StackPanel Spacing="6">
+                            <TextBlock Classes="h2" Text="{x:Static r:Strings.Overview_RecentBoots}" />
+                            <ItemsControl ItemsSource="{Binding RecentBoots}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate x:DataType="vm:BootRow">
+                                        <Button Classes="row" Command="{Binding $parent[ItemsControl].((vm:OverviewViewModel)DataContext).OpenBootCommand}"
+                                                CommandParameter="{Binding}">
+                                            <DockPanel>
+                                                <c:BootKindIcon Kind="{Binding Kind}" DockPanel.Dock="Left" Margin="0,0,10,0" VerticalAlignment="Top" />
+                                                <StackPanel>
+                                                    <TextBlock>
+                                                        <Run Text="{Binding Started}" FontWeight="SemiBold" />
+                                                        <Run Text=" – " />
+                                                        <Run Text="{Binding KindText}" />
+                                                    </TextBlock>
+                                                    <TextBlock Classes="muted" FontSize="12" Text="{Binding Summary}" TextWrapping="Wrap" MaxLines="2" TextTrimming="CharacterEllipsis" />
+                                                </StackPanel>
+                                            </DockPanel>
+                                        </Button>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                            <TextBlock Classes="muted" FontSize="12" Text="{Binding CrashSummary}" Margin="6,4,0,0" />
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Top error sources -->
+                    <Border Classes="card">
+                        <StackPanel Spacing="6">
+                            <TextBlock Classes="h2" Text="{x:Static r:Strings.Overview_TopSources}" />
+                            <TextBlock Classes="muted" FontSize="12" Text="{x:Static r:Strings.Overview_NoErrors}" IsVisible="{Binding !TopSources.Count}" />
+                            <ItemsControl ItemsSource="{Binding TopSources}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate x:DataType="vm:SourceCount">
+                                        <Button Classes="row" Command="{Binding $parent[ItemsControl].((vm:OverviewViewModel)DataContext).OpenSourceCommand}"
+                                                CommandParameter="{Binding}" ToolTip.Tip="{Binding Source}">
+                                            <Grid ColumnDefinitions="*,230">
+                                                <TextBlock Text="{Binding Source}" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" />
+                                                <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="6">
+                                                    <Border Classes="bar-error" Width="{Binding Width}" />
+                                                    <TextBlock FontSize="11" Text="{Binding Count}" VerticalAlignment="Center" />
+                                                </StackPanel>
+                                            </Grid>
+                                        </Button>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

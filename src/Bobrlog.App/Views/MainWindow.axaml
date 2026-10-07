@@ -1,0 +1,52 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:r="using:Bobrlog.App.Resources"
+        xmlns:vm="using:Bobrlog.App.ViewModels"
+        x:Class="Bobrlog.App.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Title="{x:Static r:Strings.App_WindowTitle}"
+        Icon="/Assets/bobrlog.png"
+        Width="1400" Height="860" MinWidth="900" MinHeight="560"
+        WindowStartupLocation="CenterScreen">
+
+    <DockPanel>
+        <!-- Status bar -->
+        <Border DockPanel.Dock="Bottom" Padding="12,5" BorderThickness="0,1,0,0"
+                BorderBrush="{DynamicResource CardBorderBrush}" Background="{DynamicResource SidebarBrush}">
+            <TextBlock Classes="muted" FontSize="12" Text="{Binding SourceText}" />
+        </Border>
+
+        <!-- Sidebar -->
+        <Border DockPanel.Dock="Left" Width="250" Background="{DynamicResource SidebarBrush}"
+                BorderThickness="0,0,1,0" BorderBrush="{DynamicResource CardBorderBrush}">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Top" Margin="18,16,12,10" Spacing="2">
+                    <TextBlock Text="{x:Static r:Strings.App_Name}" FontSize="18" FontWeight="Bold" />
+                    <TextBlock Classes="muted" FontSize="12" Text="{x:Static r:Strings.App_Subtitle}" />
+                </StackPanel>
+                <ListBox Classes="nav" ItemsSource="{Binding Pages}" SelectedItem="{Binding SelectedPage}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate x:DataType="vm:PageViewModel">
+                            <StackPanel Orientation="Horizontal" Spacing="10">
+                                <PathIcon Data="{Binding Icon}" Width="16" Height="16" />
+                                <TextBlock Text="{Binding Title}" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </DockPanel>
+        </Border>
+
+        <!-- Content -->
+        <DockPanel>
+            <Border DockPanel.Dock="Top" IsVisible="{Binding HasPrivilegeWarning}"
+                    Background="{DynamicResource BannerBrush}" Padding="14,8">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <PathIcon Classes="severity-warning" Data="M13,14H11V10H13M13,18H11V16H13M1,21H23L12,2L1,21Z" Width="16" Height="16" />
+                    <TextBlock Text="{Binding PrivilegeWarning}" TextWrapping="Wrap" VerticalAlignment="Center" />
+                </StackPanel>
+            </Border>
+            <ContentControl Content="{Binding SelectedPage}" />
+        </DockPanel>
+    </DockPanel>
+</Window>

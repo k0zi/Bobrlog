@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Category_KernelHardware" xml:space="preserve">
+    <value>Ydin ja laitteisto</value>
+  </data>
+  <data name="Category_Crashes" xml:space="preserve">
+    <value>Jumiutumiset ja kaatumiset</value>
+  </data>
+  <data name="Category_Services" xml:space="preserve">
+    <value>Palvelut</value>
+  </data>
+  <data name="Category_Power" xml:space="preserve">
+    <value>Virranhallinta</value>
+  </data>
+  <data name="Category_Security" xml:space="preserve">
+    <value>Tietoturva</value>
+  </data>
+  <data name="Category_Network" xml:space="preserve">
+    <value>Verkko</value>
+  </data>
+  <data name="Category_Applications" xml:space="preserve">
+    <value>Sovellukset</value>
+  </data>
+  <data name="Category_Other" xml:space="preserve">
+    <value>Muu järjestelmä</value>
+  </data>
+  <data name="Severity_Critical" xml:space="preserve">
+    <value>Kriittinen</value>
+  </data>
+  <data name="Severity_Error" xml:space="preserve">
+    <value>Virhe</value>
+  </data>
+  <data name="Severity_Warning" xml:space="preserve">
+    <value>Varoitus</value>
+  </data>
+  <data name="Severity_Info" xml:space="preserve">
+    <value>Tiedote</value>
+  </data>
+  <data name="Severity_Verbose" xml:space="preserve">
+    <value>Yksityiskohtainen</value>
+  </data>
+  <data name="Shutdown_Running" xml:space="preserve">
+    <value>Käynnissä nyt</value>
+  </data>
+  <data name="Shutdown_PowerOff" xml:space="preserve">
+    <value>Hallittu sammutus</value>
+  </data>
+  <data name="Shutdown_Reboot" xml:space="preserve">
+    <value>Hallittu uudelleenkäynnistys</value>
+  </data>
+  <data name="Shutdown_Unexpected" xml:space="preserve">
+    <value>Odottamaton sammuminen</value>
+  </data>
+  <data name="Shutdown_SuspendNeverResumed" xml:space="preserve">
+    <value>Ei palannut lepotilasta</value>
+  </data>
+  <data name="Shutdown_Unknown" xml:space="preserve">
+    <value>Tuntematon</value>
+  </data>
+  <data name="Boot_NoTraceReason" xml:space="preserve">
+    <value>Ennen sammumista ei kirjattu virheitä. Todennäköinen syy: sähkökatko, pitkään painettu virtapainike, tyhjentynyt akku tai täydellinen laitteistojumi, jossa ydin ei enää pystynyt kirjaamaan.</value>
+  </data>
+  <data name="Boot_SuspendNeverResumed" xml:space="preserve">
+    <value>Kone siirtyi lepotilaan eikä herännyt siitä: seuraava käynnistys oli kylmäkäynnistys (tyhjentynyt akku, sähkökatko tai jumiutuminen herättäessä).</value>
+  </data>
+  <data name="Boot_ProgramCrash" xml:space="preserve">
+    <value>Ohjelman kaatuminen: {0} ({1}, {2})</value>
+  </data>
+  <data name="Boot_ReasonRepeated" xml:space="preserve">
+    <value>{0} ({1}×, viimeksi {2})</value>
+  </data>
+  <data name="Boot_ReasonOnce" xml:space="preserve">
+    <value>{0} ({1})</value>
+  </data>
+  <data name="Boot_AnalysisFailed" xml:space="preserve">
+    <value>Analyysi epäonnistui: {0}</value>
+  </data>
+  <data name="Privilege_Warning" xml:space="preserve">
+    <value>Vain oma käyttäjälokisi näkyy. Nähdäksesi koko järjestelmälokin lisää itsesi 'adm'-ryhmään (sudo usermod -aG adm $USER), käynnistä sovellus pääkäyttäjänä tai asenna taustapalvelu.</value>
+  </data>
+  <data name="ServiceStatus_NotInstalled" xml:space="preserve">
+    <value>Ei asennettu</value>
+  </data>
+  <data name="ServiceStatus_Running" xml:space="preserve">
+    <value>Käynnissä</value>
+  </data>
+  <data name="ServiceStatus_Stopped" xml:space="preserve">
+    <value>Asennettu, ei käynnissä ({0})</value>
+  </data>
+  <data name="Installer_PkexecMissing" xml:space="preserve">
+    <value>pkexec-ohjelmaa ei löytynyt (policykit-1-paketti). Käynnistä sovellus sudolla tai asenna pkexec.</value>
+  </data>
+  <data name="Installer_AuthCancelled" xml:space="preserve">
+    <value>Tunnistautuminen peruttiin.</value>
+  </data>
+  <data name="Installer_AuthFailed" xml:space="preserve">
+    <value>Ei oikeuksia (tunnistautuminen epäonnistui).</value>
+  </data>
+  <data name="Installer_ExitCode" xml:space="preserve">
+    <value>Virhe (paluukoodi: {0})</value>
+  </data>
+  <data name="Installer_RootRequired" xml:space="preserve">
+    <value>Pääkäyttäjän oikeudet vaaditaan.</value>
+  </data>
+  <data name="Installer_InvalidUid" xml:space="preserve">
+    <value>Puuttuva tai virheellinen --uid.</value>
+  </data>
+  <data name="Installer_Installed" xml:space="preserve">
+    <value>Taustapalvelu on asennettu ja käynnistetty.</value>
+  </data>
+  <data name="Installer_Uninstalled" xml:space="preserve">
+    <value>Taustapalvelu on poistettu.</value>
+  </data>
+  <data name="Installer_Restarted" xml:space="preserve">
+    <value>Taustapalvelu on käynnistetty uudelleen.</value>
+  </data>
+  <data name="Installer_UnknownOperation" xml:space="preserve">
+    <value>Tuntematon toiminto: {0}</value>
+  </data>
+  <data name="Installer_ServiceExeMissing" xml:space="preserve">
+    <value>Palveluohjelmaa ei löytynyt: {0}</value>
+  </data>
+  <data name="Source_Local" xml:space="preserve">
+    <value>Paikallinen journalctl</value>
+  </data>
+  <data name="Source_Service" xml:space="preserve">
+    <value>Taustapalvelu</value>
+  </data>
+  <data name="Source_ServiceError" xml:space="preserve">
+    <value>Taustapalvelu: {0}</value>
+  </data>
+  <data name="Process_CannotStart" xml:space="preserve">
+    <value>Komentoa '{0}' ei voitu käynnistää: {1}</value>
+  </data>
+  <data name="Crash_ReportUnreadable" xml:space="preserve">
+    <value>Raporttia ei voi lukea nykyisillä oikeuksilla.</value>
+  </data>
+  <data name="Crash_PstorePanic" xml:space="preserve">
+    <value>Ytimen kaatuminen (pstore): {0}</value>
+  </data>
+  <data name="Crash_PstoreLog" xml:space="preserve">
+    <value>Tallennettu ytimen loki (pstore)</value>
+  </data>
+  <data name="Service_NotAuthorized" xml:space="preserve">
+    <value>Käyttäjällä {0} ei ole oikeutta käyttää palvelua.</value>
+  </data>
+  <data name="Service_TooManyRequests" xml:space="preserve">
+    <value>Liian monta samanaikaista pyyntöä.</value>
+  </data>
+  <data name="Service_InvalidRequest" xml:space="preserve">
+    <value>Virheellinen pyyntö.</value>
+  </data>
+  <data name="Service_UnknownOperation" xml:space="preserve">
+    <value>Tuntematon toiminto.</value>
+  </data>
+</root>

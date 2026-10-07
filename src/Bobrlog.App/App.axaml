@@ -1,0 +1,113 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="Bobrlog.App.App"
+             xmlns:local="using:Bobrlog.App"
+             RequestedThemeVariant="Default">
+
+    <Application.DataTemplates>
+        <local:ViewLocator />
+    </Application.DataTemplates>
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <FontFamily x:Key="AppFont">Ubuntu Sans, Cantarell, Adwaita Sans, fonts:Inter#Inter</FontFamily>
+            <FontFamily x:Key="MonoFont">Ubuntu Sans Mono, Adwaita Mono, DejaVu Sans Mono, monospace</FontFamily>
+            <CornerRadius x:Key="CardRadius">10</CornerRadius>
+
+            <ResourceDictionary.ThemeDictionaries>
+                <!-- Adwaita-inspired palette. Error/warning bar pair validated for CVD separation. -->
+                <ResourceDictionary x:Key="Light">
+                    <SolidColorBrush x:Key="SeverityCriticalBrush" Color="#A51D2D" />
+                    <SolidColorBrush x:Key="SeverityErrorBrush" Color="#E01B24" />
+                    <SolidColorBrush x:Key="SeverityWarningBrush" Color="#C88800" />
+                    <SolidColorBrush x:Key="SeverityInfoBrush" Color="#1C71D8" />
+                    <SolidColorBrush x:Key="SeverityVerboseBrush" Color="#77767B" />
+                    <SolidColorBrush x:Key="BootOkBrush" Color="#26A269" />
+                    <SolidColorBrush x:Key="SidebarBrush" Color="#EBEBED" />
+                    <SolidColorBrush x:Key="WindowBrush" Color="#FAFAFB" />
+                    <SolidColorBrush x:Key="CardBrush" Color="#FFFFFF" />
+                    <SolidColorBrush x:Key="CardBorderBrush" Color="#DEDDDA" />
+                    <SolidColorBrush x:Key="MutedTextBrush" Color="#5E5C64" />
+                    <SolidColorBrush x:Key="BannerBrush" Color="#FDF0C4" />
+                    <SolidColorBrush x:Key="SelectedNavBrush" Color="#D6D6DA" />
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="Dark">
+                    <SolidColorBrush x:Key="SeverityCriticalBrush" Color="#FF7B63" />
+                    <SolidColorBrush x:Key="SeverityErrorBrush" Color="#E01B24" />
+                    <SolidColorBrush x:Key="SeverityWarningBrush" Color="#C88800" />
+                    <SolidColorBrush x:Key="SeverityInfoBrush" Color="#62A0EA" />
+                    <SolidColorBrush x:Key="SeverityVerboseBrush" Color="#9A9996" />
+                    <SolidColorBrush x:Key="BootOkBrush" Color="#57E389" />
+                    <SolidColorBrush x:Key="SidebarBrush" Color="#2E2E32" />
+                    <SolidColorBrush x:Key="WindowBrush" Color="#222226" />
+                    <SolidColorBrush x:Key="CardBrush" Color="#2E2E32" />
+                    <SolidColorBrush x:Key="CardBorderBrush" Color="#3D3846" />
+                    <SolidColorBrush x:Key="MutedTextBrush" Color="#C0BFBC" />
+                    <SolidColorBrush x:Key="BannerBrush" Color="#5C4600" />
+                    <SolidColorBrush x:Key="SelectedNavBrush" Color="#45454A" />
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+
+    <Application.Styles>
+        <FluentTheme />
+        <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml" />
+
+        <Style Selector="Window">
+            <Setter Property="FontFamily" Value="{StaticResource AppFont}" />
+            <Setter Property="Background" Value="{DynamicResource WindowBrush}" />
+        </Style>
+
+        <Style Selector="PathIcon.severity-critical"><Setter Property="Foreground" Value="{DynamicResource SeverityCriticalBrush}" /></Style>
+        <Style Selector="PathIcon.severity-error"><Setter Property="Foreground" Value="{DynamicResource SeverityErrorBrush}" /></Style>
+        <Style Selector="PathIcon.severity-warning"><Setter Property="Foreground" Value="{DynamicResource SeverityWarningBrush}" /></Style>
+        <Style Selector="PathIcon.severity-info"><Setter Property="Foreground" Value="{DynamicResource SeverityInfoBrush}" /></Style>
+        <Style Selector="PathIcon.severity-verbose"><Setter Property="Foreground" Value="{DynamicResource SeverityVerboseBrush}" /></Style>
+        <Style Selector="PathIcon.boot-ok"><Setter Property="Foreground" Value="{DynamicResource BootOkBrush}" /></Style>
+
+        <Style Selector="Border.card">
+            <Setter Property="Background" Value="{DynamicResource CardBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource CardBorderBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="{StaticResource CardRadius}" />
+            <Setter Property="Padding" Value="16" />
+        </Style>
+        <Style Selector="TextBlock.h1">
+            <Setter Property="FontSize" Value="22" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+        <Style Selector="TextBlock.h2">
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+        </Style>
+        <Style Selector="TextBlock.muted">
+            <Setter Property="Foreground" Value="{DynamicResource MutedTextBrush}" />
+        </Style>
+        <Style Selector="TextBlock.mono, SelectableTextBlock.mono">
+            <Setter Property="FontFamily" Value="{StaticResource MonoFont}" />
+        </Style>
+        <Style Selector="DataGrid">
+            <Setter Property="GridLinesVisibility" Value="None" />
+            <Setter Property="RowHeight" Value="28" />
+            <Setter Property="CanUserReorderColumns" Value="True" />
+            <Setter Property="CanUserResizeColumns" Value="True" />
+            <Setter Property="IsReadOnly" Value="True" />
+            <Setter Property="SelectionMode" Value="Single" />
+            <Setter Property="HeadersVisibility" Value="Column" />
+        </Style>
+
+        <!-- Sidebar navigation list -->
+        <Style Selector="ListBox.nav">
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+        <Style Selector="ListBox.nav ListBoxItem">
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="Margin" Value="6,1" />
+            <Setter Property="Padding" Value="10,7" />
+        </Style>
+        <Style Selector="ListBox.nav ListBoxItem:selected /template/ ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource SelectedNavBrush}" />
+        </Style>
+    </Application.Styles>
+</Application>

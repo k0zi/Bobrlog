@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Category_KernelHardware" xml:space="preserve">
+    <value>Kernel und Hardware</value>
+  </data>
+  <data name="Category_Crashes" xml:space="preserve">
+    <value>Hänger und Abstürze</value>
+  </data>
+  <data name="Category_Services" xml:space="preserve">
+    <value>Dienste</value>
+  </data>
+  <data name="Category_Power" xml:space="preserve">
+    <value>Energieverwaltung</value>
+  </data>
+  <data name="Category_Security" xml:space="preserve">
+    <value>Sicherheit</value>
+  </data>
+  <data name="Category_Network" xml:space="preserve">
+    <value>Netzwerk</value>
+  </data>
+  <data name="Category_Applications" xml:space="preserve">
+    <value>Anwendungen</value>
+  </data>
+  <data name="Category_Other" xml:space="preserve">
+    <value>Sonstiges System</value>
+  </data>
+  <data name="Severity_Critical" xml:space="preserve">
+    <value>Kritisch</value>
+  </data>
+  <data name="Severity_Error" xml:space="preserve">
+    <value>Fehler</value>
+  </data>
+  <data name="Severity_Warning" xml:space="preserve">
+    <value>Warnung</value>
+  </data>
+  <data name="Severity_Info" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="Severity_Verbose" xml:space="preserve">
+    <value>Ausführlich</value>
+  </data>
+  <data name="Shutdown_Running" xml:space="preserve">
+    <value>Läuft derzeit</value>
+  </data>
+  <data name="Shutdown_PowerOff" xml:space="preserve">
+    <value>Ordnungsgemäß heruntergefahren</value>
+  </data>
+  <data name="Shutdown_Reboot" xml:space="preserve">
+    <value>Ordnungsgemäßer Neustart</value>
+  </data>
+  <data name="Shutdown_Unexpected" xml:space="preserve">
+    <value>Unerwartetes Herunterfahren</value>
+  </data>
+  <data name="Shutdown_SuspendNeverResumed" xml:space="preserve">
+    <value>Nicht aus dem Ruhezustand zurückgekehrt</value>
+  </data>
+  <data name="Shutdown_Unknown" xml:space="preserve">
+    <value>Unbekannt</value>
+  </data>
+  <data name="Boot_NoTraceReason" xml:space="preserve">
+    <value>Vor dem Herunterfahren wurden keine Fehler protokolliert. Wahrscheinliche Ursache: Stromausfall, lange gedrückter Einschaltknopf, leerer Akku oder ein vollständiger Hardware-Hänger, bei dem der Kernel nicht mehr protokollieren konnte.</value>
+  </data>
+  <data name="Boot_SuspendNeverResumed" xml:space="preserve">
+    <value>Der Rechner ging in den Ruhezustand und kehrte nicht daraus zurück: Der nächste Start war ein Kaltstart (leerer Akku, Stromausfall oder ein Hänger beim Aufwachen).</value>
+  </data>
+  <data name="Boot_ProgramCrash" xml:space="preserve">
+    <value>Programmabsturz: {0} ({1}, {2})</value>
+  </data>
+  <data name="Boot_ReasonRepeated" xml:space="preserve">
+    <value>{0} ({1}×, zuletzt {2})</value>
+  </data>
+  <data name="Boot_ReasonOnce" xml:space="preserve">
+    <value>{0} ({1})</value>
+  </data>
+  <data name="Boot_AnalysisFailed" xml:space="preserve">
+    <value>Analyse fehlgeschlagen: {0}</value>
+  </data>
+  <data name="Privilege_Warning" xml:space="preserve">
+    <value>Nur Ihr eigenes Benutzerjournal ist sichtbar. Für das vollständige Systemjournal fügen Sie sich der Gruppe 'adm' hinzu (sudo usermod -aG adm $USER), starten Sie die Anwendung als root oder installieren Sie den Hintergrunddienst.</value>
+  </data>
+  <data name="ServiceStatus_NotInstalled" xml:space="preserve">
+    <value>Nicht installiert</value>
+  </data>
+  <data name="ServiceStatus_Running" xml:space="preserve">
+    <value>Läuft</value>
+  </data>
+  <data name="ServiceStatus_Stopped" xml:space="preserve">
+    <value>Installiert, läuft nicht ({0})</value>
+  </data>
+  <data name="Installer_PkexecMissing" xml:space="preserve">
+    <value>pkexec wurde nicht gefunden (Paket policykit-1). Starten Sie die Anwendung mit sudo oder installieren Sie pkexec.</value>
+  </data>
+  <data name="Installer_AuthCancelled" xml:space="preserve">
+    <value>Die Authentifizierung wurde abgebrochen.</value>
+  </data>
+  <data name="Installer_AuthFailed" xml:space="preserve">
+    <value>Keine Berechtigung (Authentifizierung fehlgeschlagen).</value>
+  </data>
+  <data name="Installer_ExitCode" xml:space="preserve">
+    <value>Fehler (Exit-Code: {0})</value>
+  </data>
+  <data name="Installer_RootRequired" xml:space="preserve">
+    <value>Root-Rechte sind erforderlich.</value>
+  </data>
+  <data name="Installer_InvalidUid" xml:space="preserve">
+    <value>Fehlende oder ungültige --uid.</value>
+  </data>
+  <data name="Installer_Installed" xml:space="preserve">
+    <value>Der Hintergrunddienst wurde installiert und gestartet.</value>
+  </data>
+  <data name="Installer_Uninstalled" xml:space="preserve">
+    <value>Der Hintergrunddienst wurde entfernt.</value>
+  </data>
+  <data name="Installer_Restarted" xml:space="preserve">
+    <value>Der Hintergrunddienst wurde neu gestartet.</value>
+  </data>
+  <data name="Installer_UnknownOperation" xml:space="preserve">
+    <value>Unbekannter Vorgang: {0}</value>
+  </data>
+  <data name="Installer_ServiceExeMissing" xml:space="preserve">
+    <value>Das Dienstprogramm wurde nicht gefunden: {0}</value>
+  </data>
+  <data name="Source_Local" xml:space="preserve">
+    <value>Lokales journalctl</value>
+  </data>
+  <data name="Source_Service" xml:space="preserve">
+    <value>Hintergrunddienst</value>
+  </data>
+  <data name="Source_ServiceError" xml:space="preserve">
+    <value>Hintergrunddienst: {0}</value>
+  </data>
+  <data name="Process_CannotStart" xml:space="preserve">
+    <value>Der Befehl '{0}' konnte nicht gestartet werden: {1}</value>
+  </data>
+  <data name="Crash_ReportUnreadable" xml:space="preserve">
+    <value>Der Bericht kann mit den aktuellen Berechtigungen nicht gelesen werden.</value>
+  </data>
+  <data name="Crash_PstorePanic" xml:space="preserve">
+    <value>Kernel-Absturz (pstore): {0}</value>
+  </data>
+  <data name="Crash_PstoreLog" xml:space="preserve">
+    <value>Gespeichertes Kernel-Protokoll (pstore)</value>
+  </data>
+  <data name="Service_NotAuthorized" xml:space="preserve">
+    <value>Benutzer {0} ist nicht berechtigt, den Dienst zu verwenden.</value>
+  </data>
+  <data name="Service_TooManyRequests" xml:space="preserve">
+    <value>Zu viele gleichzeitige Anfragen.</value>
+  </data>
+  <data name="Service_InvalidRequest" xml:space="preserve">
+    <value>Ungültige Anfrage.</value>
+  </data>
+  <data name="Service_UnknownOperation" xml:space="preserve">
+    <value>Unbekannter Vorgang.</value>
+  </data>
+</root>

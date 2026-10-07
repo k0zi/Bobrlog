@@ -1,0 +1,123 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:r="using:Bobrlog.App.Resources"
+             xmlns:vm="using:Bobrlog.App.ViewModels"
+             xmlns:m="using:Bobrlog.Core.Models"
+             xmlns:c="using:Bobrlog.App.Controls"
+             xmlns:conv="using:Bobrlog.App.Converters"
+             x:Class="Bobrlog.App.Views.EventListView"
+             x:DataType="vm:EventListViewModel">
+
+    <DockPanel Margin="16,12,16,8">
+        <!-- Header + filter bar -->
+        <StackPanel DockPanel.Dock="Top" Spacing="10">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                    <ToggleButton IsChecked="{Binding IsFollowing}" ToolTip.Tip="{x:Static r:Strings.EventList_FollowTip}">
+                        <StackPanel Orientation="Horizontal" Spacing="6">
+                            <PathIcon Data="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M10,16.5L16,12L10,7.5V16.5Z" Width="14" Height="14" />
+                            <TextBlock Text="{x:Static r:Strings.EventList_Follow}" />
+                        </StackPanel>
+                    </ToggleButton>
+                    <Button Command="{Binding ReloadCommand}" ToolTip.Tip="{x:Static r:Strings.EventList_RefreshTip}" HotKey="F5">
+                        <StackPanel Orientation="Horizontal" Spacing="6">
+                            <PathIcon Data="M17.65,6.35C16.2,4.9 14.21,4 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20C15.73,20 18.84,17.45 19.73,14H17.65C16.83,16.33 14.61,18 12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6C13.66,6 15.14,6.69 16.22,7.78L13,11H20V4L17.65,6.35Z" Width="14" Height="14" />
+                            <TextBlock Text="{x:Static r:Strings.Common_Refresh}" />
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+                <TextBlock Classes="h1" Text="{Binding Title}" VerticalAlignment="Center" />
+            </DockPanel>
+
+            <WrapPanel Orientation="Horizontal" ItemSpacing="8" LineSpacing="8">
+                <ComboBox ItemsSource="{Binding Ranges}" SelectedItem="{Binding SelectedRange}" MinWidth="190" ToolTip.Tip="{x:Static r:Strings.EventList_RangeTip}" />
+                <CalendarDatePicker SelectedDate="{Binding SelectedDay, Converter={x:Static conv:DateConverters.OffsetToDateTime}}"
+                                    IsVisible="{Binding IsDayRange}" Width="150" />
+                <ComboBox ItemsSource="{Binding Boots}" SelectedItem="{Binding SelectedBoot}" IsVisible="{Binding IsBootRange}" MinWidth="260" />
+                <ComboBox ItemsSource="{Binding Severities}" SelectedItem="{Binding SelectedSeverity}" MinWidth="220" ToolTip.Tip="{x:Static r:Strings.EventList_SeverityTip}" />
+                <TextBox Text="{Binding SearchText}" PlaceholderText="{x:Static r:Strings.EventList_SearchPlaceholder}" Width="260" />
+                <TextBox Text="{Binding SourceFilter}" PlaceholderText="{x:Static r:Strings.EventList_SourcePlaceholder}" Width="290" />
+                <Button Command="{Binding ClearFiltersCommand}" Content="{x:Static r:Strings.EventList_ClearFilters}" />
+            </WrapPanel>
+
+            <Border IsVisible="{Binding ErrorText, Converter={x:Static ObjectConverters.IsNotNull}}"
+                    Background="{DynamicResource BannerBrush}" CornerRadius="6" Padding="10,6">
+                <TextBlock Text="{Binding ErrorText}" TextWrapping="Wrap" />
+            </Border>
+        </StackPanel>
+
+        <!-- Footer -->
+        <DockPanel DockPanel.Dock="Bottom" Margin="0,6,0,0">
+            <Button DockPanel.Dock="Right" Command="{Binding LoadMoreCommand}" IsVisible="{Binding HasMore}" Content="{x:Static r:Strings.EventList_LoadMore}" />
+            <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                <ProgressBar IsIndeterminate="True" Width="80" IsVisible="{Binding IsLoading}" />
+                <TextBlock Classes="muted" FontSize="12" Text="{Binding StatusText}" VerticalAlignment="Center" />
+            </StackPanel>
+        </DockPanel>
+
+        <Grid ColumnDefinitions="*,6,420" Margin="0,10,0,0">
+            <DataGrid Grid.Column="0" ItemsSource="{Binding Entries}" SelectedItem="{Binding SelectedEntry}">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="" Width="34" CanUserResize="False" SortMemberPath="Severity">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate x:DataType="m:LogEntry">
+                                <c:SeverityIcon Severity="{Binding Severity}" HorizontalAlignment="Center" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="{x:Static r:Strings.Col_Time}" Width="175" SortMemberPath="Timestamp"
+                                        Binding="{Binding Timestamp, Converter={x:Static conv:Converters.Timestamp}}" x:DataType="m:LogEntry" />
+                    <DataGridTextColumn Header="{x:Static r:Strings.EventList_ColLevel}" Width="135" SortMemberPath="Severity"
+                                        Binding="{Binding Severity, Converter={x:Static conv:Converters.SeverityName}}" x:DataType="m:LogEntry" />
+                    <DataGridTextColumn Header="{x:Static r:Strings.Col_Source}" Width="140" Binding="{Binding Source}" x:DataType="m:LogEntry" />
+                    <DataGridTextColumn Header="{x:Static r:Strings.EventList_ColCategory}" Width="170" SortMemberPath="Category"
+                                        Binding="{Binding Category, Converter={x:Static conv:Converters.CategoryName}}" x:DataType="m:LogEntry" />
+                    <DataGridTextColumn Header="{x:Static r:Strings.Col_Message}" Width="*" Binding="{Binding FirstLine}" x:DataType="m:LogEntry" />
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <GridSplitter Grid.Column="1" Background="Transparent" ResizeDirection="Columns" />
+
+            <!-- Details -->
+            <Border Grid.Column="2" Classes="card" Padding="14">
+                <Grid RowDefinitions="Auto,Auto,Auto,*,Auto,2*">
+                    <TextBlock Grid.Row="0" Classes="muted" Text="{x:Static r:Strings.EventList_SelectPrompt}"
+                               IsVisible="{Binding !HasSelection}" TextWrapping="Wrap" />
+                    <StackPanel Grid.Row="0" Spacing="4" IsVisible="{Binding HasSelection}">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <c:SeverityIcon Severity="{Binding SelectedEntry.Severity, FallbackValue={x:Static m:Severity.Info}}" Width="20" Height="20" />
+                            <TextBlock Classes="h2" Text="{Binding DetailHeader}" TextWrapping="Wrap" VerticalAlignment="Center" />
+                        </StackPanel>
+                        <TextBlock Classes="muted" FontSize="12" Text="{Binding DetailCategory}" />
+                    </StackPanel>
+
+                    <Border Grid.Row="1" Margin="0,10,0,0" Padding="10" CornerRadius="6"
+                            Background="{DynamicResource SidebarBrush}"
+                            IsVisible="{Binding SelectedEntry.Explanation, Converter={x:Static ObjectConverters.IsNotNull}, FallbackValue=False}">
+                        <TextBlock Text="{Binding SelectedEntry.Explanation}" TextWrapping="Wrap" />
+                    </Border>
+
+                    <WrapPanel Grid.Row="2" Margin="0,10,0,6" ItemSpacing="6" LineSpacing="6" IsVisible="{Binding HasSelection}">
+                        <Button Content="{x:Static r:Strings.EventList_CopyMessage}" Command="{Binding CopyMessageCommand}" />
+                        <Button Content="{x:Static r:Strings.EventList_FilterSource}" Command="{Binding FilterBySourceCommand}" />
+                        <Button Content="{x:Static r:Strings.EventList_ShowBoot}" Command="{Binding ShowBootCommand}" />
+                        <Button Content="{x:Static r:Strings.EventList_JournalctlCommand}" Command="{Binding CopyCommandCommand}"
+                                ToolTip.Tip="{x:Static r:Strings.EventList_JournalctlTip}" />
+                    </WrapPanel>
+
+                    <ScrollViewer Grid.Row="3" IsVisible="{Binding HasSelection}">
+                        <SelectableTextBlock Classes="mono" FontSize="12.5" TextWrapping="Wrap" Text="{Binding SelectedEntry.Message}" />
+                    </ScrollViewer>
+
+                    <TextBlock Grid.Row="4" Classes="h2" Text="{x:Static r:Strings.EventList_Fields}" Margin="0,10,0,4" IsVisible="{Binding HasSelection}" />
+                    <DataGrid Grid.Row="5" ItemsSource="{Binding DetailFields}" IsVisible="{Binding HasSelection}" RowHeight="24">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="{x:Static r:Strings.EventList_ColField}" Width="170" Binding="{Binding Name}" x:DataType="vm:DetailField" />
+                            <DataGridTextColumn Header="{x:Static r:Strings.EventList_ColValue}" Width="*" Binding="{Binding Value}" x:DataType="vm:DetailField" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Border>
+        </Grid>
+    </DockPanel>
+</UserControl>

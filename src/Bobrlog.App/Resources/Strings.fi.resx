@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="App_Name" xml:space="preserve">
+    <value>Bobrlog</value>
+  </data>
+  <data name="App_Subtitle" xml:space="preserve">
+    <value>Linuxin järjestelmätapahtumat</value>
+  </data>
+  <data name="App_WindowTitle" xml:space="preserve">
+    <value>Bobrlog</value>
+  </data>
+  <data name="Main_SourceText" xml:space="preserve">
+    <value>Tietolähde: {0}</value>
+  </data>
+  <data name="Fmt_Date" xml:space="preserve">
+    <value>dd.MM.yyyy</value>
+  </data>
+  <data name="Fmt_DateTimeMinutes" xml:space="preserve">
+    <value>dd.MM.yyyy HH:mm</value>
+  </data>
+  <data name="Fmt_DateTimeSeconds" xml:space="preserve">
+    <value>dd.MM.yyyy HH:mm:ss</value>
+  </data>
+  <data name="Fmt_DateTimeMillis" xml:space="preserve">
+    <value>dd.MM.yyyy HH:mm:ss.fff</value>
+  </data>
+  <data name="Fmt_ShortDateTime" xml:space="preserve">
+    <value>dd.MM. HH:mm</value>
+  </data>
+  <data name="Fmt_DayLabel" xml:space="preserve">
+    <value>ddd dd.MM.</value>
+  </data>
+  <data name="Duration_DaysHours" xml:space="preserve">
+    <value>{0} pv {1} h</value>
+  </data>
+  <data name="Duration_HoursMinutes" xml:space="preserve">
+    <value>{0} h {1} min</value>
+  </data>
+  <data name="Duration_Minutes" xml:space="preserve">
+    <value>{0} min</value>
+  </data>
+  <data name="Duration_Seconds" xml:space="preserve">
+    <value>{0} s</value>
+  </data>
+  <data name="Common_Refresh" xml:space="preserve">
+    <value>Päivitä</value>
+  </data>
+  <data name="Common_AllEvents" xml:space="preserve">
+    <value>Kaikki tapahtumat</value>
+  </data>
+  <data name="Col_Time" xml:space="preserve">
+    <value>Aika</value>
+  </data>
+  <data name="Col_Source" xml:space="preserve">
+    <value>Lähde</value>
+  </data>
+  <data name="Col_Message" xml:space="preserve">
+    <value>Viesti</value>
+  </data>
+  <data name="Overview_Title" xml:space="preserve">
+    <value>Yleiskatsaus</value>
+  </data>
+  <data name="Overview_Last24Hours" xml:space="preserve">
+    <value>viimeisen 24 tunnin aikana</value>
+  </data>
+  <data name="Overview_Last7Days" xml:space="preserve">
+    <value>{0} viimeisen 7 päivän aikana</value>
+  </data>
+  <data name="Overview_DailyTitle" xml:space="preserve">
+    <value>Päivittäiset virheet ja varoitukset (14 päivää)</value>
+  </data>
+  <data name="Overview_LegendError" xml:space="preserve">
+    <value>Virhe / kriittinen</value>
+  </data>
+  <data name="Overview_LegendHint" xml:space="preserve">
+    <value>– napsauta päivää nähdäksesi tiedot</value>
+  </data>
+  <data name="Overview_DayTooltip" xml:space="preserve">
+    <value>{0}: virheitä {1}, varoituksia {2} – napsauta nähdäksesi tiedot</value>
+  </data>
+  <data name="Overview_RecentBoots" xml:space="preserve">
+    <value>Viimeisimmät käynnistykset</value>
+  </data>
+  <data name="Overview_TopSources" xml:space="preserve">
+    <value>Yleisimmät virhelähteet (7 päivää)</value>
+  </data>
+  <data name="Overview_NoErrors" xml:space="preserve">
+    <value>Virheitä ei ollut.</value>
+  </data>
+  <data name="Overview_Summarizing" xml:space="preserve">
+    <value>Kootaan tapahtumia…</value>
+  </data>
+  <data name="Overview_AnalyzingBoots" xml:space="preserve">
+    <value>Analysoidaan käynnistyksiä…</value>
+  </data>
+  <data name="Overview_HeadlineUnexpected" xml:space="preserve">
+    <value>Viimeisistä {0} käynnistyksestä {1} päättyi odottamatta.</value>
+  </data>
+  <data name="Overview_HeadlineErrors" xml:space="preserve">
+    <value>Ei odottamattomia sammumisia. Virheitä viimeisen 24 tunnin aikana: {0}.</value>
+  </data>
+  <data name="Overview_HeadlineClean" xml:space="preserve">
+    <value>Ei odottamattomia sammumisia eikä virheitä viimeisen 24 tunnin aikana.</value>
+  </data>
+  <data name="Overview_NoCrashes" xml:space="preserve">
+    <value>Ei virheraportteja viimeisen 30 päivän ajalta.</value>
+  </data>
+  <data name="Overview_Crashes" xml:space="preserve">
+    <value>Virheraportteja (kaatumisia) viimeisen 30 päivän aikana: {0}.</value>
+  </data>
+  <data name="Overview_Status" xml:space="preserve">
+    <value>Varoituksia/virheitä viimeisen {1} päivän aikana: {0:N0}</value>
+  </data>
+  <data name="Boots_Title" xml:space="preserve">
+    <value>Käynnistykset</value>
+  </data>
+  <data name="Boots_Reanalyze" xml:space="preserve">
+    <value>Analysoi uudelleen</value>
+  </data>
+  <data name="Boots_Description" xml:space="preserve">
+    <value>Jokaisesta käynnistyksestä tarkistetaan, miten se päättyi: hallittu sammutus/uudelleenkäynnistys vai odottamaton pysähtyminen (jumiutuminen, sähkökatko). Odottamattomissa pysähtymisissä näytetään myös todennäköinen syy loppua edeltävien minuuttien virheiden perusteella.</value>
+  </data>
+  <data name="Boots_ColStarted" xml:space="preserve">
+    <value>Käynnistetty</value>
+  </data>
+  <data name="Boots_ColEnded" xml:space="preserve">
+    <value>Päättyi</value>
+  </data>
+  <data name="Boots_ColDuration" xml:space="preserve">
+    <value>Käyntiaika</value>
+  </data>
+  <data name="Boots_ColKind" xml:space="preserve">
+    <value>Päättymistapa</value>
+  </data>
+  <data name="Boots_ColSummary" xml:space="preserve">
+    <value>Todennäköisin syy / pääongelma</value>
+  </data>
+  <data name="Boots_ReasonsLabel" xml:space="preserve">
+    <value>Todennäköiset syyt ja pääongelmat:</value>
+  </data>
+  <data name="Boots_ShowProblems" xml:space="preserve">
+    <value>Tämän käynnistyksen ongelmat</value>
+  </data>
+  <data name="Boots_LastErrors" xml:space="preserve">
+    <value>Viimeiset virheet käynnistyksen lopussa</value>
+  </data>
+  <data name="Boots_Analyzing" xml:space="preserve">
+    <value>Analysoidaan…</value>
+  </data>
+  <data name="Boots_CurrentIndex" xml:space="preserve">
+    <value>0 (nykyinen)</value>
+  </data>
+  <data name="Boots_SelectedTitle" xml:space="preserve">
+    <value>{0} – käynnistetty: {1}, päättyi: {2} ({3})</value>
+  </data>
+  <data name="Boots_SelectPrompt" xml:space="preserve">
+    <value>Valitse käynnistys</value>
+  </data>
+  <data name="Boots_Listing" xml:space="preserve">
+    <value>Haetaan käynnistyksiä…</value>
+  </data>
+  <data name="Boots_AnalyzingCount" xml:space="preserve">
+    <value>Analysoidaan käynnistyksiä ({0})…</value>
+  </data>
+  <data name="Boots_Status" xml:space="preserve">
+    <value>Käynnistyksiä: {0} • odottamattomia sammumisia: {1}</value>
+  </data>
+  <data name="Crashes_Title" xml:space="preserve">
+    <value>Virheraportit</value>
+  </data>
+  <data name="Crashes_ColType" xml:space="preserve">
+    <value>Tyyppi</value>
+  </data>
+  <data name="Crashes_ColDescription" xml:space="preserve">
+    <value>Kuvaus</value>
+  </data>
+  <data name="Crashes_ColProgram" xml:space="preserve">
+    <value>Ohjelma</value>
+  </data>
+  <data name="Crashes_NoneSelected" xml:space="preserve">
+    <value>Ei valintaa</value>
+  </data>
+  <data name="Crashes_EventsThatDay" xml:space="preserve">
+    <value>Saman päivän tapahtumat</value>
+  </data>
+  <data name="Crashes_Copy" xml:space="preserve">
+    <value>Kopioi</value>
+  </data>
+  <data name="Crashes_HintFull" xml:space="preserve">
+    <value>Lähteet: /var/crash (apport), coredumpctl, /var/lib/systemd/pstore.</value>
+  </data>
+  <data name="Crashes_HintLimited" xml:space="preserve">
+    <value>Lähteet: /var/crash (apport) ja coredumpctl. Tallennettujen ytimen kaatumislokien (pstore) lukeminen vaatii pääkäyttäjän oikeudet tai taustapalvelun.</value>
+  </data>
+  <data name="Crashes_Status" xml:space="preserve">
+    <value>Virheraportteja: {0}</value>
+  </data>
+  <data name="EventList_FollowTip" xml:space="preserve">
+    <value>Näytä uudet tapahtumat jatkuvasti</value>
+  </data>
+  <data name="EventList_Follow" xml:space="preserve">
+    <value>Seuraa reaaliajassa</value>
+  </data>
+  <data name="EventList_RefreshTip" xml:space="preserve">
+    <value>Päivitä (F5)</value>
+  </data>
+  <data name="EventList_RangeTip" xml:space="preserve">
+    <value>Aikaväli</value>
+  </data>
+  <data name="EventList_SeverityTip" xml:space="preserve">
+    <value>Vähimmäisvakavuus</value>
+  </data>
+  <data name="EventList_SearchPlaceholder" xml:space="preserve">
+    <value>Hae viesteistä (regex)…</value>
+  </data>
+  <data name="EventList_SourcePlaceholder" xml:space="preserve">
+    <value>Lähde tai yksikkö (esim. kernel, sshd.service)</value>
+  </data>
+  <data name="EventList_ClearFilters" xml:space="preserve">
+    <value>Tyhjennä suodattimet</value>
+  </data>
+  <data name="EventList_LoadMore" xml:space="preserve">
+    <value>Lataa lisää</value>
+  </data>
+  <data name="EventList_ColLevel" xml:space="preserve">
+    <value>Taso</value>
+  </data>
+  <data name="EventList_ColCategory" xml:space="preserve">
+    <value>Luokka</value>
+  </data>
+  <data name="EventList_SelectPrompt" xml:space="preserve">
+    <value>Valitse tapahtuma nähdäksesi sen tiedot.</value>
+  </data>
+  <data name="EventList_CopyMessage" xml:space="preserve">
+    <value>Kopioi viesti</value>
+  </data>
+  <data name="EventList_FilterSource" xml:space="preserve">
+    <value>Suodata tällä lähteellä</value>
+  </data>
+  <data name="EventList_ShowBoot" xml:space="preserve">
+    <value>Käynnistys</value>
+  </data>
+  <data name="EventList_JournalctlCommand" xml:space="preserve">
+    <value>journalctl-komento</value>
+  </data>
+  <data name="EventList_JournalctlTip" xml:space="preserve">
+    <value>Kopioi nykyistä suodatinta vastaava journalctl-komento leikepöydälle</value>
+  </data>
+  <data name="EventList_Fields" xml:space="preserve">
+    <value>Kentät</value>
+  </data>
+  <data name="EventList_ColField" xml:space="preserve">
+    <value>Kenttä</value>
+  </data>
+  <data name="EventList_ColValue" xml:space="preserve">
+    <value>Arvo</value>
+  </data>
+  <data name="EventList_Rule" xml:space="preserve">
+    <value>(sääntö: {0})</value>
+  </data>
+  <data name="EventList_CurrentBoot" xml:space="preserve">
+    <value>Nykyinen käynnistys</value>
+  </data>
+  <data name="EventList_CurrentBootSince" xml:space="preserve">
+    <value>Nykyinen ({0} alkaen)</value>
+  </data>
+  <data name="EventList_BootShort" xml:space="preserve">
+    <value>Käynnistys {0}…</value>
+  </data>
+  <data name="EventList_Loading" xml:space="preserve">
+    <value>Ladataan…</value>
+  </data>
+  <data name="EventList_LoadingProgress" xml:space="preserve">
+    <value>Ladataan… {0:N0} merkintää käyty läpi</value>
+  </data>
+  <data name="EventList_StatusEvents" xml:space="preserve">
+    <value>Tapahtumia: {0:N0}</value>
+  </data>
+  <data name="EventList_StatusScanned" xml:space="preserve">
+    <value>{0:N0} merkintää käyty läpi</value>
+  </data>
+  <data name="EventList_StatusMore" xml:space="preserve">
+    <value>lisää tapahtumia saatavilla</value>
+  </data>
+  <data name="EventList_LoadError" xml:space="preserve">
+    <value>Virhe ladattaessa</value>
+  </data>
+  <data name="EventList_FollowStopped" xml:space="preserve">
+    <value>Reaaliaikainen seuranta pysähtyi: {0}</value>
+  </data>
+  <data name="Range_LastHour" xml:space="preserve">
+    <value>Viimeinen tunti</value>
+  </data>
+  <data name="Range_Today" xml:space="preserve">
+    <value>Tänään</value>
+  </data>
+  <data name="Range_Last24Hours" xml:space="preserve">
+    <value>Viimeiset 24 tuntia</value>
+  </data>
+  <data name="Range_Last7Days" xml:space="preserve">
+    <value>Viimeiset 7 päivää</value>
+  </data>
+  <data name="Range_Last30Days" xml:space="preserve">
+    <value>Viimeiset 30 päivää</value>
+  </data>
+  <data name="Range_Day" xml:space="preserve">
+    <value>Tietty päivä…</value>
+  </data>
+  <data name="Range_Boot" xml:space="preserve">
+    <value>Tietty käynnistys…</value>
+  </data>
+  <data name="Range_All" xml:space="preserve">
+    <value>Koko loki</value>
+  </data>
+  <data name="SeverityFilter_Error" xml:space="preserve">
+    <value>Virhe ja vakavammat</value>
+  </data>
+  <data name="SeverityFilter_Warning" xml:space="preserve">
+    <value>Varoitus ja vakavammat</value>
+  </data>
+  <data name="SeverityFilter_Info" xml:space="preserve">
+    <value>Tiedote ja vakavammat</value>
+  </data>
+  <data name="SeverityFilter_All" xml:space="preserve">
+    <value>Kaikki (myös yksityiskohtaiset)</value>
+  </data>
+  <data name="Settings_Title" xml:space="preserve">
+    <value>Asetukset</value>
+  </data>
+  <data name="Settings_LanguageHeader" xml:space="preserve">
+    <value>Kieli</value>
+  </data>
+  <data name="Settings_LanguageHint" xml:space="preserve">
+    <value>Uusi kieli tulee voimaan, kun sovellus käynnistetään uudelleen.</value>
+  </data>
+  <data name="Settings_RestartApp" xml:space="preserve">
+    <value>Käynnistä uudelleen nyt</value>
+  </data>
+  <data name="Settings_ServiceHeader" xml:space="preserve">
+    <value>Taustapalvelu</value>
+  </data>
+  <data name="Settings_ServiceDescription" xml:space="preserve">
+    <value>Valinnainen taustapalvelu toimii pääkäyttäjänä korkeammalla prioriteetilla ja tarjoaa myös pääkäyttäjän oikeuksia vaativat lähteet (tallennetut ytimen kaatumislokit, kaikki virheraportit). Näin sovellus itse voi toimia tavallisena käyttäjänä matalalla prioriteetilla. Asennus kysyy salasanaa.</value>
+  </data>
+  <data name="Settings_Status" xml:space="preserve">
+    <value>Tila:</value>
+  </data>
+  <data name="Settings_Install" xml:space="preserve">
+    <value>Asenna / päivitä</value>
+  </data>
+  <data name="Settings_Restart" xml:space="preserve">
+    <value>Käynnistä uudelleen</value>
+  </data>
+  <data name="Settings_Remove" xml:space="preserve">
+    <value>Poista</value>
+  </data>
+  <data name="Settings_RefreshStatus" xml:space="preserve">
+    <value>Päivitä tila</value>
+  </data>
+  <data name="Settings_UseService" xml:space="preserve">
+    <value>Käytä taustapalvelua, kun se on saatavilla (muuten paikallinen journalctl)</value>
+  </data>
+  <data name="Settings_PerformanceHeader" xml:space="preserve">
+    <value>Suorituskyky</value>
+  </data>
+  <data name="Settings_LowPriority" xml:space="preserve">
+    <value>Suorita sovellus matalalla prioriteetilla (nice)</value>
+  </data>
+  <data name="Settings_PageSize" xml:space="preserve">
+    <value>Kerralla ladattavat tapahtumat:</value>
+  </data>
+  <data name="Settings_PrivilegesHeader" xml:space="preserve">
+    <value>Oikeudet</value>
+  </data>
+  <data name="Settings_PrivilegesHint" xml:space="preserve">
+    <value>'adm'- tai 'systemd-journal'-ryhmän jäsenet näkevät koko järjestelmälokin ilman sudoa. Graafisten sovellusten käynnistäminen sudolla ei usein toimi Waylandissa; käytä sen sijaan taustapalvelua.</value>
+  </data>
+  <data name="Settings_Checking" xml:space="preserve">
+    <value>Tarkistetaan…</value>
+  </data>
+  <data name="Settings_BundleHint" xml:space="preserve">
+    <value>Asennuspaikka: {0}, systemd-yksikkö: {1}</value>
+  </data>
+  <data name="Settings_BundleMissing" xml:space="preserve">
+    <value>Palveluohjelmaa ei löytynyt täältä: {0}</value>
+  </data>
+  <data name="Settings_RunningAs" xml:space="preserve">
+    <value>Käyttäjä: {0}</value>
+  </data>
+  <data name="Settings_Groups" xml:space="preserve">
+    <value>ryhmät: {0}</value>
+  </data>
+  <data name="Settings_FullJournal" xml:space="preserve">
+    <value>koko järjestelmäloki on luettavissa</value>
+  </data>
+  <data name="Settings_OwnJournal" xml:space="preserve">
+    <value>vain oma käyttäjäloki on luettavissa</value>
+  </data>
+  <data name="Settings_CurrentSource" xml:space="preserve">
+    <value>Nykyinen tietolähde: {0}</value>
+  </data>
+  <data name="Settings_SocketNoResponse" xml:space="preserve">
+    <value>socket ei vastaa (tarkista oikeudet)</value>
+  </data>
+  <data name="Settings_Reachable" xml:space="preserve">
+    <value>tavoitettavissa (protokolla v{0}, uid {1})</value>
+  </data>
+  <data name="Settings_StatusUnknown" xml:space="preserve">
+    <value>Tuntematon: {0}</value>
+  </data>
+  <data name="Settings_RequestingPrivileges" xml:space="preserve">
+    <value>Pyydetään oikeuksia…</value>
+  </data>
+</root>

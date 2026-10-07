@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="App_Name" xml:space="preserve">
+    <value>Bobrlog</value>
+  </data>
+  <data name="App_Subtitle" xml:space="preserve">
+    <value>Linux system events</value>
+  </data>
+  <data name="App_WindowTitle" xml:space="preserve">
+    <value>Bobrlog</value>
+  </data>
+  <data name="Main_SourceText" xml:space="preserve">
+    <value>Data source: {0}</value>
+  </data>
+  <data name="Fmt_Date" xml:space="preserve">
+    <value>yyyy-MM-dd</value>
+  </data>
+  <data name="Fmt_DateTimeMinutes" xml:space="preserve">
+    <value>yyyy-MM-dd HH:mm</value>
+  </data>
+  <data name="Fmt_DateTimeSeconds" xml:space="preserve">
+    <value>yyyy-MM-dd HH:mm:ss</value>
+  </data>
+  <data name="Fmt_DateTimeMillis" xml:space="preserve">
+    <value>yyyy-MM-dd HH:mm:ss.fff</value>
+  </data>
+  <data name="Fmt_ShortDateTime" xml:space="preserve">
+    <value>MM-dd HH:mm</value>
+  </data>
+  <data name="Fmt_DayLabel" xml:space="preserve">
+    <value>ddd MM-dd</value>
+  </data>
+  <data name="Duration_DaysHours" xml:space="preserve">
+    <value>{0} d {1} h</value>
+  </data>
+  <data name="Duration_HoursMinutes" xml:space="preserve">
+    <value>{0} h {1} min</value>
+  </data>
+  <data name="Duration_Minutes" xml:space="preserve">
+    <value>{0} min</value>
+  </data>
+  <data name="Duration_Seconds" xml:space="preserve">
+    <value>{0} s</value>
+  </data>
+  <data name="Common_Refresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="Common_AllEvents" xml:space="preserve">
+    <value>All events</value>
+  </data>
+  <data name="Col_Time" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="Col_Source" xml:space="preserve">
+    <value>Source</value>
+  </data>
+  <data name="Col_Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="Overview_Title" xml:space="preserve">
+    <value>Overview</value>
+  </data>
+  <data name="Overview_Last24Hours" xml:space="preserve">
+    <value>in the last 24 hours</value>
+  </data>
+  <data name="Overview_Last7Days" xml:space="preserve">
+    <value>{0} in the last 7 days</value>
+  </data>
+  <data name="Overview_DailyTitle" xml:space="preserve">
+    <value>Daily errors and warnings (14 days)</value>
+  </data>
+  <data name="Overview_LegendError" xml:space="preserve">
+    <value>Error / critical</value>
+  </data>
+  <data name="Overview_LegendHint" xml:space="preserve">
+    <value>– click a day for details</value>
+  </data>
+  <data name="Overview_DayTooltip" xml:space="preserve">
+    <value>{0}: errors: {1}, warnings: {2} – click for details</value>
+  </data>
+  <data name="Overview_RecentBoots" xml:space="preserve">
+    <value>Recent boots</value>
+  </data>
+  <data name="Overview_TopSources" xml:space="preserve">
+    <value>Most frequent error sources (7 days)</value>
+  </data>
+  <data name="Overview_NoErrors" xml:space="preserve">
+    <value>There were no errors.</value>
+  </data>
+  <data name="Overview_Summarizing" xml:space="preserve">
+    <value>Summarizing events…</value>
+  </data>
+  <data name="Overview_AnalyzingBoots" xml:space="preserve">
+    <value>Analyzing boots…</value>
+  </data>
+  <data name="Overview_HeadlineUnexpected" xml:space="preserve">
+    <value>{1} of the last {0} boots ended unexpectedly.</value>
+  </data>
+  <data name="Overview_HeadlineErrors" xml:space="preserve">
+    <value>No unexpected shutdowns. Errors in the last 24 hours: {0}.</value>
+  </data>
+  <data name="Overview_HeadlineClean" xml:space="preserve">
+    <value>No unexpected shutdowns and no errors in the last 24 hours.</value>
+  </data>
+  <data name="Overview_NoCrashes" xml:space="preserve">
+    <value>No crash reports from the last 30 days.</value>
+  </data>
+  <data name="Overview_Crashes" xml:space="preserve">
+    <value>Crash reports in the last 30 days: {0}.</value>
+  </data>
+  <data name="Overview_Status" xml:space="preserve">
+    <value>Warnings/errors in the last {1} days: {0:N0}</value>
+  </data>
+  <data name="Boots_Title" xml:space="preserve">
+    <value>Boots</value>
+  </data>
+  <data name="Boots_Reanalyze" xml:space="preserve">
+    <value>Analyze again</value>
+  </data>
+  <data name="Boots_Description" xml:space="preserve">
+    <value>For every boot we check how it ended: a clean shutdown/restart, or an unexpected stop (freeze, power cut). For unexpected stops, the likely cause is also shown, based on the errors in the minutes before the end.</value>
+  </data>
+  <data name="Boots_ColStarted" xml:space="preserve">
+    <value>Started</value>
+  </data>
+  <data name="Boots_ColEnded" xml:space="preserve">
+    <value>Ended</value>
+  </data>
+  <data name="Boots_ColDuration" xml:space="preserve">
+    <value>Uptime</value>
+  </data>
+  <data name="Boots_ColKind" xml:space="preserve">
+    <value>How it ended</value>
+  </data>
+  <data name="Boots_ColSummary" xml:space="preserve">
+    <value>Most likely cause / main problem</value>
+  </data>
+  <data name="Boots_ReasonsLabel" xml:space="preserve">
+    <value>Likely causes and main problems:</value>
+  </data>
+  <data name="Boots_ShowProblems" xml:space="preserve">
+    <value>Problems in this boot</value>
+  </data>
+  <data name="Boots_LastErrors" xml:space="preserve">
+    <value>Last errors at the end of the boot</value>
+  </data>
+  <data name="Boots_Analyzing" xml:space="preserve">
+    <value>Analyzing…</value>
+  </data>
+  <data name="Boots_CurrentIndex" xml:space="preserve">
+    <value>0 (current)</value>
+  </data>
+  <data name="Boots_SelectedTitle" xml:space="preserve">
+    <value>{0} – started: {1}, ended: {2} ({3})</value>
+  </data>
+  <data name="Boots_SelectPrompt" xml:space="preserve">
+    <value>Select a boot</value>
+  </data>
+  <data name="Boots_Listing" xml:space="preserve">
+    <value>Listing boots…</value>
+  </data>
+  <data name="Boots_AnalyzingCount" xml:space="preserve">
+    <value>Analyzing boots ({0})…</value>
+  </data>
+  <data name="Boots_Status" xml:space="preserve">
+    <value>Boots: {0} • unexpected shutdowns: {1}</value>
+  </data>
+  <data name="Crashes_Title" xml:space="preserve">
+    <value>Crash reports</value>
+  </data>
+  <data name="Crashes_ColType" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="Crashes_ColDescription" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Crashes_ColProgram" xml:space="preserve">
+    <value>Program</value>
+  </data>
+  <data name="Crashes_NoneSelected" xml:space="preserve">
+    <value>Nothing selected</value>
+  </data>
+  <data name="Crashes_EventsThatDay" xml:space="preserve">
+    <value>Events on that day</value>
+  </data>
+  <data name="Crashes_Copy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="Crashes_HintFull" xml:space="preserve">
+    <value>Sources: /var/crash (apport), coredumpctl, /var/lib/systemd/pstore.</value>
+  </data>
+  <data name="Crashes_HintLimited" xml:space="preserve">
+    <value>Sources: /var/crash (apport) and coredumpctl. Reading saved kernel crash logs (pstore) requires root privileges or the background service.</value>
+  </data>
+  <data name="Crashes_Status" xml:space="preserve">
+    <value>Crash reports: {0}</value>
+  </data>
+  <data name="EventList_FollowTip" xml:space="preserve">
+    <value>Show new events continuously</value>
+  </data>
+  <data name="EventList_Follow" xml:space="preserve">
+    <value>Live follow</value>
+  </data>
+  <data name="EventList_RefreshTip" xml:space="preserve">
+    <value>Refresh (F5)</value>
+  </data>
+  <data name="EventList_RangeTip" xml:space="preserve">
+    <value>Time range</value>
+  </data>
+  <data name="EventList_SeverityTip" xml:space="preserve">
+    <value>Minimum severity</value>
+  </data>
+  <data name="EventList_SearchPlaceholder" xml:space="preserve">
+    <value>Search messages (regex)…</value>
+  </data>
+  <data name="EventList_SourcePlaceholder" xml:space="preserve">
+    <value>Source or unit (e.g. kernel, sshd.service)</value>
+  </data>
+  <data name="EventList_ClearFilters" xml:space="preserve">
+    <value>Clear filters</value>
+  </data>
+  <data name="EventList_LoadMore" xml:space="preserve">
+    <value>Load more</value>
+  </data>
+  <data name="EventList_ColLevel" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="EventList_ColCategory" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="EventList_SelectPrompt" xml:space="preserve">
+    <value>Select an event to see its details.</value>
+  </data>
+  <data name="EventList_CopyMessage" xml:space="preserve">
+    <value>Copy message</value>
+  </data>
+  <data name="EventList_FilterSource" xml:space="preserve">
+    <value>Filter by this source</value>
+  </data>
+  <data name="EventList_ShowBoot" xml:space="preserve">
+    <value>Boot</value>
+  </data>
+  <data name="EventList_JournalctlCommand" xml:space="preserve">
+    <value>journalctl command</value>
+  </data>
+  <data name="EventList_JournalctlTip" xml:space="preserve">
+    <value>Copy the journalctl command matching the current filter to the clipboard</value>
+  </data>
+  <data name="EventList_Fields" xml:space="preserve">
+    <value>Fields</value>
+  </data>
+  <data name="EventList_ColField" xml:space="preserve">
+    <value>Field</value>
+  </data>
+  <data name="EventList_ColValue" xml:space="preserve">
+    <value>Value</value>
+  </data>
+  <data name="EventList_Rule" xml:space="preserve">
+    <value>(rule: {0})</value>
+  </data>
+  <data name="EventList_CurrentBoot" xml:space="preserve">
+    <value>Current boot</value>
+  </data>
+  <data name="EventList_CurrentBootSince" xml:space="preserve">
+    <value>Current (since {0})</value>
+  </data>
+  <data name="EventList_BootShort" xml:space="preserve">
+    <value>Boot {0}…</value>
+  </data>
+  <data name="EventList_Loading" xml:space="preserve">
+    <value>Loading…</value>
+  </data>
+  <data name="EventList_LoadingProgress" xml:space="preserve">
+    <value>Loading… {0:N0} entries scanned</value>
+  </data>
+  <data name="EventList_StatusEvents" xml:space="preserve">
+    <value>Events: {0:N0}</value>
+  </data>
+  <data name="EventList_StatusScanned" xml:space="preserve">
+    <value>{0:N0} entries scanned</value>
+  </data>
+  <data name="EventList_StatusMore" xml:space="preserve">
+    <value>more events available</value>
+  </data>
+  <data name="EventList_LoadError" xml:space="preserve">
+    <value>Error while loading</value>
+  </data>
+  <data name="EventList_FollowStopped" xml:space="preserve">
+    <value>Live follow stopped: {0}</value>
+  </data>
+  <data name="Range_LastHour" xml:space="preserve">
+    <value>Last hour</value>
+  </data>
+  <data name="Range_Today" xml:space="preserve">
+    <value>Today</value>
+  </data>
+  <data name="Range_Last24Hours" xml:space="preserve">
+    <value>Last 24 hours</value>
+  </data>
+  <data name="Range_Last7Days" xml:space="preserve">
+    <value>Last 7 days</value>
+  </data>
+  <data name="Range_Last30Days" xml:space="preserve">
+    <value>Last 30 days</value>
+  </data>
+  <data name="Range_Day" xml:space="preserve">
+    <value>Specific day…</value>
+  </data>
+  <data name="Range_Boot" xml:space="preserve">
+    <value>Specific boot…</value>
+  </data>
+  <data name="Range_All" xml:space="preserve">
+    <value>Entire journal</value>
+  </data>
+  <data name="SeverityFilter_Error" xml:space="preserve">
+    <value>Error and above</value>
+  </data>
+  <data name="SeverityFilter_Warning" xml:space="preserve">
+    <value>Warning and above</value>
+  </data>
+  <data name="SeverityFilter_Info" xml:space="preserve">
+    <value>Information and above</value>
+  </data>
+  <data name="SeverityFilter_All" xml:space="preserve">
+    <value>Everything (including verbose)</value>
+  </data>
+  <data name="Settings_Title" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Settings_LanguageHeader" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="Settings_LanguageHint" xml:space="preserve">
+    <value>The new language takes effect after the application restarts.</value>
+  </data>
+  <data name="Settings_RestartApp" xml:space="preserve">
+    <value>Restart now</value>
+  </data>
+  <data name="Settings_ServiceHeader" xml:space="preserve">
+    <value>Background service</value>
+  </data>
+  <data name="Settings_ServiceDescription" xml:space="preserve">
+    <value>The optional background service runs as root with a higher priority and also serves the sources that need root privileges (saved kernel crash logs, all crash reports). This way the application itself can run as a normal user with low priority. Installing it asks for your password.</value>
+  </data>
+  <data name="Settings_Status" xml:space="preserve">
+    <value>Status:</value>
+  </data>
+  <data name="Settings_Install" xml:space="preserve">
+    <value>Install / update</value>
+  </data>
+  <data name="Settings_Restart" xml:space="preserve">
+    <value>Restart</value>
+  </data>
+  <data name="Settings_Remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="Settings_RefreshStatus" xml:space="preserve">
+    <value>Refresh status</value>
+  </data>
+  <data name="Settings_UseService" xml:space="preserve">
+    <value>Use the background service when available (otherwise local journalctl)</value>
+  </data>
+  <data name="Settings_PerformanceHeader" xml:space="preserve">
+    <value>Performance</value>
+  </data>
+  <data name="Settings_LowPriority" xml:space="preserve">
+    <value>Run the application with low priority (nice)</value>
+  </data>
+  <data name="Settings_PageSize" xml:space="preserve">
+    <value>Events loaded at once:</value>
+  </data>
+  <data name="Settings_PrivilegesHeader" xml:space="preserve">
+    <value>Permissions</value>
+  </data>
+  <data name="Settings_PrivilegesHint" xml:space="preserve">
+    <value>Members of the 'adm' or 'systemd-journal' group can see the full system journal without sudo. Starting graphical applications with sudo often doesn't work under Wayland; use the background service instead.</value>
+  </data>
+  <data name="Settings_Checking" xml:space="preserve">
+    <value>Checking…</value>
+  </data>
+  <data name="Settings_BundleHint" xml:space="preserve">
+    <value>Install location: {0}, systemd unit: {1}</value>
+  </data>
+  <data name="Settings_BundleMissing" xml:space="preserve">
+    <value>The service program was not found here: {0}</value>
+  </data>
+  <data name="Settings_RunningAs" xml:space="preserve">
+    <value>Running as: {0}</value>
+  </data>
+  <data name="Settings_Groups" xml:space="preserve">
+    <value>groups: {0}</value>
+  </data>
+  <data name="Settings_FullJournal" xml:space="preserve">
+    <value>the full system journal is readable</value>
+  </data>
+  <data name="Settings_OwnJournal" xml:space="preserve">
+    <value>only your own user journal is readable</value>
+  </data>
+  <data name="Settings_CurrentSource" xml:space="preserve">
+    <value>Current data source: {0}</value>
+  </data>
+  <data name="Settings_SocketNoResponse" xml:space="preserve">
+    <value>the socket does not respond (check the permissions)</value>
+  </data>
+  <data name="Settings_Reachable" xml:space="preserve">
+    <value>reachable (protocol v{0}, uid {1})</value>
+  </data>
+  <data name="Settings_StatusUnknown" xml:space="preserve">
+    <value>Unknown: {0}</value>
+  </data>
+  <data name="Settings_RequestingPrivileges" xml:space="preserve">
+    <value>Requesting permission…</value>
+  </data>
+</root>

@@ -1,0 +1,105 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:r="using:Bobrlog.App.Resources"
+             xmlns:vm="using:Bobrlog.App.ViewModels"
+             xmlns:m="using:Bobrlog.Core.Models"
+             xmlns:c="using:Bobrlog.App.Controls"
+             xmlns:conv="using:Bobrlog.App.Converters"
+             x:Class="Bobrlog.App.Views.BootsView"
+             x:DataType="vm:BootsViewModel">
+
+    <DockPanel Margin="16,12,16,8">
+        <StackPanel DockPanel.Dock="Top" Spacing="6">
+            <DockPanel>
+                <Button DockPanel.Dock="Right" Content="{x:Static r:Strings.Boots_Reanalyze}" Command="{Binding LoadCommand}" />
+                <TextBlock Classes="h1" Text="{x:Static r:Strings.Boots_Title}" />
+            </DockPanel>
+            <TextBlock Classes="muted" TextWrapping="Wrap"
+                       Text="{x:Static r:Strings.Boots_Description}" />
+            <Border IsVisible="{Binding ErrorText, Converter={x:Static ObjectConverters.IsNotNull}}"
+                    Background="{DynamicResource BannerBrush}" CornerRadius="6" Padding="10,6">
+                <TextBlock Text="{Binding ErrorText}" TextWrapping="Wrap" />
+            </Border>
+        </StackPanel>
+
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Spacing="8" Margin="0,6,0,0">
+            <ProgressBar IsIndeterminate="True" Width="80" IsVisible="{Binding IsLoading}" />
+            <TextBlock Classes="muted" FontSize="12" Text="{Binding StatusText}" VerticalAlignment="Center" />
+        </StackPanel>
+
+        <Grid RowDefinitions="*,6,*" Margin="0,10,0,0">
+            <DataGrid Grid.Row="0" ItemsSource="{Binding Rows}" SelectedItem="{Binding SelectedRow}">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="" Width="36" CanUserResize="False">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate x:DataType="vm:BootRow">
+                                <c:BootKindIcon Kind="{Binding Kind}" HorizontalAlignment="Center" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="#" Width="115" Binding="{Binding IndexText}" x:DataType="vm:BootRow" />
+                    <DataGridTextColumn Header="{x:Static r:Strings.Boots_ColStarted}" Width="150" Binding="{Binding Started}" x:DataType="vm:BootRow" />
+                    <DataGridTextColumn Header="{x:Static r:Strings.Boots_ColEnded}" Width="150" Binding="{Binding Ended}" x:DataType="vm:BootRow" />
+                    <DataGridTextColumn Header="{x:Static r:Strings.Boots_ColDuration}" Width="130" Binding="{Binding Duration}" x:DataType="vm:BootRow" />
+                    <DataGridTextColumn Header="{x:Static r:Strings.Boots_ColKind}" Width="220" Binding="{Binding KindText}" x:DataType="vm:BootRow" />
+                    <DataGridTextColumn Header="{x:Static r:Strings.Boots_ColSummary}" Width="*" Binding="{Binding Summary}" x:DataType="vm:BootRow" />
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <GridSplitter Grid.Row="1" Background="Transparent" ResizeDirection="Rows" />
+
+            <Grid Grid.Row="2" ColumnDefinitions="2*,12,3*">
+                <Border Grid.Column="0" Classes="card">
+                    <DockPanel>
+                        <StackPanel DockPanel.Dock="Top" Spacing="8">
+                            <DockPanel>
+                                <c:BootKindIcon DockPanel.Dock="Left" Margin="0,0,8,0" VerticalAlignment="Top"
+                                                Kind="{Binding SelectedRow.Kind, FallbackValue={x:Static m:ShutdownKind.Unknown}}" />
+                                <TextBlock Classes="h2" Text="{Binding SelectedTitle}" TextWrapping="Wrap" />
+                            </DockPanel>
+                            <TextBlock Classes="muted" Text="{x:Static r:Strings.Boots_ReasonsLabel}" />
+                        </StackPanel>
+                        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Spacing="8" Margin="0,8,0,0">
+                            <Button Content="{x:Static r:Strings.Boots_ShowProblems}" Command="{Binding ShowProblemsCommand}" />
+                            <Button Content="{x:Static r:Strings.Common_AllEvents}" Command="{Binding ShowAllEventsCommand}" />
+                        </StackPanel>
+                        <ScrollViewer>
+                            <ItemsControl ItemsSource="{Binding Reasons}" Margin="0,6,0,0">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate x:DataType="x:String">
+                                        <DockPanel Margin="0,3">
+                                            <TextBlock DockPanel.Dock="Left" Text="•" Margin="0,0,8,0" />
+                                            <SelectableTextBlock Text="{Binding}" TextWrapping="Wrap" />
+                                        </DockPanel>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </DockPanel>
+                </Border>
+
+                <Border Grid.Column="2" Classes="card" Padding="8">
+                    <DockPanel>
+                        <TextBlock DockPanel.Dock="Top" Classes="h2" Margin="6,2,0,6" Text="{x:Static r:Strings.Boots_LastErrors}" />
+                        <SelectableTextBlock DockPanel.Dock="Bottom" Classes="mono" FontSize="12" TextWrapping="Wrap" MaxHeight="90"
+                                             Margin="6,6,6,0" Text="{Binding SelectedEvidence.Message, FallbackValue=''}" />
+                        <DataGrid ItemsSource="{Binding Evidence}" SelectedItem="{Binding SelectedEvidence}">
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn Header="" Width="34" CanUserResize="False">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate x:DataType="m:LogEntry">
+                                            <c:SeverityIcon Severity="{Binding Severity}" HorizontalAlignment="Center" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Header="{x:Static r:Strings.Col_Time}" Width="175" Binding="{Binding Timestamp, Converter={x:Static conv:Converters.Timestamp}}" x:DataType="m:LogEntry" />
+                                <DataGridTextColumn Header="{x:Static r:Strings.Col_Source}" Width="120" Binding="{Binding Source}" x:DataType="m:LogEntry" />
+                                <DataGridTextColumn Header="{x:Static r:Strings.Col_Message}" Width="*" Binding="{Binding FirstLine}" x:DataType="m:LogEntry" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </DockPanel>
+                </Border>
+            </Grid>
+        </Grid>
+    </DockPanel>
+</UserControl>

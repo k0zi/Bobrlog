@@ -1,0 +1,17 @@
+[Desktop Entry]
+Type=Application
+Name=Bobrlog
+GenericName=Linux log viewer
+GenericName[hu]=Linux naplónézegető
+GenericName[fi]=Linuxin lokikatselin
+GenericName[de]=Linux-Protokollbetrachter
+Comment=Overview of system events, errors and unexpected shutdowns
+Comment[hu]=Rendszeresemények, hibák és váratlan leállások áttekintése
+Comment[fi]=Yleiskatsaus järjestelmätapahtumiin, virheisiin ja odottamattomiin sammumisiin
+Comment[de]=Überblick über Systemereignisse, Fehler und unerwartetes Herunterfahren
+Exec=@BIN@
+Icon=bobrlog
+Terminal=false
+Categories=System;Monitor;GTK;
+Keywords=journal;log;journalctl;dmesg;crash;event;napló;loki;Protokoll;
+StartupWMClass=bobrlog

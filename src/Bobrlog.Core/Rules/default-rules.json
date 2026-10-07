@@ -1,0 +1,395 @@
+// Classification rules. Order matters: the first matching rule wins.
+// Fields: id, category, identifiers[], transport, unitPattern, messagePattern (regex, case-insensitive),
+//         severity (forced), minSeverity (raise to at least), reason (boot analysis cause), explanation.
+// reason and explanation are objects keyed by language code (en, hu, fi, de); "en" is the fallback.
+[
+  // ───────────── Freezes and crashes (kernel) ─────────────
+  {
+    "id": "segfault", "category": "Crashes", "transport": "kernel",
+    "messagePattern": "segfault at|traps: .* (general protection|trap invalid opcode|trap divide error)",
+    "minSeverity": "Warning",
+    "explanation": {
+      "en": "An application crashed with a memory access violation. This is not a system fault in itself, only a bug in that program.",
+      "hu": "Egy alkalmazás memóriahozzáférési hibával összeomlott. Ez önmagában nem rendszerhiba, csak az adott program hibája.",
+      "fi": "Sovellus kaatui muistinkäyttövirheeseen. Tämä ei sinänsä ole järjestelmävika, vaan kyseisen ohjelman virhe.",
+      "de": "Eine Anwendung ist mit einer Speicherzugriffsverletzung abgestürzt. Das ist an sich kein Systemfehler, sondern nur ein Fehler dieses Programms."
+    }
+  },
+  {
+    "id": "kernel-panic", "category": "Crashes", "transport": "kernel",
+    "messagePattern": "Kernel panic|kernel BUG at|Oops:|general protection fault|unable to handle (kernel|page)",
+    "severity": "Critical",
+    "reason": {
+      "en": "Kernel crash (panic/oops)",
+      "hu": "Kernel összeomlás (panic/oops)",
+      "fi": "Ytimen kaatuminen (panic/oops)",
+      "de": "Kernel-Absturz (Panic/Oops)"
+    },
+    "explanation": {
+      "en": "The kernel ran into a fatal error. Common causes: a faulty driver (e.g. GPU, Wi-Fi), a memory fault or a kernel bug. The full call chain (Call Trace) is shown in the following entries.",
+      "hu": "A kernel végzetes hibába futott. Gyakori ok: hibás driver (pl. GPU, WiFi), memóriahiba vagy kernel-bug. A teljes hívási lánc (Call Trace) a következő bejegyzésekben látható.",
+      "fi": "Ydin kohtasi kohtalokkaan virheen. Yleisiä syitä: viallinen ajuri (esim. näytönohjain, WLAN), muistivika tai ytimen bugi. Koko kutsuketju (Call Trace) näkyy seuraavissa merkinnöissä.",
+      "de": "Der Kernel ist auf einen fatalen Fehler gestoßen. Häufige Ursachen: ein fehlerhafter Treiber (z. B. GPU, WLAN), ein Speicherfehler oder ein Kernel-Bug. Die vollständige Aufrufkette (Call Trace) steht in den folgenden Einträgen."
+    }
+  },
+  {
+    "id": "soft-lockup", "category": "Crashes", "transport": "kernel",
+    "messagePattern": "watchdog: BUG: soft lockup|NMI watchdog: .*hard LOCKUP|hard LOCKUP|rcu_(sched|preempt) self-detected stall|rcu: INFO: .*detected stalls",
+    "severity": "Critical",
+    "reason": {
+      "en": "System freeze (CPU lockup / RCU stall)",
+      "hu": "Rendszerfagyás (CPU lockup / RCU stall)",
+      "fi": "Järjestelmän jumiutuminen (CPU lockup / RCU stall)",
+      "de": "Systemhänger (CPU-Lockup / RCU-Stall)"
+    },
+    "explanation": {
+      "en": "A CPU core did not respond for a long time. This typically freezes the machine; it can be caused by a driver bug, a hardware problem or overheating.",
+      "hu": "Egy CPU mag hosszú ideig nem reagált. Ez tipikusan a gép lefagyását okozza; oka lehet driver-hiba, hardveres probléma vagy túlmelegedés.",
+      "fi": "Prosessoriydin ei vastannut pitkään aikaan. Tämä jumittaa tyypillisesti koneen; syynä voi olla ajurivirhe, laitteistovika tai ylikuumeneminen.",
+      "de": "Ein CPU-Kern hat lange Zeit nicht reagiert. Das führt typischerweise zum Einfrieren des Rechners; Ursache kann ein Treiberfehler, ein Hardwareproblem oder Überhitzung sein."
+    }
+  },
+  {
+    "id": "hung-task", "category": "Crashes", "transport": "kernel",
+    "messagePattern": "INFO: task .* blocked for more than|hung_task",
+    "severity": "Error",
+    "reason": {
+      "en": "Stuck process (hung task) – disk/I/O or a driver is blocking",
+      "hu": "Elakadt folyamat (hung task) – lemez/IO vagy driver blokkol",
+      "fi": "Jumittunut prosessi (hung task) – levy/I/O tai ajuri estää",
+      "de": "Hängender Prozess (hung task) – Datenträger/I/O oder ein Treiber blockiert"
+    },
+    "explanation": {
+      "en": "A process waited in the kernel for 120+ seconds (usually on a disk, network file system or driver operation). When it repeats, it causes freeze-like symptoms.",
+      "hu": "Egy folyamat 120+ másodpercig várakozott a kernelben (általában lemez-, hálózati fájlrendszer- vagy driver-művelet). Ismétlődve fagyás-szerű tüneteket okoz.",
+      "fi": "Prosessi odotti ytimessä yli 120 sekuntia (yleensä levy-, verkkotiedostojärjestelmä- tai ajuritoimintoa). Toistuessaan se aiheuttaa jumiutumisen kaltaisia oireita.",
+      "de": "Ein Prozess hat 120+ Sekunden im Kernel gewartet (meist auf eine Datenträger-, Netzwerkdateisystem- oder Treiberoperation). Wiederholt sich das, entstehen hängerartige Symptome."
+    }
+  },
+  {
+    "id": "oom-kill", "category": "Crashes",
+    "messagePattern": "Out of memory: Killed process|invoked oom-killer|oom-kill:|Killed process \\d+ .*total-vm",
+    "severity": "Error",
+    "reason": {
+      "en": "Out of memory (OOM killer)",
+      "hu": "Elfogyott a memória (OOM killer)",
+      "fi": "Muisti loppui (OOM killer)",
+      "de": "Speicher erschöpft (OOM-Killer)"
+    },
+    "explanation": {
+      "en": "The system ran out of memory, so the kernel (or systemd-oomd) stopped a process. A memory-hungry application or a memory leak may be behind it.",
+      "hu": "A rendszer kifutott a memóriából, ezért a kernel (vagy a systemd-oomd) leállított egy folyamatot. Nagy memóriaigényű alkalmazás vagy memóriaszivárgás állhat a háttérben.",
+      "fi": "Järjestelmästä loppui muisti, joten ydin (tai systemd-oomd) lopetti prosessin. Taustalla voi olla paljon muistia vaativa sovellus tai muistivuoto.",
+      "de": "Dem System ist der Speicher ausgegangen, daher hat der Kernel (oder systemd-oomd) einen Prozess beendet. Dahinter kann eine speicherhungrige Anwendung oder ein Speicherleck stecken."
+    }
+  },
+  {
+    "id": "systemd-oomd", "category": "Crashes", "identifiers": ["systemd-oomd"],
+    "messagePattern": "Killed|memory pressure|swap used",
+    "minSeverity": "Warning",
+    "reason": {
+      "en": "systemd-oomd stopped a process because of memory pressure",
+      "hu": "A systemd-oomd memórianyomás miatt leállított egy folyamatot",
+      "fi": "systemd-oomd lopetti prosessin muistipaineen vuoksi",
+      "de": "systemd-oomd hat einen Prozess wegen Speicherdruck beendet"
+    },
+    "explanation": {
+      "en": "systemd-oomd killed an application because of high memory or swap pressure, before the machine slowed down completely.",
+      "hu": "A systemd-oomd magas memória- vagy swapnyomás miatt lelőtt egy alkalmazást, mielőtt a gép teljesen belassult volna.",
+      "fi": "systemd-oomd lopetti sovelluksen suuren muisti- tai swap-paineen vuoksi ennen kuin kone hidastui täysin.",
+      "de": "systemd-oomd hat wegen hohen Speicher- oder Swap-Drucks eine Anwendung beendet, bevor der Rechner völlig ausgebremst wurde."
+    }
+  },
+  {
+    "id": "coredump", "category": "Crashes", "identifiers": ["systemd-coredump", "apport", "kernel"],
+    "messagePattern": "dumped core|Process \\d+ \\(.*\\) of user \\d+ (dumped core|terminated abnormally)|called for pid \\d+, signal",
+    "minSeverity": "Warning",
+    "explanation": {
+      "en": "A program crashed and a memory image (core dump) or an apport crash report was created.",
+      "hu": "Egy program összeomlott és memóriakép (core dump) vagy apport hibajelentés készült róla.",
+      "fi": "Ohjelma kaatui, ja siitä luotiin muistivedos (core dump) tai apport-virheraportti.",
+      "de": "Ein Programm ist abgestürzt, und es wurde ein Speicherabbild (Core Dump) oder ein apport-Fehlerbericht erstellt."
+    }
+  },
+  {
+    "id": "pstore", "category": "Crashes", "identifiers": ["systemd-pstore"],
+    "minSeverity": "Warning",
+    "reason": {
+      "en": "Kernel crash log saved from the previous boot (pstore)",
+      "hu": "Előző indításból mentett kernel összeomlás-napló (pstore)",
+      "fi": "Edellisestä käynnistyksestä tallennettu ytimen kaatumisloki (pstore)",
+      "de": "Aus dem vorherigen Start gesichertes Kernel-Absturzprotokoll (pstore)"
+    },
+    "explanation": {
+      "en": "Before the previous crash, the kernel saved its log to pstore; systemd-pstore has now archived it. Details are under /var/lib/systemd/pstore (root privileges or the background service are required).",
+      "hu": "A kernel az előző összeomlás előtt a pstore-ba mentette a naplóját; ezt most archiválta a systemd-pstore. A részletek a /var/lib/systemd/pstore alatt (root jog vagy háttérszolgáltatás kell).",
+      "fi": "Ydin tallensi lokinsa pstoreen ennen edellistä kaatumista; systemd-pstore on nyt arkistoinut sen. Tiedot ovat hakemistossa /var/lib/systemd/pstore (vaatii pääkäyttäjän oikeudet tai taustapalvelun).",
+      "de": "Der Kernel hat vor dem letzten Absturz sein Protokoll in pstore gesichert; systemd-pstore hat es jetzt archiviert. Details unter /var/lib/systemd/pstore (root-Rechte oder der Hintergrunddienst erforderlich)."
+    }
+  },
+  {
+    "id": "watchdog-reset", "category": "Crashes",
+    "messagePattern": "watchdog did not stop|Watchdog timeout|hardware watchdog",
+    "minSeverity": "Warning",
+    "reason": {
+      "en": "Hardware watchdog reset",
+      "hu": "Hardveres watchdog újraindítás",
+      "fi": "Laitteistovahtikoiran uudelleenkäynnistys",
+      "de": "Neustart durch Hardware-Watchdog"
+    },
+    "explanation": {
+      "en": "The hardware watchdog timer expired, which can force the machine to restart.",
+      "hu": "A hardveres watchdog időzítő lejárt, ami a gép kényszer-újraindítását okozhatja.",
+      "fi": "Laitteiston vahtikoira-ajastin laukesi, mikä voi pakottaa koneen uudelleenkäynnistykseen.",
+      "de": "Der Hardware-Watchdog-Timer ist abgelaufen, was einen erzwungenen Neustart des Rechners auslösen kann."
+    }
+  },
+
+  // ───────────── Kernel and hardware ─────────────
+  {
+    "id": "pcie-aer", "category": "KernelHardware", "transport": "kernel",
+    "messagePattern": "AER: |PCIe Bus Error|pcieport .* (error|Uncorrect)",
+    "minSeverity": "Warning",
+    "reason": {
+      "en": "PCIe bus error (AER)",
+      "hu": "PCIe buszhiba (AER)",
+      "fi": "PCIe-väylävirhe (AER)",
+      "de": "PCIe-Busfehler (AER)"
+    },
+    "explanation": {
+      "en": "PCI Express bus error. Corrected errors are often harmless (power-saving modes), but many or uncorrectable errors point to a device or card problem.",
+      "hu": "PCI Express buszhiba. Javított hibák gyakran ártalmatlanok (energiatakarékos módok), de sok vagy javíthatatlan hiba eszköz- vagy kártyaproblémára utal.",
+      "fi": "PCI Express -väylävirhe. Korjatut virheet ovat usein harmittomia (virransäästötilat), mutta useat tai korjaamattomat virheet viittaavat laite- tai korttiongelmaan.",
+      "de": "PCI-Express-Busfehler. Korrigierte Fehler sind oft harmlos (Energiesparmodi), viele oder nicht korrigierbare Fehler deuten jedoch auf ein Geräte- oder Kartenproblem hin."
+    }
+  },
+  {
+    "id": "mce", "category": "KernelHardware", "transport": "kernel",
+    "messagePattern": "Machine check events logged|Machine Check Exception|\\[Hardware Error\\]|EDAC .*(corrected|uncorrected) (memory )?error|\\b[CU]E memory (read )?error",
+    "minSeverity": "Error",
+    "reason": {
+      "en": "Hardware error (Machine Check – CPU/memory)",
+      "hu": "Hardverhiba (Machine Check – CPU/memória)",
+      "fi": "Laitteistovirhe (Machine Check – prosessori/muisti)",
+      "de": "Hardwarefehler (Machine Check – CPU/Speicher)"
+    },
+    "explanation": {
+      "en": "The processor reported a hardware error (Machine Check Exception). A corrected error is a warning; an uncorrectable one can stop the machine immediately. It can be caused by RAM, CPU, overheating or power supply problems.",
+      "hu": "A processzor hardverhibát jelzett (Machine Check Exception). Javított hiba esetén figyelmeztetés, javíthatatlan esetén a gép azonnal leállhat. Oka lehet RAM-, CPU-, túlmelegedési vagy tápellátási probléma.",
+      "fi": "Prosessori ilmoitti laitteistovirheestä (Machine Check Exception). Korjattu virhe on varoitus, korjaamaton voi pysäyttää koneen välittömästi. Syynä voi olla muisti-, prosessori-, ylikuumenemis- tai virransyöttöongelma.",
+      "de": "Der Prozessor hat einen Hardwarefehler gemeldet (Machine Check Exception). Ein korrigierter Fehler ist eine Warnung, ein nicht korrigierbarer kann den Rechner sofort anhalten. Ursache können RAM-, CPU-, Überhitzungs- oder Stromversorgungsprobleme sein."
+    }
+  },
+  {
+    "id": "gpu-hang", "category": "KernelHardware", "transport": "kernel",
+    "messagePattern": "amdgpu.*(ring .* timeout|GPU reset|gpu reset|GPU recovery|failed to|page fault|job timed out|\\*ERROR\\*)|i915.*(GPU HANG|reset|\\*ERROR\\*)|nvidia.*(Xid|GPU has fallen off)|NVRM: Xid|drm.*\\*ERROR\\*|\\[drm\\].*(GPU HANG|hang|timeout)",
+    "minSeverity": "Error",
+    "reason": {
+      "en": "Graphics card (GPU) hang / reset",
+      "hu": "Videókártya (GPU) lefagyás / reset",
+      "fi": "Näytönohjaimen (GPU) jumiutuminen / nollaus",
+      "de": "Grafikkarte (GPU) hängt / Reset"
+    },
+    "explanation": {
+      "en": "The graphics driver detected a GPU error or hang. This can freeze the picture, cause a black screen or restart the graphical session. A driver, firmware or kernel update often helps.",
+      "hu": "A grafikus driver GPU-hibát vagy -lefagyást észlelt. Ez a kép megfagyását, fekete képernyőt vagy a grafikus felület újraindulását okozhatja. Gyakran driver-, firmware- vagy kernelfrissítés segít.",
+      "fi": "Näytönohjaimen ajuri havaitsi GPU-virheen tai jumiutumisen. Se voi jäädyttää kuvan, aiheuttaa mustan näytön tai graafisen istunnon uudelleenkäynnistyksen. Ajurin, laiteohjelmiston tai ytimen päivitys auttaa usein.",
+      "de": "Der Grafiktreiber hat einen GPU-Fehler oder -Hänger erkannt. Das kann das Bild einfrieren, einen schwarzen Bildschirm verursachen oder die grafische Sitzung neu starten. Oft hilft ein Treiber-, Firmware- oder Kernel-Update."
+    }
+  },
+  {
+    "id": "disk-io", "category": "KernelHardware", "transport": "kernel",
+    "messagePattern": "I/O error|blk_update_request|Buffer I/O error|critical medium error|nvme.*(timeout|reset|I/O|controller is down)|ata\\d+.*(failed command|exception|hard resetting|SError)|EXT4-fs error|BTRFS (error|critical)|XFS.*(error|corruption)|Remounting filesystem read-only",
+    "minSeverity": "Error",
+    "reason": {
+      "en": "Disk / storage device I/O error",
+      "hu": "Lemez / tárolóeszköz I/O hiba",
+      "fi": "Levyn / tallennuslaitteen I/O-virhe",
+      "de": "E/A-Fehler auf Datenträger / Speichergerät"
+    },
+    "explanation": {
+      "en": "Disk or file system error. If it repeats, check the drive's health (smartctl -a / GNOME Disks) and make a backup.",
+      "hu": "Lemez- vagy fájlrendszerhiba. Ismétlődés esetén ellenőrizd a meghajtó állapotát (smartctl -a / GNOME Lemezek), és készíts mentést.",
+      "fi": "Levy- tai tiedostojärjestelmävirhe. Jos se toistuu, tarkista aseman kunto (smartctl -a / GNOME Levyt) ja ota varmuuskopio.",
+      "de": "Datenträger- oder Dateisystemfehler. Wenn er sich wiederholt, prüfen Sie den Zustand des Laufwerks (smartctl -a / GNOME Laufwerke) und erstellen Sie eine Sicherung."
+    }
+  },
+  {
+    "id": "thermal", "category": "KernelHardware",
+    "messagePattern": "critical temperature|temperature above threshold|Package temperature|Core temperature|thermal.*(shutdown|critical|throttl)|cpu clock throttled|overheat",
+    "minSeverity": "Warning",
+    "reason": {
+      "en": "Overheating / thermal throttling",
+      "hu": "Túlmelegedés / hőkorlátozás",
+      "fi": "Ylikuumeneminen / lämpörajoitus",
+      "de": "Überhitzung / thermische Drosselung"
+    },
+    "explanation": {
+      "en": "Overheating or heat-related performance throttling. At critical temperature the machine shuts itself down. Check the cooling, the fan and for dust.",
+      "hu": "Túlmelegedés vagy hő miatti teljesítmény-korlátozás. Kritikus hőmérsékletnél a gép magától leáll. Ellenőrizd a hűtést, ventilátort, port.",
+      "fi": "Ylikuumeneminen tai lämmön aiheuttama suorituskyvyn rajoitus. Kriittisessä lämpötilassa kone sammuu itsestään. Tarkista jäähdytys, tuuletin ja pöly.",
+      "de": "Überhitzung oder hitzebedingte Leistungsdrosselung. Bei kritischer Temperatur schaltet sich der Rechner selbst ab. Prüfen Sie Kühlung, Lüfter und Staub."
+    }
+  },
+  {
+    "id": "usb-error", "category": "KernelHardware", "transport": "kernel",
+    "messagePattern": "usb .*(device descriptor read.*error|unable to enumerate|device not accepting address|over-current|cannot reset)|xhci_hcd.*(error|HC died)",
+    "minSeverity": "Warning",
+    "explanation": {
+      "en": "USB device detection or communication error. Often caused by a bad cable, insufficient power or a faulty device.",
+      "hu": "USB eszköz felismerési vagy kommunikációs hiba. Gyakran rossz kábel, kevés áram vagy hibás eszköz okozza.",
+      "fi": "USB-laitteen tunnistus- tai tiedonsiirtovirhe. Syynä on usein huono kaapeli, riittämätön virta tai viallinen laite.",
+      "de": "Fehler bei der Erkennung oder Kommunikation eines USB-Geräts. Häufig verursacht durch ein schlechtes Kabel, zu wenig Strom oder ein defektes Gerät."
+    }
+  },
+  {
+    "id": "firmware-bug", "category": "KernelHardware", "transport": "kernel",
+    "messagePattern": "\\[Firmware Bug\\]|ACPI (BIOS )?Error|ACPI Warning|firmware: failed to load|Direct firmware load .* failed",
+    "minSeverity": "Warning",
+    "explanation": {
+      "en": "BIOS/ACPI or firmware problem. Most of these are harmless warnings, and a BIOS update often makes them go away.",
+      "hu": "BIOS/ACPI vagy firmware-probléma. Ezek többsége ártalmatlan figyelmeztetés, de BIOS-frissítéssel gyakran megszűnik.",
+      "fi": "BIOS/ACPI- tai laiteohjelmisto-ongelma. Useimmat näistä ovat harmittomia varoituksia, ja BIOS-päivitys poistaa ne usein.",
+      "de": "BIOS/ACPI- oder Firmware-Problem. Meist harmlose Warnungen, die nach einem BIOS-Update oft verschwinden."
+    }
+  },
+  {
+    "id": "suspend", "category": "Power",
+    "messagePattern": "PM: suspend (entry|exit)|PM: hibernation|Reached target .*(Sleep|Suspend|Hibernate)|Entering sleep state|System returned from sleep|suspend (failed|aborted)|Starting systemd-(suspend|hibernate|suspend-then-hibernate)\\.service|Finished systemd-(suspend|hibernate|suspend-then-hibernate)\\.service|The system will suspend now|Suspending system",
+    "explanation": {
+      "en": "Entering or returning from sleep (suspend) or hibernation.",
+      "hu": "Alvó (suspend) vagy hibernált állapotba lépés / visszatérés.",
+      "fi": "Siirtyminen lepotilaan (suspend) tai horrokseen tai paluu niistä.",
+      "de": "Wechsel in den oder Rückkehr aus dem Bereitschafts- (Suspend) oder Ruhezustand."
+    }
+  },
+  {
+    "id": "kernel-taint", "category": "KernelHardware", "transport": "kernel",
+    "messagePattern": "WARNING: CPU: \\d+|Call Trace:|------------\\[ cut here \\]------------|tainted",
+    "minSeverity": "Warning",
+    "explanation": {
+      "en": "Kernel warning with a call chain (stack trace). It points to a driver bug; on its own it rarely causes a freeze, but it's worth watching if it repeats.",
+      "hu": "Kernel figyelmeztetés hívási lánccal (stack trace). Driverhibára utal; önmagában ritkán okoz fagyást, de érdemes figyelni, ha ismétlődik.",
+      "fi": "Ytimen varoitus kutsuketjun (stack trace) kanssa. Se viittaa ajurivirheeseen; yksinään se aiheuttaa harvoin jumiutumisen, mutta sitä kannattaa seurata, jos se toistuu.",
+      "de": "Kernel-Warnung mit Aufrufkette (Stack Trace). Deutet auf einen Treiberfehler hin; für sich allein verursacht sie selten einen Hänger, sollte aber beobachtet werden, wenn sie sich wiederholt."
+    }
+  },
+  {
+    "id": "kernel-generic", "category": "KernelHardware", "transport": "kernel"
+  },
+
+  // ───────────── Power management and system state ─────────────
+  {
+    "id": "shutdown", "category": "Power", "identifiers": ["systemd", "systemd-logind", "systemd-shutdown"],
+    "messagePattern": "System is (powering down|rebooting|halting)|Reached target .*(Power-Off|Reboot|Halt|Shutdown)|Power key pressed|Syncing filesystems and block devices|The system will (power off|reboot) now|systemd-shutdown|Shutting down\\.",
+    "explanation": {
+      "en": "A clean shutdown or restart was started.",
+      "hu": "Szabályos leállítás vagy újraindítás indult.",
+      "fi": "Hallittu sammutus tai uudelleenkäynnistys aloitettiin.",
+      "de": "Ein ordnungsgemäßes Herunterfahren oder ein Neustart wurde eingeleitet."
+    }
+  },
+  {
+    "id": "power-battery", "category": "Power",
+    "identifiers": ["upowerd", "power-profiles-daemon", "tuned", "tlp", "thermald"],
+    "explanation": {
+      "en": "Battery, power profile or thermal management message.",
+      "hu": "Akkumulátor, energiaprofil vagy hőkezelés üzenete.",
+      "fi": "Akun, virtaprofiilin tai lämmönhallinnan viesti.",
+      "de": "Meldung zu Akku, Energieprofil oder Temperaturverwaltung."
+    }
+  },
+  {
+    "id": "logind", "category": "Power", "identifiers": ["systemd-logind"],
+    "explanation": {
+      "en": "Login manager (systemd-logind): handles sessions, buttons, the lid and sleep.",
+      "hu": "Bejelentkezés-kezelő (systemd-logind): munkamenetek, gombok, fedél, alvás kezelése.",
+      "fi": "Kirjautumisen hallinta (systemd-logind): istunnot, painikkeet, kansi ja lepotila.",
+      "de": "Anmeldeverwaltung (systemd-logind): verwaltet Sitzungen, Tasten, Deckel und Ruhezustand."
+    }
+  },
+
+  // ───────────── Security ─────────────
+  {
+    "id": "apparmor-denied", "category": "Security",
+    "messagePattern": "apparmor=\"DENIED\"",
+    "minSeverity": "Warning",
+    "explanation": {
+      "en": "AppArmor denied an operation to an application. This is usually a profile configuration issue, not an attack.",
+      "hu": "Az AppArmor megtagadott egy műveletet egy alkalmazástól. Általában profil-beállítási kérdés, nem támadás.",
+      "fi": "AppArmor esti sovellukselta toiminnon. Kyse on yleensä profiilin asetuksista, ei hyökkäyksestä.",
+      "de": "AppArmor hat einer Anwendung einen Vorgang verweigert. Meist eine Frage der Profilkonfiguration, kein Angriff."
+    }
+  },
+  {
+    "id": "auth-failure", "category": "Security",
+    "messagePattern": "authentication failure|Failed password|Invalid user|FAILED SU|incorrect password attempts|Connection closed by authenticating user|maximum authentication attempts",
+    "minSeverity": "Warning",
+    "explanation": {
+      "en": "Failed authentication attempt (wrong password, unknown user).",
+      "hu": "Sikertelen hitelesítési kísérlet (rossz jelszó, ismeretlen felhasználó).",
+      "fi": "Epäonnistunut tunnistautumisyritys (väärä salasana, tuntematon käyttäjä).",
+      "de": "Fehlgeschlagener Authentifizierungsversuch (falsches Passwort, unbekannter Benutzer)."
+    }
+  },
+  {
+    "id": "security-generic", "category": "Security",
+    "identifiers": ["sudo", "su", "sshd", "sshd-session", "polkitd", "pkexec", "gdm-password]", "gdm-password", "gdm-fingerprint]", "gdm-fingerprint", "login", "audit", "kernel-audit", "passwd", "useradd", "usermod", "groupadd", "chage", "ufw", "fprintd", "gnome-keyring-daemon"],
+    "explanation": {
+      "en": "Event related to privileges, login or security.",
+      "hu": "Jogosultság-kezeléssel, bejelentkezéssel vagy biztonsággal kapcsolatos esemény.",
+      "fi": "Oikeuksiin, kirjautumiseen tai tietoturvaan liittyvä tapahtuma.",
+      "de": "Ereignis im Zusammenhang mit Berechtigungen, Anmeldung oder Sicherheit."
+    }
+  },
+  {
+    "id": "audit", "category": "Security", "transport": "audit"
+  },
+
+  // ───────────── Services ─────────────
+  {
+    "id": "unit-failed", "category": "Services",
+    "messagePattern": "Failed with result|Failed to start|Main process exited, code=(exited|killed|dumped), status=(?!0/)|entered failed state|Start request repeated too quickly|Scheduled restart job",
+    "minSeverity": "Warning",
+    "explanation": {
+      "en": "A system service stopped with an error or could not start. The service's own entries (source or unit filter) show the exact reason.",
+      "hu": "Egy rendszerszolgáltatás hibával leállt vagy nem tudott elindulni. A szolgáltatás saját bejegyzései (Egység szűrő) mutatják a pontos okot.",
+      "fi": "Järjestelmäpalvelu pysähtyi virheeseen tai ei käynnistynyt. Palvelun omat merkinnät (lähde- tai yksikkösuodatin) näyttävät tarkan syyn.",
+      "de": "Ein Systemdienst wurde mit einem Fehler beendet oder konnte nicht starten. Die eigenen Einträge des Dienstes (Quell- oder Unit-Filter) zeigen die genaue Ursache."
+    }
+  },
+  {
+    "id": "systemd-generic", "category": "Services",
+    "identifiers": ["systemd", "init", "systemd-journald", "systemd-udevd", "systemd-tmpfiles", "systemd-modules-load", "systemd-fsck", "systemd-sysctl", "dbus-daemon", "dbus-broker", "dbus-broker-launch", "cron", "CRON", "snapd", "packagekitd", "apt", "unattended-upgrade", "systemd-timesyncd", "fwupd", "cups", "cupsd", "rsyslogd"],
+    "explanation": {
+      "en": "Message from a system service or from systemd.",
+      "hu": "Rendszerszolgáltatás vagy a systemd üzenete.",
+      "fi": "Järjestelmäpalvelun tai systemd:n viesti.",
+      "de": "Meldung eines Systemdienstes oder von systemd."
+    }
+  },
+
+  // ───────────── Network ─────────────
+  {
+    "id": "network", "category": "Network",
+    "identifiers": ["NetworkManager", "wpa_supplicant", "systemd-resolved", "systemd-networkd", "dhclient", "avahi-daemon", "ModemManager", "dnsmasq", "nm-dispatcher", "openvpn", "wireguard", "bluetoothd", "iwd", "chronyd"],
+    "explanation": {
+      "en": "Network or connectivity event (Wi-Fi, Ethernet, DNS, VPN, Bluetooth).",
+      "hu": "Hálózati vagy kapcsolódási esemény (WiFi, Ethernet, DNS, VPN, Bluetooth).",
+      "fi": "Verkko- tai yhteystapahtuma (WLAN, Ethernet, DNS, VPN, Bluetooth).",
+      "de": "Netzwerk- oder Verbindungsereignis (WLAN, Ethernet, DNS, VPN, Bluetooth)."
+    }
+  },
+
+  // ───────────── Applications / desktop session ─────────────
+  {
+    "id": "desktop", "category": "Applications",
+    "identifiers": ["gnome-shell", "gnome-session", "gnome-session-binary", "gdm", "gdm3", "Xwayland", "mutter", "gsd-media-keys", "gsd-power", "gsd-color", "xdg-desktop-portal", "xdg-desktop-portal-gnome", "pipewire", "wireplumber", "pulseaudio", "nautilus", "tracker-miner-fs-3", "evolution-data-server", "gnome-software", "flatpak"],
+    "explanation": {
+      "en": "Message from the desktop environment (GNOME) or a user application.",
+      "hu": "Asztali környezet (GNOME) vagy felhasználói alkalmazás üzenete.",
+      "fi": "Työpöytäympäristön (GNOME) tai käyttäjäsovelluksen viesti.",
+      "de": "Meldung der Desktop-Umgebung (GNOME) oder einer Benutzeranwendung."
+    }
+  }
+]

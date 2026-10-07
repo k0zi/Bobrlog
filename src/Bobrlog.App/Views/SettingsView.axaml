@@ -1,0 +1,71 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:r="using:Bobrlog.App.Resources"
+             xmlns:vm="using:Bobrlog.App.ViewModels"
+             x:Class="Bobrlog.App.Views.SettingsView"
+             x:DataType="vm:SettingsViewModel">
+    <ScrollViewer>
+        <StackPanel Margin="20,14" Spacing="14" MaxWidth="900" HorizontalAlignment="Left">
+            <TextBlock Classes="h1" Text="{x:Static r:Strings.Settings_Title}" />
+
+            <Border Classes="card">
+                <StackPanel Spacing="10">
+                    <TextBlock Classes="h2" Text="{x:Static r:Strings.Settings_LanguageHeader}" />
+                    <WrapPanel ItemSpacing="10" LineSpacing="8">
+                        <ComboBox ItemsSource="{Binding Languages}" SelectedItem="{Binding SelectedLanguage}" MinWidth="200" />
+                        <Button Classes="accent" Content="{x:Static r:Strings.Settings_RestartApp}" Command="{Binding RestartApplicationCommand}"
+                                IsVisible="{Binding NeedsRestart}" />
+                    </WrapPanel>
+                    <TextBlock Classes="muted" FontSize="12" TextWrapping="Wrap" Text="{x:Static r:Strings.Settings_LanguageHint}" />
+                </StackPanel>
+            </Border>
+
+            <Border Classes="card">
+                <StackPanel Spacing="10">
+                    <TextBlock Classes="h2" Text="{x:Static r:Strings.Settings_ServiceHeader}" />
+                    <TextBlock TextWrapping="Wrap"
+                               Text="{x:Static r:Strings.Settings_ServiceDescription}" />
+                    <StackPanel Orientation="Horizontal" Spacing="6">
+                        <TextBlock Text="{x:Static r:Strings.Settings_Status}" FontWeight="SemiBold" />
+                        <TextBlock Text="{Binding ServiceStatusText}" TextWrapping="Wrap" />
+                    </StackPanel>
+                    <TextBlock Classes="muted" FontSize="12" Text="{Binding BundleHint}" TextWrapping="Wrap" />
+                    <WrapPanel ItemSpacing="8" LineSpacing="8">
+                        <Button Classes="accent" Content="{x:Static r:Strings.Settings_Install}" Command="{Binding InstallCommand}" IsEnabled="{Binding CanInstall}" />
+                        <Button Content="{x:Static r:Strings.Settings_Restart}" Command="{Binding RestartCommand}" IsEnabled="{Binding CanRemove}" />
+                        <Button Content="{x:Static r:Strings.Settings_Remove}" Command="{Binding RemoveCommand}" IsEnabled="{Binding CanRemove}" />
+                        <Button Content="{x:Static r:Strings.Settings_RefreshStatus}" Command="{Binding RefreshStatusCommand}" />
+                        <ProgressBar IsIndeterminate="True" Width="80" IsVisible="{Binding IsBusy}" VerticalAlignment="Center" />
+                    </WrapPanel>
+                    <TextBlock Text="{Binding ResultText}" TextWrapping="Wrap"
+                               IsVisible="{Binding ResultText, Converter={x:Static ObjectConverters.IsNotNull}}"
+                               Classes.muted="{Binding !ResultIsError}"
+                               Foreground="{Binding ResultIsError, Converter={x:Static vm:SettingsViewModel.ErrorBrushConverter}}" />
+                    <CheckBox IsChecked="{Binding UseServiceAutomatically}"
+                              Content="{x:Static r:Strings.Settings_UseService}" />
+                    <TextBlock Classes="muted" FontSize="12" Text="{Binding CurrentSourceText}" />
+                </StackPanel>
+            </Border>
+
+            <Border Classes="card">
+                <StackPanel Spacing="10">
+                    <TextBlock Classes="h2" Text="{x:Static r:Strings.Settings_PerformanceHeader}" />
+                    <CheckBox IsChecked="{Binding LowPriority}" Content="{x:Static r:Strings.Settings_LowPriority}" />
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <TextBlock Text="{x:Static r:Strings.Settings_PageSize}" VerticalAlignment="Center" />
+                        <NumericUpDown Value="{Binding PageSize}" Minimum="100" Maximum="50000" Increment="500" Width="160" FormatString="0" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <Border Classes="card">
+                <StackPanel Spacing="6">
+                    <TextBlock Classes="h2" Text="{x:Static r:Strings.Settings_PrivilegesHeader}" />
+                    <TextBlock Text="{Binding PrivilegeText}" TextWrapping="Wrap" />
+                    <TextBlock Classes="muted" FontSize="12" TextWrapping="Wrap"
+                               Text="{x:Static r:Strings.Settings_PrivilegesHint}" />
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

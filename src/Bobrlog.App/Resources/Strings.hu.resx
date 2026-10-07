@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="App_Name" xml:space="preserve">
+    <value>Bobrlog</value>
+  </data>
+  <data name="App_Subtitle" xml:space="preserve">
+    <value>Linux rendszeresemények</value>
+  </data>
+  <data name="App_WindowTitle" xml:space="preserve">
+    <value>Bobrlog</value>
+  </data>
+  <data name="Main_SourceText" xml:space="preserve">
+    <value>Adatforrás: {0}</value>
+  </data>
+  <data name="Fmt_Date" xml:space="preserve">
+    <value>yyyy.MM.dd.</value>
+  </data>
+  <data name="Fmt_DateTimeMinutes" xml:space="preserve">
+    <value>yyyy.MM.dd. HH:mm</value>
+  </data>
+  <data name="Fmt_DateTimeSeconds" xml:space="preserve">
+    <value>yyyy.MM.dd. HH:mm:ss</value>
+  </data>
+  <data name="Fmt_DateTimeMillis" xml:space="preserve">
+    <value>yyyy.MM.dd. HH:mm:ss.fff</value>
+  </data>
+  <data name="Fmt_ShortDateTime" xml:space="preserve">
+    <value>MM.dd. HH:mm</value>
+  </data>
+  <data name="Fmt_DayLabel" xml:space="preserve">
+    <value>MM.dd. ddd</value>
+  </data>
+  <data name="Duration_DaysHours" xml:space="preserve">
+    <value>{0} nap {1} óra</value>
+  </data>
+  <data name="Duration_HoursMinutes" xml:space="preserve">
+    <value>{0} óra {1} perc</value>
+  </data>
+  <data name="Duration_Minutes" xml:space="preserve">
+    <value>{0} perc</value>
+  </data>
+  <data name="Duration_Seconds" xml:space="preserve">
+    <value>{0} mp</value>
+  </data>
+  <data name="Common_Refresh" xml:space="preserve">
+    <value>Frissítés</value>
+  </data>
+  <data name="Common_AllEvents" xml:space="preserve">
+    <value>Összes esemény</value>
+  </data>
+  <data name="Col_Time" xml:space="preserve">
+    <value>Időpont</value>
+  </data>
+  <data name="Col_Source" xml:space="preserve">
+    <value>Forrás</value>
+  </data>
+  <data name="Col_Message" xml:space="preserve">
+    <value>Üzenet</value>
+  </data>
+  <data name="Overview_Title" xml:space="preserve">
+    <value>Áttekintés</value>
+  </data>
+  <data name="Overview_Last24Hours" xml:space="preserve">
+    <value>az elmúlt 24 órában</value>
+  </data>
+  <data name="Overview_Last7Days" xml:space="preserve">
+    <value>{0} az elmúlt 7 napban</value>
+  </data>
+  <data name="Overview_DailyTitle" xml:space="preserve">
+    <value>Napi hibák és figyelmeztetések (14 nap)</value>
+  </data>
+  <data name="Overview_LegendError" xml:space="preserve">
+    <value>Hiba / kritikus</value>
+  </data>
+  <data name="Overview_LegendHint" xml:space="preserve">
+    <value>– kattints egy napra a részletekért</value>
+  </data>
+  <data name="Overview_DayTooltip" xml:space="preserve">
+    <value>{0}: {1} hiba, {2} figyelmeztetés – kattints a részletekért</value>
+  </data>
+  <data name="Overview_RecentBoots" xml:space="preserve">
+    <value>Legutóbbi rendszerindítások</value>
+  </data>
+  <data name="Overview_TopSources" xml:space="preserve">
+    <value>Leggyakoribb hibaforrások (7 nap)</value>
+  </data>
+  <data name="Overview_NoErrors" xml:space="preserve">
+    <value>Nem volt hiba.</value>
+  </data>
+  <data name="Overview_Summarizing" xml:space="preserve">
+    <value>Események összesítése…</value>
+  </data>
+  <data name="Overview_AnalyzingBoots" xml:space="preserve">
+    <value>Rendszerindítások elemzése…</value>
+  </data>
+  <data name="Overview_HeadlineUnexpected" xml:space="preserve">
+    <value>Az utolsó {0} indításból {1} váratlanul ért véget.</value>
+  </data>
+  <data name="Overview_HeadlineErrors" xml:space="preserve">
+    <value>Nem volt váratlan leállás. Az elmúlt 24 órában {0} hiba történt.</value>
+  </data>
+  <data name="Overview_HeadlineClean" xml:space="preserve">
+    <value>Nem volt váratlan leállás, és az elmúlt 24 órában nem történt hiba.</value>
+  </data>
+  <data name="Overview_NoCrashes" xml:space="preserve">
+    <value>Nincs hibajelentés az elmúlt 30 napból.</value>
+  </data>
+  <data name="Overview_Crashes" xml:space="preserve">
+    <value>{0} hibajelentés (összeomlás) az elmúlt 30 napban.</value>
+  </data>
+  <data name="Overview_Status" xml:space="preserve">
+    <value>{0:N0} figyelmeztetés/hiba az elmúlt {1} napban</value>
+  </data>
+  <data name="Boots_Title" xml:space="preserve">
+    <value>Rendszerindítások</value>
+  </data>
+  <data name="Boots_Reanalyze" xml:space="preserve">
+    <value>Újraelemzés</value>
+  </data>
+  <data name="Boots_Description" xml:space="preserve">
+    <value>Minden indításnál megvizsgáljuk, hogyan ért véget: szabályos leállítás/újraindítás, vagy váratlan leállás (fagyás, áramszünet). Váratlan leállásnál a vége előtti percek hibáiból a valószínű okot is megmutatjuk.</value>
+  </data>
+  <data name="Boots_ColStarted" xml:space="preserve">
+    <value>Indítás</value>
+  </data>
+  <data name="Boots_ColEnded" xml:space="preserve">
+    <value>Vége</value>
+  </data>
+  <data name="Boots_ColDuration" xml:space="preserve">
+    <value>Futási idő</value>
+  </data>
+  <data name="Boots_ColKind" xml:space="preserve">
+    <value>Befejezés módja</value>
+  </data>
+  <data name="Boots_ColSummary" xml:space="preserve">
+    <value>Legvalószínűbb ok / fő probléma</value>
+  </data>
+  <data name="Boots_ReasonsLabel" xml:space="preserve">
+    <value>Valószínű okok és fő problémák:</value>
+  </data>
+  <data name="Boots_ShowProblems" xml:space="preserve">
+    <value>Problémák ebben az indításban</value>
+  </data>
+  <data name="Boots_LastErrors" xml:space="preserve">
+    <value>Utolsó hibák az indítás végén</value>
+  </data>
+  <data name="Boots_Analyzing" xml:space="preserve">
+    <value>Elemzés…</value>
+  </data>
+  <data name="Boots_CurrentIndex" xml:space="preserve">
+    <value>0 (jelenlegi)</value>
+  </data>
+  <data name="Boots_SelectedTitle" xml:space="preserve">
+    <value>{0} – indítás: {1}, vége: {2} ({3})</value>
+  </data>
+  <data name="Boots_SelectPrompt" xml:space="preserve">
+    <value>Válassz ki egy rendszerindítást</value>
+  </data>
+  <data name="Boots_Listing" xml:space="preserve">
+    <value>Rendszerindítások listázása…</value>
+  </data>
+  <data name="Boots_AnalyzingCount" xml:space="preserve">
+    <value>{0} indítás elemzése…</value>
+  </data>
+  <data name="Boots_Status" xml:space="preserve">
+    <value>{0} rendszerindítás • {1} váratlan leállás</value>
+  </data>
+  <data name="Crashes_Title" xml:space="preserve">
+    <value>Hibajelentések</value>
+  </data>
+  <data name="Crashes_ColType" xml:space="preserve">
+    <value>Típus</value>
+  </data>
+  <data name="Crashes_ColDescription" xml:space="preserve">
+    <value>Leírás</value>
+  </data>
+  <data name="Crashes_ColProgram" xml:space="preserve">
+    <value>Program</value>
+  </data>
+  <data name="Crashes_NoneSelected" xml:space="preserve">
+    <value>Nincs kiválasztva</value>
+  </data>
+  <data name="Crashes_EventsThatDay" xml:space="preserve">
+    <value>Aznapi események</value>
+  </data>
+  <data name="Crashes_Copy" xml:space="preserve">
+    <value>Másolás</value>
+  </data>
+  <data name="Crashes_HintFull" xml:space="preserve">
+    <value>Forrás: /var/crash (apport), coredumpctl, /var/lib/systemd/pstore.</value>
+  </data>
+  <data name="Crashes_HintLimited" xml:space="preserve">
+    <value>Forrás: /var/crash (apport) és coredumpctl. A kernel összeomlás-mentések (pstore) olvasásához root jog vagy a háttérszolgáltatás kell.</value>
+  </data>
+  <data name="Crashes_Status" xml:space="preserve">
+    <value>{0} hibajelentés</value>
+  </data>
+  <data name="EventList_FollowTip" xml:space="preserve">
+    <value>Új események folyamatos megjelenítése</value>
+  </data>
+  <data name="EventList_Follow" xml:space="preserve">
+    <value>Élő követés</value>
+  </data>
+  <data name="EventList_RefreshTip" xml:space="preserve">
+    <value>Frissítés (F5)</value>
+  </data>
+  <data name="EventList_RangeTip" xml:space="preserve">
+    <value>Időszak</value>
+  </data>
+  <data name="EventList_SeverityTip" xml:space="preserve">
+    <value>Minimális súlyosság</value>
+  </data>
+  <data name="EventList_SearchPlaceholder" xml:space="preserve">
+    <value>Keresés az üzenetekben (regex)…</value>
+  </data>
+  <data name="EventList_SourcePlaceholder" xml:space="preserve">
+    <value>Forrás vagy egység (pl. kernel, sshd.service)</value>
+  </data>
+  <data name="EventList_ClearFilters" xml:space="preserve">
+    <value>Szűrők törlése</value>
+  </data>
+  <data name="EventList_LoadMore" xml:space="preserve">
+    <value>Továbbiak betöltése</value>
+  </data>
+  <data name="EventList_ColLevel" xml:space="preserve">
+    <value>Szint</value>
+  </data>
+  <data name="EventList_ColCategory" xml:space="preserve">
+    <value>Kategória</value>
+  </data>
+  <data name="EventList_SelectPrompt" xml:space="preserve">
+    <value>Válassz ki egy eseményt a részletekhez.</value>
+  </data>
+  <data name="EventList_CopyMessage" xml:space="preserve">
+    <value>Üzenet másolása</value>
+  </data>
+  <data name="EventList_FilterSource" xml:space="preserve">
+    <value>Szűrés erre a forrásra</value>
+  </data>
+  <data name="EventList_ShowBoot" xml:space="preserve">
+    <value>Rendszerindítás</value>
+  </data>
+  <data name="EventList_JournalctlCommand" xml:space="preserve">
+    <value>journalctl parancs</value>
+  </data>
+  <data name="EventList_JournalctlTip" xml:space="preserve">
+    <value>Az aktuális szűrőnek megfelelő journalctl parancs vágólapra másolása</value>
+  </data>
+  <data name="EventList_Fields" xml:space="preserve">
+    <value>Mezők</value>
+  </data>
+  <data name="EventList_ColField" xml:space="preserve">
+    <value>Mező</value>
+  </data>
+  <data name="EventList_ColValue" xml:space="preserve">
+    <value>Érték</value>
+  </data>
+  <data name="EventList_Rule" xml:space="preserve">
+    <value>(szabály: {0})</value>
+  </data>
+  <data name="EventList_CurrentBoot" xml:space="preserve">
+    <value>Jelenlegi indítás</value>
+  </data>
+  <data name="EventList_CurrentBootSince" xml:space="preserve">
+    <value>Jelenlegi ({0} óta)</value>
+  </data>
+  <data name="EventList_BootShort" xml:space="preserve">
+    <value>Indítás {0}…</value>
+  </data>
+  <data name="EventList_Loading" xml:space="preserve">
+    <value>Betöltés…</value>
+  </data>
+  <data name="EventList_LoadingProgress" xml:space="preserve">
+    <value>Betöltés… {0:N0} bejegyzés átnézve</value>
+  </data>
+  <data name="EventList_StatusEvents" xml:space="preserve">
+    <value>{0:N0} esemény</value>
+  </data>
+  <data name="EventList_StatusScanned" xml:space="preserve">
+    <value>{0:N0} bejegyzés átnézve</value>
+  </data>
+  <data name="EventList_StatusMore" xml:space="preserve">
+    <value>további események is vannak</value>
+  </data>
+  <data name="EventList_LoadError" xml:space="preserve">
+    <value>Hiba a betöltéskor</value>
+  </data>
+  <data name="EventList_FollowStopped" xml:space="preserve">
+    <value>Élő követés leállt: {0}</value>
+  </data>
+  <data name="Range_LastHour" xml:space="preserve">
+    <value>Utolsó óra</value>
+  </data>
+  <data name="Range_Today" xml:space="preserve">
+    <value>Ma</value>
+  </data>
+  <data name="Range_Last24Hours" xml:space="preserve">
+    <value>Utolsó 24 óra</value>
+  </data>
+  <data name="Range_Last7Days" xml:space="preserve">
+    <value>Utolsó 7 nap</value>
+  </data>
+  <data name="Range_Last30Days" xml:space="preserve">
+    <value>Utolsó 30 nap</value>
+  </data>
+  <data name="Range_Day" xml:space="preserve">
+    <value>Adott nap…</value>
+  </data>
+  <data name="Range_Boot" xml:space="preserve">
+    <value>Adott rendszerindítás…</value>
+  </data>
+  <data name="Range_All" xml:space="preserve">
+    <value>Teljes napló</value>
+  </data>
+  <data name="SeverityFilter_Error" xml:space="preserve">
+    <value>Hiba és súlyosabb</value>
+  </data>
+  <data name="SeverityFilter_Warning" xml:space="preserve">
+    <value>Figyelmeztetés és súlyosabb</value>
+  </data>
+  <data name="SeverityFilter_Info" xml:space="preserve">
+    <value>Információ és súlyosabb</value>
+  </data>
+  <data name="SeverityFilter_All" xml:space="preserve">
+    <value>Minden (részletes is)</value>
+  </data>
+  <data name="Settings_Title" xml:space="preserve">
+    <value>Beállítások</value>
+  </data>
+  <data name="Settings_LanguageHeader" xml:space="preserve">
+    <value>Nyelv</value>
+  </data>
+  <data name="Settings_LanguageHint" xml:space="preserve">
+    <value>Az új nyelv az alkalmazás újraindítása után lép életbe.</value>
+  </data>
+  <data name="Settings_RestartApp" xml:space="preserve">
+    <value>Újraindítás most</value>
+  </data>
+  <data name="Settings_ServiceHeader" xml:space="preserve">
+    <value>Háttérszolgáltatás</value>
+  </data>
+  <data name="Settings_ServiceDescription" xml:space="preserve">
+    <value>Az opcionális háttérszolgáltatás rootként, magasabb prioritással fut, és a root jogot igénylő forrásokat (kernel összeomlás-mentések, minden hibajelentés) is kiszolgálja. Így az alkalmazás normál felhasználóként, alacsony prioritással futhat. A telepítéshez a rendszer jelszót kér.</value>
+  </data>
+  <data name="Settings_Status" xml:space="preserve">
+    <value>Állapot:</value>
+  </data>
+  <data name="Settings_Install" xml:space="preserve">
+    <value>Telepítés / frissítés</value>
+  </data>
+  <data name="Settings_Restart" xml:space="preserve">
+    <value>Újraindítás</value>
+  </data>
+  <data name="Settings_Remove" xml:space="preserve">
+    <value>Eltávolítás</value>
+  </data>
+  <data name="Settings_RefreshStatus" xml:space="preserve">
+    <value>Állapot frissítése</value>
+  </data>
+  <data name="Settings_UseService" xml:space="preserve">
+    <value>A háttérszolgáltatás használata, ha elérhető (különben helyi journalctl)</value>
+  </data>
+  <data name="Settings_PerformanceHeader" xml:space="preserve">
+    <value>Teljesítmény</value>
+  </data>
+  <data name="Settings_LowPriority" xml:space="preserve">
+    <value>Az alkalmazás alacsony prioritással fusson (nice)</value>
+  </data>
+  <data name="Settings_PageSize" xml:space="preserve">
+    <value>Egyszerre betöltött események:</value>
+  </data>
+  <data name="Settings_PrivilegesHeader" xml:space="preserve">
+    <value>Jogosultságok</value>
+  </data>
+  <data name="Settings_PrivilegesHint" xml:space="preserve">
+    <value>Az 'adm' vagy 'systemd-journal' csoport tagjai sudo nélkül is látják a teljes rendszernaplót. A sudo-val indítás Wayland alatt gyakran nem működik grafikus alkalmazásoknál; ehelyett a háttérszolgáltatás ajánlott.</value>
+  </data>
+  <data name="Settings_Checking" xml:space="preserve">
+    <value>Ellenőrzés…</value>
+  </data>
+  <data name="Settings_BundleHint" xml:space="preserve">
+    <value>Telepítési hely: {0}, systemd egység: {1}</value>
+  </data>
+  <data name="Settings_BundleMissing" xml:space="preserve">
+    <value>A szolgáltatás programja nem található itt: {0}</value>
+  </data>
+  <data name="Settings_RunningAs" xml:space="preserve">
+    <value>Futtatás: {0}</value>
+  </data>
+  <data name="Settings_Groups" xml:space="preserve">
+    <value>csoportok: {0}</value>
+  </data>
+  <data name="Settings_FullJournal" xml:space="preserve">
+    <value>a teljes rendszernapló olvasható</value>
+  </data>
+  <data name="Settings_OwnJournal" xml:space="preserve">
+    <value>csak a saját felhasználói napló olvasható</value>
+  </data>
+  <data name="Settings_CurrentSource" xml:space="preserve">
+    <value>Aktuális adatforrás: {0}</value>
+  </data>
+  <data name="Settings_SocketNoResponse" xml:space="preserve">
+    <value>a socket nem válaszol (ellenőrizd a jogosultságot)</value>
+  </data>
+  <data name="Settings_Reachable" xml:space="preserve">
+    <value>elérhető (protokoll v{0}, uid {1})</value>
+  </data>
+  <data name="Settings_StatusUnknown" xml:space="preserve">
+    <value>Ismeretlen: {0}</value>
+  </data>
+  <data name="Settings_RequestingPrivileges" xml:space="preserve">
+    <value>Jogosultság kérése…</value>
+  </data>
+</root>
