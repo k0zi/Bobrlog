@@ -25,8 +25,8 @@ by category with severity icons, no queries needed, and explains why the machine
 ## Running
 ```bash
 dotnet run --project src/Bobrlog.App      # development
-packaging/install-user.sh                 # install for the current user (with a menu entry)
-packaging/install-user.sh --uninstall
+packaging/install.sh                      # build the .deb/.rpm for this distro and install it (apt, dnf or zypper)
+packaging/install.sh --uninstall
 ```
 No sudo required: members of the `adm` or `systemd-journal` group can see the full system journal.
 
@@ -39,6 +39,21 @@ Settings → Background service → Install. `pkexec` will prompt for your passw
 - can also read root-only sources (pstore, all crash reports). When it is running, the GUI uses it automatically.
 
 It can be uninstalled from the same place.
+
+## Building packages
+```bash
+packaging/build-packages.sh               # artifacts/packages/bobrlog_<version>-1_amd64.deb and bobrlog-<version>-1.x86_64.rpm
+packaging/build-packages.sh deb           # only one format; --skip-tests, --no-bump are also accepted
+```
+The packages are built with [nfpm](https://nfpm.goreleaser.com/) (downloaded to `artifacts/tools` on first use, no
+`dpkg-deb`/`rpmbuild` needed). They install the self-contained app to `/usr/lib/bobrlog`, `/usr/bin/bobrlog`, the menu
+entry and icons. The `.deb` targets Debian/Ubuntu, the `.rpm` Fedora/RHEL and openSUSE/SUSE. Upgrading the package also
+updates the background service if it is installed; removing the package removes it.
+
+**Versioning** uses [Nerdbank.GitVersioning](https://github.com/dotnet/Nerdbank.GitVersioning): `version.json` holds
+`<year>.<month>` (e.g. `26.10`) and the git height becomes the patch number (`26.10.0`, `26.10.1`, …). When a new month
+starts, `build-packages.sh` updates `version.json` automatically (or edit it by hand); commit that
+change. Builds from branches other than `main` (and `v*` tags) get a `~g<commit>` suffix.
 
 ## Project structure
 | Project | Contents |

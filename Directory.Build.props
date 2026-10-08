@@ -4,4 +4,9 @@
     <!-- Linux-only application: platform compatibility analyzer warnings are noise here. -->
     <NoWarn>$(NoWarn);CA1416</NoWarn>
   </PropertyGroup>
+
+  <!-- Version numbers come from version.json (major = year, minor = month) plus the git height as patch, e.g. 26.10.3. -->
+  <ItemGroup>
+    <PackageReference Include="Nerdbank.GitVersioning" Version="3.10.94" PrivateAssets="all" />
+  </ItemGroup>
 </Project>

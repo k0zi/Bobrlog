@@ -1,0 +1,95 @@
+# nfpm configuration for the .deb and .rpm packages. Driven by build-packages.sh, which sets the
+# BOBRLOG_* environment variables, stages the build in artifacts/stage/ and runs nfpm from the repository root.
+name: bobrlog
+arch: amd64
+platform: linux
+version: ${BOBRLOG_VERSION}
+prerelease: ${BOBRLOG_PRERELEASE}
+release: 1
+section: admin
+priority: optional
+maintainer: David Kozma <k0zi@outlook.com>
+vendor: Bobrlog
+homepage: https://github.com/k0zi/Bobrlog
+license: MIT
+description: |-
+  Event Viewer style log viewer for Linux
+  Shows systemd journal events by category with severity icons and explains
+  why the machine shut down or restarted. Includes an optional privileged
+  background service that can be enabled from the Settings page.
+
+contents:
+  - src: artifacts/stage/app
+    dst: /usr/lib/bobrlog
+    type: tree
+  - src: /usr/lib/bobrlog/bobrlog
+    dst: /usr/bin/bobrlog
+    type: symlink
+  - src: artifacts/stage/bobrlog.desktop
+    dst: /usr/share/applications/bobrlog.desktop
+  - src: packaging/icons/bobrlog-32.png
+    dst: /usr/share/icons/hicolor/32x32/apps/bobrlog.png
+  - src: packaging/icons/bobrlog-48.png
+    dst: /usr/share/icons/hicolor/48x48/apps/bobrlog.png
+  - src: packaging/icons/bobrlog-64.png
+    dst: /usr/share/icons/hicolor/64x64/apps/bobrlog.png
+  - src: packaging/icons/bobrlog-128.png
+    dst: /usr/share/icons/hicolor/128x128/apps/bobrlog.png
+  - src: packaging/icons/bobrlog-256.png
+    dst: /usr/share/icons/hicolor/256x256/apps/bobrlog.png
+  - src: packaging/icons/bobrlog-512.png
+    dst: /usr/share/icons/hicolor/512x512/apps/bobrlog.png
+  - src: LICENSE
+    dst: /usr/share/doc/bobrlog/copyright
+    packager: deb
+  - src: LICENSE
+    dst: /usr/share/licenses/bobrlog/LICENSE
+    packager: rpm
+    type: license
+
+scripts:
+  postinstall: packaging/scripts/postinstall.sh
+  preremove: packaging/scripts/preremove.sh
+
+# Self-contained .NET build: only native libraries of the base system are needed.
+# ICU is loaded dynamically by .NET, any recent version works.
+overrides:
+  deb:
+    depends:
+      - libc6
+      - libgcc-s1
+      - libstdc++6
+      - zlib1g
+      - libicu80 | libicu79 | libicu78 | libicu77 | libicu76 | libicu75 | libicu74 | libicu73 | libicu72 | libicu71 | libicu70 | libicu67
+      - libx11-6
+      - libice6
+      - libsm6
+      - libxcursor1
+      - libxext6
+      - libxfixes3
+      - libxi6
+      - libxrandr2
+      - libfontconfig1
+    recommends:
+      - pkexec | policykit-1
+      - libgl1
+      - libgtk-3-0t64 | libgtk-3-0
+  rpm:
+    # Shared-library capabilities have the same names on Fedora/RHEL and openSUSE, unlike the package names.
+    depends:
+      - libstdc++.so.6()(64bit)
+      - libz.so.1()(64bit)
+      - (libicuuc.so.80()(64bit) or libicuuc.so.79()(64bit) or libicuuc.so.78()(64bit) or libicuuc.so.77()(64bit) or libicuuc.so.76()(64bit) or libicuuc.so.75()(64bit) or libicuuc.so.74()(64bit) or libicuuc.so.73()(64bit) or libicuuc.so.72()(64bit) or libicuuc.so.71()(64bit) or libicuuc.so.70()(64bit) or libicuuc.so.69()(64bit) or libicuuc.so.67()(64bit) or libicuuc.so.65()(64bit))
+      - libX11.so.6()(64bit)
+      - libICE.so.6()(64bit)
+      - libSM.so.6()(64bit)
+      - libXcursor.so.1()(64bit)
+      - libXext.so.6()(64bit)
+      - libXfixes.so.3()(64bit)
+      - libXi.so.6()(64bit)
+      - libXrandr.so.2()(64bit)
+      - libfontconfig.so.1()(64bit)
+    recommends:
+      - /usr/bin/pkexec
+      - libGL.so.1()(64bit)
+      - libgtk-3.so.0()(64bit)
