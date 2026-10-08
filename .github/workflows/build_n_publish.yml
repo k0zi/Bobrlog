@@ -1,0 +1,86 @@
+name: Build and publish
+
+on:
+  push:
+    branches: [ main ]
+    tags: [ 'v*' ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: 'Create a GitHub release (tag v<version>) with the packages'
+        type: boolean
+        default: false
+
+env:
+  DOTNET_NOLOGO: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+  PACKAGE_DIR: artifacts/packages
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0 # Nerdbank.GitVersioning needs the full history to compute the git height
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Version
+        id: version
+        run: |
+          dotnet tool restore
+          echo "version=$(dotnet nbgv get-version -v SimpleVersion)" >> "$GITHUB_OUTPUT"
+
+      # nfpm is downloaded by build-packages.sh into artifacts/tools (checksum verified).
+      - name: Cache nfpm
+        uses: actions/cache@v4
+        with:
+          path: artifacts/tools
+          key: nfpm-${{ hashFiles('packaging/build-packages.sh') }}
+
+      # Runs the tests, publishes the self-contained app and builds both packages.
+      # --no-bump: CI never rewrites version.json, it only warns when the month is outdated.
+      - name: Build packages
+        run: packaging/build-packages.sh --no-bump deb rpm
+
+      - name: Upload packages
+        uses: actions/upload-artifact@v5
+        with:
+          name: bobrlog-${{ steps.version.outputs.version }}-packages
+          path: |
+            ${{ env.PACKAGE_DIR }}/*.deb
+            ${{ env.PACKAGE_DIR }}/*.rpm
+          if-no-files-found: error
+
+  publish:
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/v') || (github.event_name == 'workflow_dispatch' && inputs.publish)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # create the release (and its tag)
+    steps:
+      - name: Download packages
+        uses: actions/download-artifact@v5
+        with:
+          name: bobrlog-${{ needs.build.outputs.version }}-packages
+          path: packages
+
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          TAG: ${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || format('v{0}', needs.build.outputs.version) }}
+        run: |
+          gh release create "$TAG" packages/* \
+            --target "$GITHUB_SHA" \
+            --title "Bobrlog ${{ needs.build.outputs.version }}" \
+            --generate-notes

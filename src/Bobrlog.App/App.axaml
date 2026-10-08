@@ -2,6 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="Bobrlog.App.App"
              xmlns:local="using:Bobrlog.App"
+             xmlns:rice="clr-namespace:KD.Avalonia.Rice;assembly=KD.Avalonia.Rice"
              RequestedThemeVariant="Default">
 
     <Application.DataTemplates>
@@ -15,7 +16,8 @@
             <CornerRadius x:Key="CardRadius">10</CornerRadius>
 
             <ResourceDictionary.ThemeDictionaries>
-                <!-- Adwaita-inspired palette. Error/warning bar pair validated for CVD separation. -->
+                <!-- Severity colors (Adwaita-inspired); everything else comes from the selected Rice theme.
+                     Error/warning bar pair validated for CVD separation. -->
                 <ResourceDictionary x:Key="Light">
                     <SolidColorBrush x:Key="SeverityCriticalBrush" Color="#A51D2D" />
                     <SolidColorBrush x:Key="SeverityErrorBrush" Color="#E01B24" />
@@ -23,13 +25,7 @@
                     <SolidColorBrush x:Key="SeverityInfoBrush" Color="#1C71D8" />
                     <SolidColorBrush x:Key="SeverityVerboseBrush" Color="#77767B" />
                     <SolidColorBrush x:Key="BootOkBrush" Color="#26A269" />
-                    <SolidColorBrush x:Key="SidebarBrush" Color="#EBEBED" />
-                    <SolidColorBrush x:Key="WindowBrush" Color="#FAFAFB" />
-                    <SolidColorBrush x:Key="CardBrush" Color="#FFFFFF" />
-                    <SolidColorBrush x:Key="CardBorderBrush" Color="#DEDDDA" />
-                    <SolidColorBrush x:Key="MutedTextBrush" Color="#5E5C64" />
                     <SolidColorBrush x:Key="BannerBrush" Color="#FDF0C4" />
-                    <SolidColorBrush x:Key="SelectedNavBrush" Color="#D6D6DA" />
                 </ResourceDictionary>
                 <ResourceDictionary x:Key="Dark">
                     <SolidColorBrush x:Key="SeverityCriticalBrush" Color="#FF7B63" />
@@ -38,25 +34,18 @@
                     <SolidColorBrush x:Key="SeverityInfoBrush" Color="#62A0EA" />
                     <SolidColorBrush x:Key="SeverityVerboseBrush" Color="#9A9996" />
                     <SolidColorBrush x:Key="BootOkBrush" Color="#57E389" />
-                    <SolidColorBrush x:Key="SidebarBrush" Color="#2E2E32" />
-                    <SolidColorBrush x:Key="WindowBrush" Color="#222226" />
-                    <SolidColorBrush x:Key="CardBrush" Color="#2E2E32" />
-                    <SolidColorBrush x:Key="CardBorderBrush" Color="#3D3846" />
-                    <SolidColorBrush x:Key="MutedTextBrush" Color="#C0BFBC" />
                     <SolidColorBrush x:Key="BannerBrush" Color="#5C4600" />
-                    <SolidColorBrush x:Key="SelectedNavBrush" Color="#45454A" />
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
         </ResourceDictionary>
     </Application.Resources>
 
     <Application.Styles>
-        <FluentTheme />
+        <rice:RiceStyles />
         <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml" />
 
-        <Style Selector="Window">
+        <Style Selector=":is(Window)">
             <Setter Property="FontFamily" Value="{StaticResource AppFont}" />
-            <Setter Property="Background" Value="{DynamicResource WindowBrush}" />
         </Style>
 
         <Style Selector="PathIcon.severity-critical"><Setter Property="Foreground" Value="{DynamicResource SeverityCriticalBrush}" /></Style>
@@ -67,8 +56,8 @@
         <Style Selector="PathIcon.boot-ok"><Setter Property="Foreground" Value="{DynamicResource BootOkBrush}" /></Style>
 
         <Style Selector="Border.card">
-            <Setter Property="Background" Value="{DynamicResource CardBrush}" />
-            <Setter Property="BorderBrush" Value="{DynamicResource CardBorderBrush}" />
+            <Setter Property="Background" Value="{DynamicResource RiceSurfaceBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource RiceBorderBrush}" />
             <Setter Property="BorderThickness" Value="1" />
             <Setter Property="CornerRadius" Value="{StaticResource CardRadius}" />
             <Setter Property="Padding" Value="16" />
@@ -82,7 +71,7 @@
             <Setter Property="FontWeight" Value="SemiBold" />
         </Style>
         <Style Selector="TextBlock.muted">
-            <Setter Property="Foreground" Value="{DynamicResource MutedTextBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource RiceForegroundMutedBrush}" />
         </Style>
         <Style Selector="TextBlock.mono, SelectableTextBlock.mono">
             <Setter Property="FontFamily" Value="{StaticResource MonoFont}" />
@@ -107,7 +96,9 @@
             <Setter Property="Padding" Value="10,7" />
         </Style>
         <Style Selector="ListBox.nav ListBoxItem:selected /template/ ContentPresenter">
-            <Setter Property="Background" Value="{DynamicResource SelectedNavBrush}" />
+            <Setter Property="Background" Value="{DynamicResource RiceSurfaceAltBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource RiceAccentBrush}" />
+            <Setter Property="BorderThickness" Value="3,0,0,0" />
         </Style>
     </Application.Styles>
 </Application>

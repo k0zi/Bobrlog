@@ -1,6 +1,10 @@
 using Avalonia;
+using Bobrlog.App.Resources;
 using Bobrlog.App.Services;
 using Bobrlog.Core.Service;
+using KD.Avalonia.Rice;
+using KD.Avalonia.Rice.Options;
+using KD.Avalonia.Rice.Theming;
 
 namespace Bobrlog.App;
 
@@ -27,6 +31,7 @@ internal static class Program
         }
 
         Localization.Apply(AppSettings.Load().Language);
+        LocalizeRice();
         BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
         return 0;
     }
@@ -38,5 +43,35 @@ internal static class Program
             .WithDeveloperTools()
 #endif
             .WithInterFont()
-            .LogToTrace();
+            .LogToTrace()
+            .UseRice(options =>
+            {
+                // AppId "bobrlog": the theme choice is saved next to settings.json (~/.config/bobrlog/rice.json).
+                options.AppInfo = new RiceAppInfo
+                {
+                    AppId = "bobrlog",
+                    Name = Strings.App_Name,
+                    Author = "David Kozma",
+                    Description = Strings.App_Subtitle,
+                    IconUri = "avares://bobrlog/Assets/bobrlog.png",
+                };
+                options.SupportedThemes = BuiltInThemes.All;
+                options.DefaultThemeId = BuiltInThemes.Ubuntu.Id;
+            });
+
+    private static void LocalizeRice()
+    {
+        RiceStrings.ToggleTheme = Strings.Rice_ToggleTheme;
+        RiceStrings.Settings = Strings.Settings_Title;
+        RiceStrings.About = Strings.Rice_About;
+        RiceStrings.Minimize = Strings.Rice_Minimize;
+        RiceStrings.Maximize = Strings.Rice_Maximize;
+        RiceStrings.Restore = Strings.Rice_Restore;
+        RiceStrings.Close = Strings.Rice_Close;
+        RiceStrings.Author = Strings.Rice_Author;
+        RiceStrings.Version = Strings.Rice_Version;
+        RiceStrings.Ok = Strings.Rice_Ok;
+        RiceStrings.LightVariant = Strings.Rice_LightVariant;
+        RiceStrings.DarkVariant = Strings.Rice_DarkVariant;
+    }
 }

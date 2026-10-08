@@ -423,4 +423,43 @@
   <data name="Settings_RequestingPrivileges" xml:space="preserve">
     <value>Jogosultság kérése…</value>
   </data>
+  <data name="Settings_ThemeHeader" xml:space="preserve">
+    <value>Téma</value>
+  </data>
+  <data name="Settings_ThemeHint" xml:space="preserve">
+    <value>A kiválasztott téma mentésre kerül. A címsor nap/hold gombja csak az aktuális munkamenetre vált a világos és a sötét változat között.</value>
+  </data>
+  <data name="Rice_ToggleTheme" xml:space="preserve">
+    <value>Világos / sötét</value>
+  </data>
+  <data name="Rice_About" xml:space="preserve">
+    <value>Névjegy</value>
+  </data>
+  <data name="Rice_Minimize" xml:space="preserve">
+    <value>Kis méret</value>
+  </data>
+  <data name="Rice_Maximize" xml:space="preserve">
+    <value>Teljes méret</value>
+  </data>
+  <data name="Rice_Restore" xml:space="preserve">
+    <value>Előző méret</value>
+  </data>
+  <data name="Rice_Close" xml:space="preserve">
+    <value>Bezárás</value>
+  </data>
+  <data name="Rice_Author" xml:space="preserve">
+    <value>Szerző</value>
+  </data>
+  <data name="Rice_Version" xml:space="preserve">
+    <value>Verzió</value>
+  </data>
+  <data name="Rice_Ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Rice_LightVariant" xml:space="preserve">
+    <value>Világos</value>
+  </data>
+  <data name="Rice_DarkVariant" xml:space="preserve">
+    <value>Sötét</value>
+  </data>
 </root>

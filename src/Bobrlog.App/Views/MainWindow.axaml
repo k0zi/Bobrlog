@@ -1,24 +1,26 @@
-<Window xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:r="using:Bobrlog.App.Resources"
-        xmlns:vm="using:Bobrlog.App.ViewModels"
-        x:Class="Bobrlog.App.Views.MainWindow"
-        x:DataType="vm:MainWindowViewModel"
-        Title="{x:Static r:Strings.App_WindowTitle}"
-        Icon="/Assets/bobrlog.png"
-        Width="1400" Height="860" MinWidth="900" MinHeight="560"
-        WindowStartupLocation="CenterScreen">
+<rice:RiceWindow xmlns="https://github.com/avaloniaui"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:r="using:Bobrlog.App.Resources"
+                 xmlns:vm="using:Bobrlog.App.ViewModels"
+                 xmlns:rice="clr-namespace:KD.Avalonia.Rice.Controls;assembly=KD.Avalonia.Rice"
+                 x:Class="Bobrlog.App.Views.MainWindow"
+                 x:DataType="vm:MainWindowViewModel"
+                 Title="{x:Static r:Strings.App_WindowTitle}"
+                 Width="1400" Height="860" MinWidth="900" MinHeight="560"
+                 WindowStartupLocation="CenterScreen"
+                 ShowSettingsButton="True" ShowAboutButton="True"
+                 SettingsCommand="{Binding ShowSettingsCommand}">
 
     <DockPanel>
         <!-- Status bar -->
         <Border DockPanel.Dock="Bottom" Padding="12,5" BorderThickness="0,1,0,0"
-                BorderBrush="{DynamicResource CardBorderBrush}" Background="{DynamicResource SidebarBrush}">
+                BorderBrush="{DynamicResource RiceBorderBrush}" Background="{DynamicResource RiceSurfaceBrush}">
             <TextBlock Classes="muted" FontSize="12" Text="{Binding SourceText}" />
         </Border>
 
         <!-- Sidebar -->
-        <Border DockPanel.Dock="Left" Width="250" Background="{DynamicResource SidebarBrush}"
-                BorderThickness="0,0,1,0" BorderBrush="{DynamicResource CardBorderBrush}">
+        <Border DockPanel.Dock="Left" Width="250" Background="{DynamicResource RiceSurfaceBrush}"
+                BorderThickness="0,0,1,0" BorderBrush="{DynamicResource RiceBorderBrush}">
             <DockPanel>
                 <StackPanel DockPanel.Dock="Top" Margin="18,16,12,10" Spacing="2">
                     <TextBlock Text="{x:Static r:Strings.App_Name}" FontSize="18" FontWeight="Bold" />
@@ -49,4 +51,4 @@
             <ContentControl Content="{Binding SelectedPage}" />
         </DockPanel>
     </DockPanel>
-</Window>
+</rice:RiceWindow>

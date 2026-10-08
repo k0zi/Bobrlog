@@ -423,4 +423,43 @@
   <data name="Settings_RequestingPrivileges" xml:space="preserve">
     <value>Pyydetään oikeuksia…</value>
   </data>
+  <data name="Settings_ThemeHeader" xml:space="preserve">
+    <value>Teema</value>
+  </data>
+  <data name="Settings_ThemeHint" xml:space="preserve">
+    <value>Valittu teema tallennetaan. Otsikkopalkin aurinko/kuu-painike vaihtaa vaalean ja tumman välillä vain nykyisen istunnon ajaksi.</value>
+  </data>
+  <data name="Rice_ToggleTheme" xml:space="preserve">
+    <value>Vaalea / tumma</value>
+  </data>
+  <data name="Rice_About" xml:space="preserve">
+    <value>Tietoja</value>
+  </data>
+  <data name="Rice_Minimize" xml:space="preserve">
+    <value>Pienennä</value>
+  </data>
+  <data name="Rice_Maximize" xml:space="preserve">
+    <value>Suurenna</value>
+  </data>
+  <data name="Rice_Restore" xml:space="preserve">
+    <value>Palauta</value>
+  </data>
+  <data name="Rice_Close" xml:space="preserve">
+    <value>Sulje</value>
+  </data>
+  <data name="Rice_Author" xml:space="preserve">
+    <value>Tekijä</value>
+  </data>
+  <data name="Rice_Version" xml:space="preserve">
+    <value>Versio</value>
+  </data>
+  <data name="Rice_Ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Rice_LightVariant" xml:space="preserve">
+    <value>Vaalea</value>
+  </data>
+  <data name="Rice_DarkVariant" xml:space="preserve">
+    <value>Tumma</value>
+  </data>
 </root>

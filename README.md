@@ -19,6 +19,9 @@ by category with severity icons, no queries needed, and explains why the machine
 - **Filters**: time range, a specific day or boot, minimum severity, search (regex), source or unit; live follow;
   copy the equivalent `journalctl` command.
 - **Crash reports**: apport (`/var/crash`), coredumpctl, pstore.
+- **Themes**: frameless window with its own title bar ([KD.Avalonia.Rice](https://github.com/k0zi/KD.Avalonia.Rice)) and
+  Linux distro inspired themes (Ubuntu, Fedora, Manjaro, openSUSE, Nord, …). Pick one under Settings → Theme (saved);
+  the sun/moon button in the title bar switches light/dark for the current session.
 - **Languages**: English (default), Hungarian, Finnish and German. Selectable under Settings → Language; takes effect after a restart.
   UI strings live in `Resources/*.resx`, and rule explanations are stored per language in `default-rules.json`.
 

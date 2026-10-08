@@ -423,4 +423,43 @@
   <data name="Settings_RequestingPrivileges" xml:space="preserve">
     <value>Berechtigung wird angefordert…</value>
   </data>
+  <data name="Settings_ThemeHeader" xml:space="preserve">
+    <value>Design</value>
+  </data>
+  <data name="Settings_ThemeHint" xml:space="preserve">
+    <value>Das gewählte Design wird gespeichert. Die Sonne/Mond-Schaltfläche in der Titelleiste wechselt nur für die aktuelle Sitzung zwischen Hell und Dunkel.</value>
+  </data>
+  <data name="Rice_ToggleTheme" xml:space="preserve">
+    <value>Hell / Dunkel</value>
+  </data>
+  <data name="Rice_About" xml:space="preserve">
+    <value>Über</value>
+  </data>
+  <data name="Rice_Minimize" xml:space="preserve">
+    <value>Minimieren</value>
+  </data>
+  <data name="Rice_Maximize" xml:space="preserve">
+    <value>Maximieren</value>
+  </data>
+  <data name="Rice_Restore" xml:space="preserve">
+    <value>Wiederherstellen</value>
+  </data>
+  <data name="Rice_Close" xml:space="preserve">
+    <value>Schließen</value>
+  </data>
+  <data name="Rice_Author" xml:space="preserve">
+    <value>Autor</value>
+  </data>
+  <data name="Rice_Version" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="Rice_Ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Rice_LightVariant" xml:space="preserve">
+    <value>Hell</value>
+  </data>
+  <data name="Rice_DarkVariant" xml:space="preserve">
+    <value>Dunkel</value>
+  </data>
 </root>

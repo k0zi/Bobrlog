@@ -92,7 +92,7 @@
                     </StackPanel>
 
                     <Border Grid.Row="1" Margin="0,10,0,0" Padding="10" CornerRadius="6"
-                            Background="{DynamicResource SidebarBrush}"
+                            Background="{DynamicResource RiceSurfaceBrush}"
                             IsVisible="{Binding SelectedEntry.Explanation, Converter={x:Static ObjectConverters.IsNotNull}, FallbackValue=False}">
                         <TextBlock Text="{Binding SelectedEntry.Explanation}" TextWrapping="Wrap" />
                     </Border>

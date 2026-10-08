@@ -2,6 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:r="using:Bobrlog.App.Resources"
              xmlns:vm="using:Bobrlog.App.ViewModels"
+             xmlns:rice="clr-namespace:KD.Avalonia.Rice.Controls;assembly=KD.Avalonia.Rice"
              x:Class="Bobrlog.App.Views.SettingsView"
              x:DataType="vm:SettingsViewModel">
     <ScrollViewer>
@@ -17,6 +18,14 @@
                                 IsVisible="{Binding NeedsRestart}" />
                     </WrapPanel>
                     <TextBlock Classes="muted" FontSize="12" TextWrapping="Wrap" Text="{x:Static r:Strings.Settings_LanguageHint}" />
+                </StackPanel>
+            </Border>
+
+            <Border Classes="card">
+                <StackPanel Spacing="10">
+                    <TextBlock Classes="h2" Text="{x:Static r:Strings.Settings_ThemeHeader}" />
+                    <rice:ThemeSelector MaxWidth="480" HorizontalAlignment="Left" />
+                    <TextBlock Classes="muted" FontSize="12" TextWrapping="Wrap" Text="{x:Static r:Strings.Settings_ThemeHint}" />
                 </StackPanel>
             </Border>
 

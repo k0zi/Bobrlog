@@ -423,4 +423,43 @@
   <data name="Settings_RequestingPrivileges" xml:space="preserve">
     <value>Requesting permission…</value>
   </data>
+  <data name="Settings_ThemeHeader" xml:space="preserve">
+    <value>Theme</value>
+  </data>
+  <data name="Settings_ThemeHint" xml:space="preserve">
+    <value>The selected theme is saved. The sun/moon button in the title bar switches between light and dark for the current session only.</value>
+  </data>
+  <data name="Rice_ToggleTheme" xml:space="preserve">
+    <value>Light / Dark</value>
+  </data>
+  <data name="Rice_About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="Rice_Minimize" xml:space="preserve">
+    <value>Minimize</value>
+  </data>
+  <data name="Rice_Maximize" xml:space="preserve">
+    <value>Maximize</value>
+  </data>
+  <data name="Rice_Restore" xml:space="preserve">
+    <value>Restore</value>
+  </data>
+  <data name="Rice_Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Rice_Author" xml:space="preserve">
+    <value>Author</value>
+  </data>
+  <data name="Rice_Version" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="Rice_Ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Rice_LightVariant" xml:space="preserve">
+    <value>Light</value>
+  </data>
+  <data name="Rice_DarkVariant" xml:space="preserve">
+    <value>Dark</value>
+  </data>
 </root>

@@ -1,6 +1,7 @@
 using Avalonia.Controls;
 using Avalonia.Input.Platform;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Bobrlog.App.Controls;
 using Bobrlog.App.Services;
 using Bobrlog.Core.Models;
@@ -15,6 +16,7 @@ public sealed partial class MainWindowViewModel : ViewModelBase, IShell
     private readonly TopLevel _topLevel;
     private readonly EventListViewModel _allEvents;
     private readonly BootsViewModel _boots;
+    private readonly SettingsViewModel _settings;
     private readonly Dictionary<EventCategory, EventListViewModel> _categoryPages = new();
 
     public MainWindowViewModel(AppServices services, TopLevel topLevel)
@@ -23,6 +25,7 @@ public sealed partial class MainWindowViewModel : ViewModelBase, IShell
         _topLevel = topLevel;
 
         _boots = new BootsViewModel(services, this);
+        _settings = new SettingsViewModel(services, SelectSourceAsync);
         _allEvents = new EventListViewModel(services, this, null, Strings.Common_AllEvents, Icons.List);
 
         EventListViewModel Category(EventCategory c, Avalonia.Media.Geometry icon, Severity min, string? prefilter = null) =>
@@ -42,7 +45,7 @@ public sealed partial class MainWindowViewModel : ViewModelBase, IShell
             Category(EventCategory.Applications, Icons.Window, Severity.Warning),
             Category(EventCategory.Other, Icons.Dots, Severity.Warning),
             _allEvents,
-            new SettingsViewModel(services, SelectSourceAsync),
+            _settings,
         ];
 
         SelectedPage = Pages[0];
@@ -103,6 +106,10 @@ public sealed partial class MainWindowViewModel : ViewModelBase, IShell
         _boots.Select(bootId);
         SelectedPage = _boots;
     }
+
+    /// <summary>Title bar settings button.</summary>
+    [RelayCommand]
+    private void ShowSettings() => SelectedPage = _settings;
 
     public async Task CopyToClipboardAsync(string text)
     {
