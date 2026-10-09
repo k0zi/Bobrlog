@@ -74,13 +74,19 @@ jobs:
           name: bobrlog-${{ needs.build.outputs.version }}-packages
           path: packages
 
-      - name: Create release
+      # A release created on github.com (which also pushes its tag) already exists: only attach the packages.
+      # Otherwise (plain tag push or manual run) create the release.
+      - name: Create release or attach packages
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
           TAG: ${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || format('v{0}', needs.build.outputs.version) }}
         run: |
-          gh release create "$TAG" packages/* \
-            --target "$GITHUB_SHA" \
-            --title "Bobrlog ${{ needs.build.outputs.version }}" \
-            --generate-notes
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" packages/* --clobber
+          else
+            gh release create "$TAG" packages/* \
+              --target "$GITHUB_SHA" \
+              --title "Bobrlog ${{ needs.build.outputs.version }}" \
+              --generate-notes
+          fi
