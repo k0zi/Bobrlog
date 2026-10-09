@@ -19,7 +19,7 @@
         </Border>
 
         <!-- Sidebar -->
-        <Border DockPanel.Dock="Left" Width="250" Background="{DynamicResource RiceSurfaceBrush}"
+        <Border DockPanel.Dock="Left" Width="250" Background="{DynamicResource RiceTitleBarBackgroundBrush}"
                 BorderThickness="0,0,1,0" BorderBrush="{DynamicResource RiceBorderBrush}">
             <DockPanel>
                 <StackPanel DockPanel.Dock="Top" Margin="18,16,12,10" Spacing="2">
