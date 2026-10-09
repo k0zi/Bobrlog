@@ -44,13 +44,22 @@
   </ItemGroup>
 
   <!-- Bundle the background service next to the app (service/ subfolder) so it can be installed from the UI. -->
-  <Target Name="BundleService" AfterTargets="Build" Condition="'$(SkipBundleService)' != 'true'">
+  <!-- The service is not a ProjectReference, so restoring the app does not restore it (fresh clones / CI).
+       The extra MSBuildRestoreSessionId property gives the restore its own evaluation, so the Publish
+       evaluation afterwards sees the freshly generated assets file. -->
+  <Target Name="RestoreBundledService">
+    <MSBuild Projects="..\Bobrlog.Service\Bobrlog.Service.csproj"
+             Targets="Restore"
+             Properties="Configuration=$(Configuration);SelfContained=$(SelfContained);SkipBundleService=true;MSBuildRestoreSessionId=$([System.Guid]::NewGuid())" />
+  </Target>
+
+  <Target Name="BundleService" AfterTargets="Build" DependsOnTargets="RestoreBundledService" Condition="'$(SkipBundleService)' != 'true'">
     <MSBuild Projects="..\Bobrlog.Service\Bobrlog.Service.csproj"
              Targets="Publish"
              Properties="Configuration=$(Configuration);PublishDir=$([System.IO.Path]::GetFullPath('$(OutDir)'))service/;SelfContained=$(SelfContained);SkipBundleService=true" />
   </Target>
 
-  <Target Name="BundleServiceOnPublish" AfterTargets="Publish" Condition="'$(SkipBundleService)' != 'true'">
+  <Target Name="BundleServiceOnPublish" AfterTargets="Publish" DependsOnTargets="RestoreBundledService" Condition="'$(SkipBundleService)' != 'true'">
     <MSBuild Projects="..\Bobrlog.Service\Bobrlog.Service.csproj"
              Targets="Publish"
              Properties="Configuration=$(Configuration);PublishDir=$([System.IO.Path]::GetFullPath('$(PublishDir)'))service/;SelfContained=$(SelfContained);SkipBundleService=true" />
