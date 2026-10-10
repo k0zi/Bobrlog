@@ -19,25 +19,26 @@
         </Border>
 
         <!-- Sidebar -->
-        <Border DockPanel.Dock="Left" Width="250" Background="{DynamicResource RiceTitleBarBackgroundBrush}"
-                BorderThickness="0,0,1,0" BorderBrush="{DynamicResource RiceBorderBrush}">
-            <DockPanel>
-                <StackPanel DockPanel.Dock="Top" Margin="18,16,12,10" Spacing="2">
+        <rice:RiceSideMenu DockPanel.Dock="Left" ExpandedWidth="250"
+                           ItemsSource="{Binding Pages}" SelectedItem="{Binding SelectedPage}">
+            <rice:RiceSideMenu.Styles>
+                <Style Selector="rice|RiceSideMenuItem" x:DataType="vm:PageViewModel">
+                    <Setter Property="Content" Value="{Binding Title}" />
+                    <Setter Property="Icon">
+                        <Template>
+                            <PathIcon Data="{Binding Icon}" Width="16" Height="16" />
+                        </Template>
+                    </Setter>
+                </Style>
+            </rice:RiceSideMenu.Styles>
+            <rice:RiceSideMenu.Header>
+                <StackPanel Spacing="2"
+                            IsVisible="{Binding !$parent[rice:RiceSideMenu].IsCollapsed}">
                     <TextBlock Text="{x:Static r:Strings.App_Name}" FontSize="18" FontWeight="Bold" />
                     <TextBlock Classes="muted" FontSize="12" Text="{x:Static r:Strings.App_Subtitle}" />
                 </StackPanel>
-                <ListBox Classes="nav" ItemsSource="{Binding Pages}" SelectedItem="{Binding SelectedPage}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate x:DataType="vm:PageViewModel">
-                            <StackPanel Orientation="Horizontal" Spacing="10">
-                                <PathIcon Data="{Binding Icon}" Width="16" Height="16" />
-                                <TextBlock Text="{Binding Title}" VerticalAlignment="Center" />
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-            </DockPanel>
-        </Border>
+            </rice:RiceSideMenu.Header>
+        </rice:RiceSideMenu>
 
         <!-- Content -->
         <DockPanel>
