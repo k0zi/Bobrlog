@@ -57,6 +57,9 @@
   <data name="Common_Refresh" xml:space="preserve">
     <value>Aktualisieren</value>
   </data>
+  <data name="Nav_Events" xml:space="preserve">
+    <value>Ereignisse</value>
+  </data>
   <data name="Common_AllEvents" xml:space="preserve">
     <value>Alle Ereignisse</value>
   </data>
@@ -428,6 +431,15 @@
   </data>
   <data name="Settings_ThemeHint" xml:space="preserve">
     <value>Das gewählte Design wird gespeichert. Die Sonne/Mond-Schaltfläche in der Titelleiste wechselt nur für die aktuelle Sitzung zwischen Hell und Dunkel.</value>
+  </data>
+  <data name="Rice_ThemeSettings" xml:space="preserve">
+    <value>Design-Einstellungen</value>
+  </data>
+  <data name="Rice_CollapseMenu" xml:space="preserve">
+    <value>Menü einklappen</value>
+  </data>
+  <data name="Rice_ExpandMenu" xml:space="preserve">
+    <value>Menü ausklappen</value>
   </data>
   <data name="Rice_ToggleTheme" xml:space="preserve">
     <value>Hell / Dunkel</value>

@@ -57,6 +57,9 @@
   <data name="Common_Refresh" xml:space="preserve">
     <value>Päivitä</value>
   </data>
+  <data name="Nav_Events" xml:space="preserve">
+    <value>Tapahtumat</value>
+  </data>
   <data name="Common_AllEvents" xml:space="preserve">
     <value>Kaikki tapahtumat</value>
   </data>
@@ -428,6 +431,15 @@
   </data>
   <data name="Settings_ThemeHint" xml:space="preserve">
     <value>Valittu teema tallennetaan. Otsikkopalkin aurinko/kuu-painike vaihtaa vaalean ja tumman välillä vain nykyisen istunnon ajaksi.</value>
+  </data>
+  <data name="Rice_ThemeSettings" xml:space="preserve">
+    <value>Teema-asetukset</value>
+  </data>
+  <data name="Rice_CollapseMenu" xml:space="preserve">
+    <value>Pienennä valikko</value>
+  </data>
+  <data name="Rice_ExpandMenu" xml:space="preserve">
+    <value>Laajenna valikko</value>
   </data>
   <data name="Rice_ToggleTheme" xml:space="preserve">
     <value>Vaalea / tumma</value>

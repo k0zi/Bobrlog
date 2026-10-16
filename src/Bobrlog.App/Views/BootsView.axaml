@@ -1,6 +1,7 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:r="using:Bobrlog.App.Resources"
+             xmlns:rice="clr-namespace:KD.Avalonia.Rice.Controls;assembly=KD.Avalonia.Rice"
              xmlns:vm="using:Bobrlog.App.ViewModels"
              xmlns:m="using:Bobrlog.Core.Models"
              xmlns:c="using:Bobrlog.App.Controls"
@@ -11,7 +12,12 @@
     <DockPanel Margin="16,12,16,8">
         <StackPanel DockPanel.Dock="Top" Spacing="6">
             <DockPanel>
-                <Button DockPanel.Dock="Right" Content="{x:Static r:Strings.Boots_Reanalyze}" Command="{Binding LoadCommand}" />
+                <Button DockPanel.Dock="Right" Command="{Binding LoadCommand}">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <rice:RiceSpinner IsActive="{Binding IsLoading}" />
+                        <TextBlock Text="{x:Static r:Strings.Boots_Reanalyze}" />
+                    </StackPanel>
+                </Button>
                 <TextBlock Classes="h1" Text="{x:Static r:Strings.Boots_Title}" />
             </DockPanel>
             <TextBlock Classes="muted" TextWrapping="Wrap"
@@ -23,7 +29,7 @@
         </StackPanel>
 
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Spacing="8" Margin="0,6,0,0">
-            <ProgressBar IsIndeterminate="True" Width="80" IsVisible="{Binding IsLoading}" />
+            <rice:RiceSpinner IsActive="{Binding IsLoading}" VerticalAlignment="Center" />
             <TextBlock Classes="muted" FontSize="12" Text="{Binding StatusText}" VerticalAlignment="Center" />
         </StackPanel>
 

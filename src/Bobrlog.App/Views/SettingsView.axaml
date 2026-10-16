@@ -44,7 +44,7 @@
                         <Button Content="{x:Static r:Strings.Settings_Restart}" Command="{Binding RestartCommand}" IsEnabled="{Binding CanRemove}" />
                         <Button Content="{x:Static r:Strings.Settings_Remove}" Command="{Binding RemoveCommand}" IsEnabled="{Binding CanRemove}" />
                         <Button Content="{x:Static r:Strings.Settings_RefreshStatus}" Command="{Binding RefreshStatusCommand}" />
-                        <ProgressBar IsIndeterminate="True" Width="80" IsVisible="{Binding IsBusy}" VerticalAlignment="Center" />
+                        <rice:RiceSpinner IsActive="{Binding IsBusy}" VerticalAlignment="Center" />
                     </WrapPanel>
                     <TextBlock Text="{Binding ResultText}" TextWrapping="Wrap"
                                IsVisible="{Binding ResultText, Converter={x:Static ObjectConverters.IsNotNull}}"

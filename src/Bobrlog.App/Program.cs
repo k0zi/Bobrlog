@@ -62,7 +62,10 @@ internal static class Program
     private static void LocalizeRice()
     {
         RiceStrings.ToggleTheme = Strings.Rice_ToggleTheme;
-        RiceStrings.Settings = Strings.Settings_Title;
+        RiceStrings.ThemeSettings = Strings.Rice_ThemeSettings;
+        RiceStrings.Theme = Strings.Settings_ThemeHeader;
+        RiceStrings.CollapseMenu = Strings.Rice_CollapseMenu;
+        RiceStrings.ExpandMenu = Strings.Rice_ExpandMenu;
         RiceStrings.About = Strings.Rice_About;
         RiceStrings.Minimize = Strings.Rice_Minimize;
         RiceStrings.Maximize = Strings.Rice_Maximize;

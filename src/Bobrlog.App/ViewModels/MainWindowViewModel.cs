@@ -48,6 +48,15 @@ public sealed partial class MainWindowViewModel : ViewModelBase, IShell
             _settings,
         ];
 
+        // Side menu: the event lists are sub items of one group, settings sits in the footer.
+        MenuItems =
+        [
+            Pages[0],
+            _boots,
+            Pages[2],
+            new NavGroup(Strings.Nav_Events, Icons.Journal, [..Pages.OfType<EventListViewModel>()]) { IsExpanded = true },
+        ];
+
         SelectedPage = Pages[0];
         _ = InitializeAsync();
     }
@@ -59,7 +68,37 @@ public sealed partial class MainWindowViewModel : ViewModelBase, IShell
 
     public IReadOnlyList<PageViewModel> Pages { get; }
 
+    /// <summary>Top level entries of the side menu (pages and groups).</summary>
+    public IReadOnlyList<NavItem> MenuItems { get; }
+
     [ObservableProperty] public partial PageViewModel? SelectedPage { get; set; }
+
+    /// <summary>
+    /// Side menu selection. Groups are never selected and the settings page is not in the tree
+    /// (the menu then reports null), so only pages are passed on.
+    /// </summary>
+    public object? SelectedMenuItem
+    {
+        get => SelectedPage;
+        set
+        {
+            if (value is PageViewModel page)
+                SelectedPage = page;
+        }
+    }
+
+    public bool IsMenuCollapsed
+    {
+        get => _services.Settings.SideMenuCollapsed;
+        set
+        {
+            if (_services.Settings.SideMenuCollapsed == value)
+                return;
+            _services.Settings.SideMenuCollapsed = value;
+            _services.Settings.Save();
+            OnPropertyChanged();
+        }
+    }
     [ObservableProperty] public partial string SourceText { get; set; } = "";
 
     public string? PrivilegeWarning => _services.Privileges.Warning;
@@ -86,6 +125,7 @@ public sealed partial class MainWindowViewModel : ViewModelBase, IShell
 
     partial void OnSelectedPageChanged(PageViewModel? oldValue, PageViewModel? newValue)
     {
+        OnPropertyChanged(nameof(SelectedMenuItem));
         oldValue?.Deactivate();
         if (newValue is not null)
             _ = newValue.ActivateAsync();
@@ -107,7 +147,7 @@ public sealed partial class MainWindowViewModel : ViewModelBase, IShell
         SelectedPage = _boots;
     }
 
-    /// <summary>Title bar settings button.</summary>
+    /// <summary>Settings entry in the side menu footer.</summary>
     [RelayCommand]
     private void ShowSettings() => SelectedPage = _settings;
 

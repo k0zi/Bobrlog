@@ -1,6 +1,7 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:r="using:Bobrlog.App.Resources"
+             xmlns:rice="clr-namespace:KD.Avalonia.Rice.Controls;assembly=KD.Avalonia.Rice"
              xmlns:vm="using:Bobrlog.App.ViewModels"
              xmlns:m="using:Bobrlog.Core.Models"
              xmlns:c="using:Bobrlog.App.Controls"
@@ -21,7 +22,8 @@
                     </ToggleButton>
                     <Button Command="{Binding ReloadCommand}" ToolTip.Tip="{x:Static r:Strings.EventList_RefreshTip}" HotKey="F5">
                         <StackPanel Orientation="Horizontal" Spacing="6">
-                            <PathIcon Data="M17.65,6.35C16.2,4.9 14.21,4 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20C15.73,20 18.84,17.45 19.73,14H17.65C16.83,16.33 14.61,18 12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6C13.66,6 15.14,6.69 16.22,7.78L13,11H20V4L17.65,6.35Z" Width="14" Height="14" />
+                            <rice:RiceSpinner IsActive="{Binding IsLoading}" />
+                            <PathIcon IsVisible="{Binding !IsLoading}" Data="M17.65,6.35C16.2,4.9 14.21,4 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20C15.73,20 18.84,17.45 19.73,14H17.65C16.83,16.33 14.61,18 12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6C13.66,6 15.14,6.69 16.22,7.78L13,11H20V4L17.65,6.35Z" Width="14" Height="14" />
                             <TextBlock Text="{x:Static r:Strings.Common_Refresh}" />
                         </StackPanel>
                     </Button>
@@ -50,31 +52,32 @@
         <DockPanel DockPanel.Dock="Bottom" Margin="0,6,0,0">
             <Button DockPanel.Dock="Right" Command="{Binding LoadMoreCommand}" IsVisible="{Binding HasMore}" Content="{x:Static r:Strings.EventList_LoadMore}" />
             <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
-                <ProgressBar IsIndeterminate="True" Width="80" IsVisible="{Binding IsLoading}" />
                 <TextBlock Classes="muted" FontSize="12" Text="{Binding StatusText}" VerticalAlignment="Center" />
             </StackPanel>
         </DockPanel>
 
         <Grid ColumnDefinitions="*,6,420" Margin="0,10,0,0">
-            <DataGrid Grid.Column="0" ItemsSource="{Binding Entries}" SelectedItem="{Binding SelectedEntry}">
-                <DataGrid.Columns>
-                    <DataGridTemplateColumn Header="" Width="34" CanUserResize="False" SortMemberPath="Severity">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate x:DataType="m:LogEntry">
-                                <c:SeverityIcon Severity="{Binding Severity}" HorizontalAlignment="Center" />
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="{x:Static r:Strings.Col_Time}" Width="175" SortMemberPath="Timestamp"
-                                        Binding="{Binding Timestamp, Converter={x:Static conv:Converters.Timestamp}}" x:DataType="m:LogEntry" />
-                    <DataGridTextColumn Header="{x:Static r:Strings.EventList_ColLevel}" Width="135" SortMemberPath="Severity"
-                                        Binding="{Binding Severity, Converter={x:Static conv:Converters.SeverityName}}" x:DataType="m:LogEntry" />
-                    <DataGridTextColumn Header="{x:Static r:Strings.Col_Source}" Width="140" Binding="{Binding Source}" x:DataType="m:LogEntry" />
-                    <DataGridTextColumn Header="{x:Static r:Strings.EventList_ColCategory}" Width="170" SortMemberPath="Category"
-                                        Binding="{Binding Category, Converter={x:Static conv:Converters.CategoryName}}" x:DataType="m:LogEntry" />
-                    <DataGridTextColumn Header="{x:Static r:Strings.Col_Message}" Width="*" Binding="{Binding FirstLine}" x:DataType="m:LogEntry" />
-                </DataGrid.Columns>
-            </DataGrid>
+            <rice:RiceLoadingOverlay Grid.Column="0" IsActive="{Binding IsLoading}" Message="{Binding StatusText}">
+                <DataGrid ItemsSource="{Binding Entries}" SelectedItem="{Binding SelectedEntry}">
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Header="" Width="34" CanUserResize="False" SortMemberPath="Severity">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate x:DataType="m:LogEntry">
+                                    <c:SeverityIcon Severity="{Binding Severity}" HorizontalAlignment="Center" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="{x:Static r:Strings.Col_Time}" Width="175" SortMemberPath="Timestamp"
+                                            Binding="{Binding Timestamp, Converter={x:Static conv:Converters.Timestamp}}" x:DataType="m:LogEntry" />
+                        <DataGridTextColumn Header="{x:Static r:Strings.EventList_ColLevel}" Width="135" SortMemberPath="Severity"
+                                            Binding="{Binding Severity, Converter={x:Static conv:Converters.SeverityName}}" x:DataType="m:LogEntry" />
+                        <DataGridTextColumn Header="{x:Static r:Strings.Col_Source}" Width="140" Binding="{Binding Source}" x:DataType="m:LogEntry" />
+                        <DataGridTextColumn Header="{x:Static r:Strings.EventList_ColCategory}" Width="170" SortMemberPath="Category"
+                                            Binding="{Binding Category, Converter={x:Static conv:Converters.CategoryName}}" x:DataType="m:LogEntry" />
+                        <DataGridTextColumn Header="{x:Static r:Strings.Col_Message}" Width="*" Binding="{Binding FirstLine}" x:DataType="m:LogEntry" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </rice:RiceLoadingOverlay>
 
             <GridSplitter Grid.Column="1" Background="Transparent" ResizeDirection="Columns" />
 

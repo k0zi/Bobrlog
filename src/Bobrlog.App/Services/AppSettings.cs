@@ -16,6 +16,8 @@ public sealed class AppSettings
     public int PageSize { get; set; } = 2000;
     /// <summary>UI language code (see <see cref="Localization.SupportedLanguages"/>).</summary>
     public string Language { get; set; } = Localization.DefaultLanguage;
+    /// <summary>Side menu shows only the icons.</summary>
+    public bool SideMenuCollapsed { get; set; }
 
     private static string ConfigHome =>
         Environment.GetEnvironmentVariable("XDG_CONFIG_HOME") is { Length: > 0 } x

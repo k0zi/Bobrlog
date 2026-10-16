@@ -2,14 +2,14 @@
                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                  xmlns:r="using:Bobrlog.App.Resources"
                  xmlns:vm="using:Bobrlog.App.ViewModels"
+                 xmlns:c="using:Bobrlog.App.Controls"
                  xmlns:rice="clr-namespace:KD.Avalonia.Rice.Controls;assembly=KD.Avalonia.Rice"
                  x:Class="Bobrlog.App.Views.MainWindow"
                  x:DataType="vm:MainWindowViewModel"
                  Title="{x:Static r:Strings.App_WindowTitle}"
                  Width="1400" Height="860" MinWidth="900" MinHeight="560"
                  WindowStartupLocation="CenterScreen"
-                 ShowSettingsButton="True" ShowAboutButton="True"
-                 SettingsCommand="{Binding ShowSettingsCommand}">
+                 ShowThemeSettingsButton="True" ShowAboutButton="True">
 
     <DockPanel>
         <!-- Status bar -->
@@ -18,12 +18,15 @@
             <TextBlock Classes="muted" FontSize="12" Text="{Binding SourceText}" />
         </Border>
 
-        <!-- Sidebar -->
+        <!-- Sidebar: pages, the event lists grouped as sub items, settings in the footer -->
         <rice:RiceSideMenu DockPanel.Dock="Left" ExpandedWidth="250"
-                           ItemsSource="{Binding Pages}" SelectedItem="{Binding SelectedPage}">
+                           ItemsSource="{Binding MenuItems}" SelectedItem="{Binding SelectedMenuItem}"
+                           IsCollapsed="{Binding IsMenuCollapsed}">
             <rice:RiceSideMenu.Styles>
-                <Style Selector="rice|RiceSideMenuItem" x:DataType="vm:PageViewModel">
-                    <Setter Property="Content" Value="{Binding Title}" />
+                <Style Selector="rice|RiceSideMenuItem" x:DataType="vm:NavItem">
+                    <Setter Property="Header" Value="{Binding Title}" />
+                    <Setter Property="ItemsSource" Value="{Binding Children}" />
+                    <Setter Property="IsExpanded" Value="{Binding IsExpanded}" />
                     <Setter Property="Icon">
                         <Template>
                             <PathIcon Data="{Binding Icon}" Width="16" Height="16" />
@@ -38,6 +41,14 @@
                     <TextBlock Classes="muted" FontSize="12" Text="{x:Static r:Strings.App_Subtitle}" />
                 </StackPanel>
             </rice:RiceSideMenu.Header>
+            <rice:RiceSideMenu.Footer>
+                <rice:RiceSideMenuItem Header="{x:Static r:Strings.Settings_Title}"
+                                       Command="{Binding ShowSettingsCommand}">
+                    <rice:RiceSideMenuItem.Icon>
+                        <PathIcon Data="{x:Static c:Icons.Tune}" Width="16" Height="16" />
+                    </rice:RiceSideMenuItem.Icon>
+                </rice:RiceSideMenuItem>
+            </rice:RiceSideMenu.Footer>
         </rice:RiceSideMenu>
 
         <!-- Content -->

@@ -57,6 +57,9 @@
   <data name="Common_Refresh" xml:space="preserve">
     <value>Frissítés</value>
   </data>
+  <data name="Nav_Events" xml:space="preserve">
+    <value>Események</value>
+  </data>
   <data name="Common_AllEvents" xml:space="preserve">
     <value>Összes esemény</value>
   </data>
@@ -428,6 +431,15 @@
   </data>
   <data name="Settings_ThemeHint" xml:space="preserve">
     <value>A kiválasztott téma mentésre kerül. A címsor nap/hold gombja csak az aktuális munkamenetre vált a világos és a sötét változat között.</value>
+  </data>
+  <data name="Rice_ThemeSettings" xml:space="preserve">
+    <value>Téma beállítások</value>
+  </data>
+  <data name="Rice_CollapseMenu" xml:space="preserve">
+    <value>Menü összecsukása</value>
+  </data>
+  <data name="Rice_ExpandMenu" xml:space="preserve">
+    <value>Menü kinyitása</value>
   </data>
   <data name="Rice_ToggleTheme" xml:space="preserve">
     <value>Világos / sötét</value>
