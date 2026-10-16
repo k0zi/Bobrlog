@@ -46,6 +46,22 @@ contents:
     dst: /usr/share/licenses/bobrlog/LICENSE
     packager: rpm
     type: license
+  # Third-party notices and license texts for the redistributed components (see THIRD_PARTY_NOTICES.md).
+  - src: THIRD_PARTY_NOTICES.md
+    dst: /usr/share/doc/bobrlog/THIRD_PARTY_NOTICES.md
+    packager: deb
+  - src: licenses
+    dst: /usr/share/doc/bobrlog/licenses
+    type: tree
+    packager: deb
+  - src: THIRD_PARTY_NOTICES.md
+    dst: /usr/share/licenses/bobrlog/THIRD_PARTY_NOTICES.md
+    packager: rpm
+    type: license
+  - src: licenses
+    dst: /usr/share/licenses/bobrlog/licenses
+    type: tree
+    packager: rpm
 
 scripts:
   postinstall: packaging/scripts/postinstall.sh

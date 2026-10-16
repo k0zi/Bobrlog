@@ -2,7 +2,7 @@ using Avalonia.Media;
 
 namespace Bobrlog.App.Controls;
 
-/// <summary>Material Design icon paths (Apache 2.0), 24×24 viewbox.</summary>
+/// <summary>Material Design icon paths (Pictogrammers, Apache 2.0, see THIRD_PARTY_NOTICES.md), 24×24 viewbox.</summary>
 public static class Icons
 {
     public static readonly Geometry Info = Parse("M13,9H11V7H13M13,17H11V11H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z");

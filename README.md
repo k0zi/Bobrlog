@@ -68,3 +68,9 @@ change. Builds from branches other than `main` (and `v*` tags) get a `~g<commit>
 
 Live follow works by polling rather than `journalctl -f`, so it keeps working even when the user's
 inotify limit has been exhausted.
+
+## License
+Bobrlog is licensed under the [MIT license](LICENSE). The packages also redistribute third-party components
+(.NET runtime, Avalonia, SkiaSharp, HarfBuzzSharp, the Inter font, Material Design icons, …) under their own
+licenses; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) and the `licenses/` directory. The packages install
+these to `/usr/share/doc/bobrlog/` (deb) and `/usr/share/licenses/bobrlog/` (rpm).
