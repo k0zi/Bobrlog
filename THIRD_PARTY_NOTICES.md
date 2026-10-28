@@ -23,7 +23,6 @@ components below. These components keep their own licenses, and the full license
 | Tmds.DBus.Protocol | https://github.com/tmds/Tmds.DBus | MIT: licenses/Tmds.DBus-MIT.txt |
 | MicroCom.Runtime | https://github.com/kekekeks/MicroCom | MIT: licenses/MicroCom-MIT.txt |
 | CommunityToolkit.Mvvm | https://github.com/CommunityToolkit/dotnet | MIT: licenses/CommunityToolkit-MIT.txt; upstream notices: licenses/CommunityToolkit-THIRD-PARTY-NOTICES.txt |
-| Microsoft.IO.RecyclableMemoryStream | https://github.com/microsoft/Microsoft.IO.RecyclableMemoryStream | MIT: licenses/RecyclableMemoryStream-MIT.txt |
 | KD.Avalonia.Rice | https://github.com/k0zi/KD.Avalonia.Rice | MIT: licenses/KD.Avalonia.Rice-MIT.txt |
 | Material.Icons and Material.Icons.Avalonia (through KD.Avalonia.Rice) | https://github.com/SKProCH/Material.Icons | Wrapper code: licenses/Material.Icons-MIT.txt; icon collection: licenses/Pictogrammers-LICENSE.txt and licenses/Apache-2.0.txt |
 
@@ -47,7 +46,8 @@ Their names and marks belong to their respective owners.
 
 The following are used only to build or test Bobrlog and are not included in the packages:
 Nerdbank.GitVersioning (MIT), nfpm (MIT), xUnit and its Visual Studio runner (Apache-2.0),
-Microsoft.NET.Test.Sdk (MIT), coverlet.collector (MIT), and AvaloniaUI.DiagnosticsSupport (Debug builds only).
+Microsoft.NET.Test.Sdk (MIT), coverlet.collector (MIT), and AvaloniaUI.DiagnosticsSupport with its
+Microsoft.IO.RecyclableMemoryStream dependency (MIT; Debug builds only).
 
 ## Maintenance
 
