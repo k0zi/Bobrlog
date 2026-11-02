@@ -474,4 +474,49 @@
   <data name="Rice_DarkVariant" xml:space="preserve">
     <value>Dark</value>
   </data>
+  <data name="Common_Copied" xml:space="preserve">
+    <value>Copied to the clipboard</value>
+  </data>
+  <data name="EventList_EmptyTitle" xml:space="preserve">
+    <value>No events</value>
+  </data>
+  <data name="EventList_EmptyDescription" xml:space="preserve">
+    <value>No events match the current filters. Try a wider time range or a lower severity.</value>
+  </data>
+  <data name="Crashes_EmptyTitle" xml:space="preserve">
+    <value>No crash reports</value>
+  </data>
+  <data name="Settings_RemoveConfirm" xml:space="preserve">
+    <value>Remove the background service? Bobrlog will read the journal directly again.</value>
+  </data>
+  <data name="Rice_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Rice_Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="Rice_No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Rice_ToastClose" xml:space="preserve">
+    <value>Close notification</value>
+  </data>
+  <data name="Rice_CommandPalettePlaceholder" xml:space="preserve">
+    <value>Type a command…</value>
+  </data>
+  <data name="Rice_CommandPalettePlaceholderWithModes" xml:space="preserve">
+    <value>Type a command, or ? for the modes…</value>
+  </data>
+  <data name="Rice_CommandPaletteCommandsMode" xml:space="preserve">
+    <value>Commands</value>
+  </data>
+  <data name="Rice_CommandPaletteNavigationMode" xml:space="preserve">
+    <value>Go to a page</value>
+  </data>
+  <data name="Rice_CommandPaletteNoResults" xml:space="preserve">
+    <value>No matching commands</value>
+  </data>
+  <data name="Rice_CommandPaletteNavigation" xml:space="preserve">
+    <value>Go to</value>
+  </data>
 </root>

@@ -74,7 +74,18 @@ internal static class Program
         RiceStrings.Author = Strings.Rice_Author;
         RiceStrings.Version = Strings.Rice_Version;
         RiceStrings.Ok = Strings.Rice_Ok;
+        RiceStrings.Cancel = Strings.Rice_Cancel;
+        RiceStrings.Yes = Strings.Rice_Yes;
+        RiceStrings.No = Strings.Rice_No;
         RiceStrings.LightVariant = Strings.Rice_LightVariant;
         RiceStrings.DarkVariant = Strings.Rice_DarkVariant;
+        RiceStrings.ToastClose = Strings.Rice_ToastClose;
+        RiceStrings.InfoBarClose = Strings.Rice_Close;
+        RiceStrings.CommandPalettePlaceholder = Strings.Rice_CommandPalettePlaceholder;
+        RiceStrings.CommandPalettePlaceholderWithModes = Strings.Rice_CommandPalettePlaceholderWithModes;
+        RiceStrings.CommandPaletteCommandsMode = Strings.Rice_CommandPaletteCommandsMode;
+        RiceStrings.CommandPaletteNavigationMode = Strings.Rice_CommandPaletteNavigationMode;
+        RiceStrings.CommandPaletteNoResults = Strings.Rice_CommandPaletteNoResults;
+        RiceStrings.CommandPaletteNavigation = Strings.Rice_CommandPaletteNavigation;
     }
 }

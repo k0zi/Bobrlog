@@ -25,7 +25,6 @@
                     <SolidColorBrush x:Key="SeverityInfoBrush" Color="#1C71D8" />
                     <SolidColorBrush x:Key="SeverityVerboseBrush" Color="#77767B" />
                     <SolidColorBrush x:Key="BootOkBrush" Color="#26A269" />
-                    <SolidColorBrush x:Key="BannerBrush" Color="#FDF0C4" />
                 </ResourceDictionary>
                 <ResourceDictionary x:Key="Dark">
                     <SolidColorBrush x:Key="SeverityCriticalBrush" Color="#FF7B63" />
@@ -34,7 +33,6 @@
                     <SolidColorBrush x:Key="SeverityInfoBrush" Color="#62A0EA" />
                     <SolidColorBrush x:Key="SeverityVerboseBrush" Color="#9A9996" />
                     <SolidColorBrush x:Key="BootOkBrush" Color="#57E389" />
-                    <SolidColorBrush x:Key="BannerBrush" Color="#5C4600" />
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
         </ResourceDictionary>

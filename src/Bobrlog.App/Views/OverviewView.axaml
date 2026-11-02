@@ -46,10 +46,8 @@
                     </StackPanel>
                 </DockPanel>
 
-                <Border IsVisible="{Binding ErrorText, Converter={x:Static ObjectConverters.IsNotNull}}"
-                        Background="{DynamicResource BannerBrush}" CornerRadius="6" Padding="10,6">
-                    <TextBlock Text="{Binding ErrorText}" TextWrapping="Wrap" />
-                </Border>
+                <rice:RiceInfoBar Kind="Error" IsClosable="False" Message="{Binding ErrorText}"
+                                  IsOpen="{Binding ErrorText, Converter={x:Static ObjectConverters.IsNotNull}}" />
 
                 <!-- Stat tiles -->
                 <ItemsControl ItemsSource="{Binding Counts}">

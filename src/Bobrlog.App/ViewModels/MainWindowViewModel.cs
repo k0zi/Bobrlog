@@ -2,6 +2,7 @@ using Avalonia.Controls;
 using Avalonia.Input.Platform;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using KD.Avalonia.Rice.Notifications;
 using Bobrlog.App.Controls;
 using Bobrlog.App.Services;
 using Bobrlog.Core.Models;
@@ -154,6 +155,9 @@ public sealed partial class MainWindowViewModel : ViewModelBase, IShell
     public async Task CopyToClipboardAsync(string text)
     {
         if (_topLevel.Clipboard is { } clipboard)
+        {
             await clipboard.SetTextAsync(text);
+            RiceToast.ShowSuccess(Strings.Common_Copied, owner: _topLevel);
+        }
     }
 }

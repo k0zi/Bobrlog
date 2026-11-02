@@ -42,10 +42,8 @@
                 <Button Command="{Binding ClearFiltersCommand}" Content="{x:Static r:Strings.EventList_ClearFilters}" />
             </WrapPanel>
 
-            <Border IsVisible="{Binding ErrorText, Converter={x:Static ObjectConverters.IsNotNull}}"
-                    Background="{DynamicResource BannerBrush}" CornerRadius="6" Padding="10,6">
-                <TextBlock Text="{Binding ErrorText}" TextWrapping="Wrap" />
-            </Border>
+            <rice:RiceInfoBar Kind="Error" IsClosable="False" Message="{Binding ErrorText}"
+                              IsOpen="{Binding ErrorText, Converter={x:Static ObjectConverters.IsNotNull}}" />
         </StackPanel>
 
         <!-- Footer -->
@@ -78,14 +76,32 @@
                     </DataGrid.Columns>
                 </DataGrid>
             </rice:RiceLoadingOverlay>
+            <rice:RiceEmptyState Grid.Column="0" Title="{x:Static r:Strings.EventList_EmptyTitle}"
+                                 Description="{x:Static r:Strings.EventList_EmptyDescription}">
+                <rice:RiceEmptyState.IsVisible>
+                    <MultiBinding Converter="{x:Static BoolConverters.And}">
+                        <Binding Path="!Entries.Count" />
+                        <Binding Path="!IsLoading" />
+                        <Binding Path="ErrorText" Converter="{x:Static ObjectConverters.IsNull}" />
+                    </MultiBinding>
+                </rice:RiceEmptyState.IsVisible>
+                <rice:RiceEmptyState.Icon>
+                    <PathIcon Data="{x:Static c:Icons.Journal}" Width="56" Height="56" />
+                </rice:RiceEmptyState.Icon>
+                <Button Content="{x:Static r:Strings.EventList_ClearFilters}" Command="{Binding ClearFiltersCommand}" HorizontalAlignment="Center" />
+            </rice:RiceEmptyState>
 
             <GridSplitter Grid.Column="1" Background="Transparent" ResizeDirection="Columns" />
 
             <!-- Details -->
             <Border Grid.Column="2" Classes="card" Padding="14">
                 <Grid RowDefinitions="Auto,Auto,Auto,*,Auto,2*">
-                    <TextBlock Grid.Row="0" Classes="muted" Text="{x:Static r:Strings.EventList_SelectPrompt}"
-                               IsVisible="{Binding !HasSelection}" TextWrapping="Wrap" />
+                    <rice:RiceEmptyState Grid.Row="0" Grid.RowSpan="6" IconSize="48" IsVisible="{Binding !HasSelection}"
+                                         Description="{x:Static r:Strings.EventList_SelectPrompt}">
+                        <rice:RiceEmptyState.Icon>
+                            <PathIcon Data="{x:Static c:Icons.List}" Width="42" Height="42" />
+                        </rice:RiceEmptyState.Icon>
+                    </rice:RiceEmptyState>
                     <StackPanel Grid.Row="0" Spacing="4" IsVisible="{Binding HasSelection}">
                         <StackPanel Orientation="Horizontal" Spacing="8">
                             <c:SeverityIcon Severity="{Binding SelectedEntry.Severity, FallbackValue={x:Static m:Severity.Info}}" Width="20" Height="20" />

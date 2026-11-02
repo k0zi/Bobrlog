@@ -474,4 +474,49 @@
   <data name="Rice_DarkVariant" xml:space="preserve">
     <value>Dunkel</value>
   </data>
+  <data name="Common_Copied" xml:space="preserve">
+    <value>In die Zwischenablage kopiert</value>
+  </data>
+  <data name="EventList_EmptyTitle" xml:space="preserve">
+    <value>Keine Ereignisse</value>
+  </data>
+  <data name="EventList_EmptyDescription" xml:space="preserve">
+    <value>Keine Ereignisse entsprechen den aktuellen Filtern. Versuchen Sie einen größeren Zeitraum oder einen niedrigeren Schweregrad.</value>
+  </data>
+  <data name="Crashes_EmptyTitle" xml:space="preserve">
+    <value>Keine Absturzberichte</value>
+  </data>
+  <data name="Settings_RemoveConfirm" xml:space="preserve">
+    <value>Hintergrunddienst entfernen? Bobrlog liest das Journal danach wieder direkt.</value>
+  </data>
+  <data name="Rice_Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="Rice_Yes" xml:space="preserve">
+    <value>Ja</value>
+  </data>
+  <data name="Rice_No" xml:space="preserve">
+    <value>Nein</value>
+  </data>
+  <data name="Rice_ToastClose" xml:space="preserve">
+    <value>Benachrichtigung schließen</value>
+  </data>
+  <data name="Rice_CommandPalettePlaceholder" xml:space="preserve">
+    <value>Befehl eingeben…</value>
+  </data>
+  <data name="Rice_CommandPalettePlaceholderWithModes" xml:space="preserve">
+    <value>Befehl eingeben oder ? für die Modi…</value>
+  </data>
+  <data name="Rice_CommandPaletteCommandsMode" xml:space="preserve">
+    <value>Befehle</value>
+  </data>
+  <data name="Rice_CommandPaletteNavigationMode" xml:space="preserve">
+    <value>Zu einer Seite wechseln</value>
+  </data>
+  <data name="Rice_CommandPaletteNoResults" xml:space="preserve">
+    <value>Keine passenden Befehle</value>
+  </data>
+  <data name="Rice_CommandPaletteNavigation" xml:space="preserve">
+    <value>Gehe zu</value>
+  </data>
 </root>

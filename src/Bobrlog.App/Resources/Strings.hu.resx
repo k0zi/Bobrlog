@@ -474,4 +474,49 @@
   <data name="Rice_DarkVariant" xml:space="preserve">
     <value>Sötét</value>
   </data>
+  <data name="Common_Copied" xml:space="preserve">
+    <value>Vágólapra másolva</value>
+  </data>
+  <data name="EventList_EmptyTitle" xml:space="preserve">
+    <value>Nincs esemény</value>
+  </data>
+  <data name="EventList_EmptyDescription" xml:space="preserve">
+    <value>Nincs a szűrőknek megfelelő esemény. Próbálj szélesebb időtartományt vagy alacsonyabb súlyosságot.</value>
+  </data>
+  <data name="Crashes_EmptyTitle" xml:space="preserve">
+    <value>Nincs összeomlás-jelentés</value>
+  </data>
+  <data name="Settings_RemoveConfirm" xml:space="preserve">
+    <value>Eltávolítod a háttérszolgáltatást? A Bobrlog ezután ismét közvetlenül olvassa a naplót.</value>
+  </data>
+  <data name="Rice_Cancel" xml:space="preserve">
+    <value>Mégse</value>
+  </data>
+  <data name="Rice_Yes" xml:space="preserve">
+    <value>Igen</value>
+  </data>
+  <data name="Rice_No" xml:space="preserve">
+    <value>Nem</value>
+  </data>
+  <data name="Rice_ToastClose" xml:space="preserve">
+    <value>Értesítés bezárása</value>
+  </data>
+  <data name="Rice_CommandPalettePlaceholder" xml:space="preserve">
+    <value>Írj be egy parancsot…</value>
+  </data>
+  <data name="Rice_CommandPalettePlaceholderWithModes" xml:space="preserve">
+    <value>Írj be egy parancsot, vagy ? a módokhoz…</value>
+  </data>
+  <data name="Rice_CommandPaletteCommandsMode" xml:space="preserve">
+    <value>Parancsok</value>
+  </data>
+  <data name="Rice_CommandPaletteNavigationMode" xml:space="preserve">
+    <value>Ugrás oldalra</value>
+  </data>
+  <data name="Rice_CommandPaletteNoResults" xml:space="preserve">
+    <value>Nincs találat</value>
+  </data>
+  <data name="Rice_CommandPaletteNavigation" xml:space="preserve">
+    <value>Ugrás</value>
+  </data>
 </root>

@@ -4,6 +4,8 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using KD.Avalonia.Rice.Controls;
+using KD.Avalonia.Rice.Dialogs;
 using Bobrlog.App.Controls;
 using Bobrlog.App.Resources;
 using Bobrlog.App.Services;
@@ -13,9 +15,6 @@ namespace Bobrlog.App.ViewModels;
 
 public sealed partial class SettingsViewModel(AppServices services, Func<Task> sourceChanged) : PageViewModel
 {
-    public static readonly Avalonia.Data.Converters.IValueConverter ErrorBrushConverter =
-        new Avalonia.Data.Converters.FuncValueConverter<bool, IBrush?>(isError => isError ? Brushes.IndianRed : null);
-
     public override string Title => Strings.Settings_Title;
     public override Geometry Icon => Icons.Tune;
 
@@ -24,6 +23,9 @@ public sealed partial class SettingsViewModel(AppServices services, Func<Task> s
     [ObservableProperty] public partial bool IsBusy { get; set; }
     [ObservableProperty] public partial string? ResultText { get; set; }
     [ObservableProperty] public partial bool ResultIsError { get; set; }
+
+    /// <summary>Running operation, its success or its failure.</summary>
+    public InfoBarKind ResultKind => ResultIsError ? InfoBarKind.Error : IsBusy ? InfoBarKind.Info : InfoBarKind.Success;
 
     public bool CanInstall => !IsBusy && ServiceInstaller.IsBundledServiceAvailable;
     public bool CanRemove => !IsBusy && IsInstalled;
@@ -103,11 +105,14 @@ public sealed partial class SettingsViewModel(AppServices services, Func<Task> s
 
     partial void OnIsBusyChanged(bool value)
     {
+        OnPropertyChanged(nameof(ResultKind));
         OnPropertyChanged(nameof(CanInstall));
         OnPropertyChanged(nameof(CanRemove));
     }
 
     partial void OnIsInstalledChanged(bool value) => OnPropertyChanged(nameof(CanRemove));
+
+    partial void OnResultIsErrorChanged(bool value) => OnPropertyChanged(nameof(ResultKind));
 
     [RelayCommand]
     private async Task RefreshStatusAsync()
@@ -136,7 +141,11 @@ public sealed partial class SettingsViewModel(AppServices services, Func<Task> s
     private Task InstallAsync() => RunAsync(ServiceInstaller.InstallArgument);
 
     [RelayCommand]
-    private Task RemoveAsync() => RunAsync(ServiceInstaller.UninstallArgument);
+    private async Task RemoveAsync()
+    {
+        if (await RiceDialog.AskAsync(Strings.Settings_RemoveConfirm, Strings.Settings_ServiceHeader))
+            await RunAsync(ServiceInstaller.UninstallArgument);
+    }
 
     [RelayCommand]
     private Task RestartAsync() => RunAsync(ServiceInstaller.RestartArgument);

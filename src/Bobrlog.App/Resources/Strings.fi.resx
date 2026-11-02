@@ -474,4 +474,49 @@
   <data name="Rice_DarkVariant" xml:space="preserve">
     <value>Tumma</value>
   </data>
+  <data name="Common_Copied" xml:space="preserve">
+    <value>Kopioitu leikepöydälle</value>
+  </data>
+  <data name="EventList_EmptyTitle" xml:space="preserve">
+    <value>Ei tapahtumia</value>
+  </data>
+  <data name="EventList_EmptyDescription" xml:space="preserve">
+    <value>Mikään tapahtuma ei vastaa nykyisiä suodattimia. Kokeile laajempaa aikaväliä tai alempaa vakavuustasoa.</value>
+  </data>
+  <data name="Crashes_EmptyTitle" xml:space="preserve">
+    <value>Ei kaatumisraportteja</value>
+  </data>
+  <data name="Settings_RemoveConfirm" xml:space="preserve">
+    <value>Poistetaanko taustapalvelu? Bobrlog lukee lokia tämän jälkeen taas suoraan.</value>
+  </data>
+  <data name="Rice_Cancel" xml:space="preserve">
+    <value>Peruuta</value>
+  </data>
+  <data name="Rice_Yes" xml:space="preserve">
+    <value>Kyllä</value>
+  </data>
+  <data name="Rice_No" xml:space="preserve">
+    <value>Ei</value>
+  </data>
+  <data name="Rice_ToastClose" xml:space="preserve">
+    <value>Sulje ilmoitus</value>
+  </data>
+  <data name="Rice_CommandPalettePlaceholder" xml:space="preserve">
+    <value>Kirjoita komento…</value>
+  </data>
+  <data name="Rice_CommandPalettePlaceholderWithModes" xml:space="preserve">
+    <value>Kirjoita komento tai ? nähdäksesi tilat…</value>
+  </data>
+  <data name="Rice_CommandPaletteCommandsMode" xml:space="preserve">
+    <value>Komennot</value>
+  </data>
+  <data name="Rice_CommandPaletteNavigationMode" xml:space="preserve">
+    <value>Siirry sivulle</value>
+  </data>
+  <data name="Rice_CommandPaletteNoResults" xml:space="preserve">
+    <value>Ei vastaavia komentoja</value>
+  </data>
+  <data name="Rice_CommandPaletteNavigation" xml:space="preserve">
+    <value>Siirry</value>
+  </data>
 </root>

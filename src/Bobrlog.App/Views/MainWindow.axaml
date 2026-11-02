@@ -53,13 +53,8 @@
 
         <!-- Content -->
         <DockPanel>
-            <Border DockPanel.Dock="Top" IsVisible="{Binding HasPrivilegeWarning}"
-                    Background="{DynamicResource BannerBrush}" Padding="14,8">
-                <StackPanel Orientation="Horizontal" Spacing="8">
-                    <PathIcon Classes="severity-warning" Data="M13,14H11V10H13M13,18H11V16H13M1,21H23L12,2L1,21Z" Width="16" Height="16" />
-                    <TextBlock Text="{Binding PrivilegeWarning}" TextWrapping="Wrap" VerticalAlignment="Center" />
-                </StackPanel>
-            </Border>
+            <rice:RiceInfoBar DockPanel.Dock="Top" Kind="Warning" Margin="16,10,16,0"
+                              Message="{Binding PrivilegeWarning}" IsOpen="{Binding HasPrivilegeWarning, Mode=OneWay}" />
             <ContentControl Content="{Binding SelectedPage}" />
         </DockPanel>
     </DockPanel>
